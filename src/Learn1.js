@@ -2,6 +2,45 @@ const LearnSetup = () => {
 
     var currentclass = 0, currentsemester = 0, currentobjects = 2;
 
+    const saveData = () => {
+
+    }
+
+    const resetButtons = () => {
+        document.getElementById('9').classList.remove('active');
+        document.getElementById('10').classList.remove('active');
+        document.getElementById('11').classList.remove('active');
+        document.getElementById('12').classList.remove('active');
+        document.getElementById('sem1').classList.remove('active');
+        document.getElementById('sem2').classList.remove('active');
+        document.getElementById('mat3').classList.remove('active');
+        document.getElementById('mat4').classList.remove('active');
+        document.getElementById('mat5').classList.remove('active');
+        document.getElementById('mat6').classList.remove('active');
+        document.getElementById('mat3').disabled = false;
+        document.getElementById('mat4').disabled = false;
+        document.getElementById('mat5').disabled = false;
+        document.getElementById('mat6').disabled = false;
+        currentclass = 0;
+        currentsemester = 0;
+        currentobjects = 2;
+    }
+
+    const disableAllBut = (mat) => {
+        document.getElementById('mat3').disabled = true;
+        document.getElementById('mat4').disabled = true;
+        document.getElementById('mat5').disabled = true;
+        document.getElementById('mat6').disabled = true;
+        document.getElementById('mat' + mat).disabled = false;
+    }
+ 
+    const enableAll= () => {
+        document.getElementById('mat3').disabled = false;
+        document.getElementById('mat4').disabled = false;
+        document.getElementById('mat5').disabled = false;
+        document.getElementById('mat6').disabled = false;
+    }
+
     const activate9 = () => {
         currentclass = 9;
         document.getElementById('9').classList.add('active');
@@ -40,21 +79,61 @@ const LearnSetup = () => {
         document.getElementById('sem1').classList.remove('active');
         document.getElementById('sem2').classList.add('active');
     }
-    const activatemat3 = () => {
-        currentobjects++;
-        document.getElementById('mat3').classList.add('active');
+    const activatemat3 = () => {      
+        if(document.getElementById('mat3').classList.contains('active')){
+            document.getElementById('mat3').classList.remove('active');
+            currentobjects--;
+        }
+        else{
+            document.getElementById('mat3').classList.add('active');
+            currentobjects++;
+        }
+        if(currentobjects >= 3)
+            disableAllBut(3);
+        else
+            enableAll();
     }
     const activatemat4 = () => {
-        currentobjects++;
-        document.getElementById('mat4').classList.add('active');
+        if(document.getElementById('mat4').classList.contains('active')){
+            document.getElementById('mat4').classList.remove('active');
+            currentobjects--;
+        }
+        else{
+            document.getElementById('mat4').classList.add('active');
+            currentobjects++;
+        }        
+        if(currentobjects >= 3) 
+            disableAllBut(4);
+        else 
+            enableAll();
     }
     const activatemat5 = () => {
-        currentobjects++;
-        document.getElementById('mat5').classList.add('active');
+        if(document.getElementById('mat5').classList.contains('active')){
+            document.getElementById('mat5').classList.remove('active');
+            currentobjects--;
+        }
+        else{
+            document.getElementById('mat5').classList.add('active');
+            currentobjects++;
+        }
+        if(currentobjects >= 3)
+            disableAllBut(5);
+        else
+            enableAll();
     }
     const activatemat6 = () => {
-        currentobjects++;
-        document.getElementById('mat6').classList.add('active');
+        if(document.getElementById('mat6').classList.contains('active')){
+            document.getElementById('mat6').classList.remove('active');
+            currentobjects--;
+        }
+        else{
+            document.getElementById('mat6').classList.add('active');
+            currentobjects++;
+        }
+        if(currentobjects >= 3)
+            disableAllBut(6);
+        else
+            enableAll();
     }
     return (  
         <div className="learn1">
@@ -80,7 +159,7 @@ const LearnSetup = () => {
                             <h5 className="card-title">Semestrul</h5>
                             <p className="card-text"></p>
                             <div className="list-group">
-                                <button type="button" className="list-group-item list-group-item-action" onClick={activateSemester1} id="sem1">1</button>
+                                <button type="button" className="list-group-item list-group-item-action active" onClick={activateSemester1} id="sem1">1</button>
                                 <button type="button" className="list-group-item list-group-item-action" onClick={activateSemester2} id="sem2">2</button>
                             </div>
                         </div>
@@ -99,8 +178,10 @@ const LearnSetup = () => {
                             <button type="button" className="list-group-item list-group-item-action" id="mat6" onClick={activatemat6}>Chimie</button>
                         </div>
                     </div>
-                </div>    
-            </div>            
+                </div> 
+                <button type="button" className="btn btn-danger position-relative start-50 translate-middle" style={{width:"5rem"}} onClick={resetButtons}>Reset</button>   
+                 {/*<button type="button" className="btn btn-outline-success position-relative start-50 translate-middle" style={{width:"5rem"}} onClick={saveData}>Next </button>  */}
+            </div>        
         </div>
     );
 }
