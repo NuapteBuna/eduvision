@@ -7,14 +7,23 @@ const Home = () => {
     const handleClick = () => {
         history.push('/learn-setup');
     };
-
     
     return (  
         <div className="home">
-            <div class="position-absolute top-50 start-50 translate-middle">
-                <h1>Edu Vision</h1>
-            </div>
-            
+            <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://github.com/Andrei9383/eduvision-v2" target={"_blank"}>GitHub</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="mailto:andrei.cristian.stan@lttvb.ro">Contact</a>
+            </li>
+            </ul>
+                <font size={24}>
+                    <h1 class="display-1">EDU&#10;VISION</h1>
+                </font>
             <button type="button" class="btn btn-primary position-absolute start-50 translate-middle btn-lg" style={{position:"fixed", bottom:"80px"}} onClick={handleClick}>Learn</button>
         </div>
     );

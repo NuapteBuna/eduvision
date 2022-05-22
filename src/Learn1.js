@@ -218,7 +218,7 @@ const LearnSetup = () => {
                             <div className="card-body">
                                 <h5 className="card-title">Cât timp ai la dispoziție?</h5>
                                 <div class="input-group">
-                                    <input type="number" class="form-control" placeholder="10" aria-label="Time left for studying" id="time-input-value"/>
+                                    <input type="number" className="form-control" placeholder="10" aria-label="Time left for studying" id="time-input-value"/>
                                     <button className ="list-group-item btn btn-outline-primary" type="button" id = "days" onClick = {activateDays}>Zile</button>
                                     <button className ="list-group-item btn btn-outline-primary" type="button" id = "weeks" onClick = {activateWeeks}>Săptămâni</button>
                                     <button className ="list-group-item btn btn-outline-primary" type="button" id = "months" onClick = {activateMonths}>Luni</button>
