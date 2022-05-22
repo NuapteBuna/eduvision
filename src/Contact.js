@@ -32,4 +32,7 @@ const Contact = () => {
         </div>
     );
 }
+{/*
+    sbn
+*/}
 export default Contact;
