@@ -267,7 +267,6 @@ const LearnSetup = () => {
                     </div>     
                 </div>
             </div>
-    </div>
     );
 }
 
