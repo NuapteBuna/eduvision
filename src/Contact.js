@@ -10,6 +10,19 @@ const Contact = () => {
     
     return(
         <div className="contact">
+            <div className = "navbar">
+                <ul class="nav justify-content-end position-absolute top-0 end-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/NuapteBuna/eduvision" target={"_blank"}>GitHub</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="mailto:andrei.cristian.stan@lttvb.ro">Contact</a>
+                    </li>
+                </ul>
+            </div>
             <button type ="button" className="btn btn-danger position-absolute start-50 translate-middle btn-lg" style={{position:"fixed", bottom:"80px"}} onClick={backClick}>Back</button>
             <font size={24}>
                     <h1 class="display-1 position-absolute top-50 start-50" style={{marginTop:"-20rem"}}>CONTACT</h1>
