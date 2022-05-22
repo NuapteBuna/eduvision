@@ -1,29 +1,9 @@
 const LearnSetup = () => {
 
-    var currentclass = 0, currentsemester = 0, currentobjects = 2;
+    var currentobjects = 2, timeValue, globalTime = 0, difficultyLevel ="", learningMode="";
 
     const saveData = () => {
 
-    }
-
-    const resetButtons = () => {
-        document.getElementById('9').classList.remove('active');
-        document.getElementById('10').classList.remove('active');
-        document.getElementById('11').classList.remove('active');
-        document.getElementById('12').classList.remove('active');
-        document.getElementById('sem1').classList.remove('active');
-        document.getElementById('sem2').classList.remove('active');
-        document.getElementById('mat3').classList.remove('active');
-        document.getElementById('mat4').classList.remove('active');
-        document.getElementById('mat5').classList.remove('active');
-        document.getElementById('mat6').classList.remove('active');
-        document.getElementById('mat3').disabled = false;
-        document.getElementById('mat4').disabled = false;
-        document.getElementById('mat5').disabled = false;
-        document.getElementById('mat6').disabled = false;
-        currentclass = 0;
-        currentsemester = 0;
-        currentobjects = 2;
     }
 
     const disableAllBut = (mat) => {
@@ -41,44 +21,6 @@ const LearnSetup = () => {
         document.getElementById('mat6').disabled = false;
     }
 
-    const activate9 = () => {
-        currentclass = 9;
-        document.getElementById('9').classList.add('active');
-        document.getElementById('10').classList.remove('active');
-        document.getElementById('11').classList.remove('active');
-        document.getElementById('12').classList.remove('active');
-    }
-    const activate10 = () => {
-        currentclass = 10;
-        document.getElementById('9').classList.remove('active');
-        document.getElementById('10').classList.add('active');
-        document.getElementById('11').classList.remove('active');
-        document.getElementById('12').classList.remove('active');
-    }
-    const activate11 = () => {
-        currentclass = 11;
-        document.getElementById('9').classList.remove('active');
-        document.getElementById('10').classList.remove('active');
-        document.getElementById('11').classList.add('active');
-        document.getElementById('12').classList.remove('active');
-    }
-    const activate12 = () => {
-        currentclass = 12;
-        document.getElementById('9').classList.remove('active');
-        document.getElementById('10').classList.remove('active');
-        document.getElementById('11').classList.remove('active');
-        document.getElementById('12').classList.add('active');
-    }
-    const activateSemester1 = () => {
-        currentsemester = 1;
-        document.getElementById('sem1').classList.add('active');
-        document.getElementById('sem2').classList.remove('active');
-    }
-    const activateSemester2 = () => {
-        currentsemester = 2;
-        document.getElementById('sem1').classList.remove('active');
-        document.getElementById('sem2').classList.add('active');
-    }
     const activatemat3 = () => {      
         if(document.getElementById('mat3').classList.contains('active')){
             document.getElementById('mat3').classList.remove('active');
@@ -93,6 +35,7 @@ const LearnSetup = () => {
         else
             enableAll();
     }
+
     const activatemat4 = () => {
         if(document.getElementById('mat4').classList.contains('active')){
             document.getElementById('mat4').classList.remove('active');
@@ -107,6 +50,7 @@ const LearnSetup = () => {
         else 
             enableAll();
     }
+
     const activatemat5 = () => {
         if(document.getElementById('mat5').classList.contains('active')){
             document.getElementById('mat5').classList.remove('active');
@@ -121,6 +65,7 @@ const LearnSetup = () => {
         else
             enableAll();
     }
+
     const activatemat6 = () => {
         if(document.getElementById('mat6').classList.contains('active')){
             document.getElementById('mat6').classList.remove('active');
@@ -135,55 +80,157 @@ const LearnSetup = () => {
         else
             enableAll();
     }
+
+    const activateDays = () => {
+        if(document.getElementById('days').classList.contains('active')){
+            document.getElementById('days').classList.remove('active');
+            timeValue = "";
+        }
+        else{
+            timeValue = "zile";
+            document.getElementById('days').classList.add('active');
+            document.getElementById('weeks').classList.remove('active');
+            document.getElementById('months').classList.remove('active');
+        }
+    }
+
+    const activateWeeks = () => {
+        if(document.getElementById('weeks').classList.contains('active')){
+            document.getElementById('weeks').classList.remove('active');
+            timeValue = "";
+        }
+        else{
+            timeValue = "săptămâni";
+            document.getElementById('days').classList.remove('active');
+            document.getElementById('weeks').classList.add('active');
+            document.getElementById('months').classList.remove('active');
+        }
+    }
+
+    const activateMonths = () => {
+        if(document.getElementById('months').classList.contains('active')){
+            document.getElementById('months').classList.remove('active');
+            timeValue = "";
+        }
+        else{
+            timeValue = "luni";
+            document.getElementById('days').classList.remove('active');
+            document.getElementById('weeks').classList.remove('active');
+            document.getElementById('months').classList.add('active');
+        }
+    }
+
+    const RememberTime = () =>
+    {
+        var time = document.getElementById('time-input-value').value;
+        return time;
+    }
+
+    function ChangeTimeToDays () 
+    {
+        var time = RememberTime();
+        if(timeValue == "zile")
+            globalTime = time;
+        if(timeValue == "săptămâni")
+            globalTime = time * 7;
+        if(timeValue == "luni")
+            globalTime = time * 30;
+    }
+
+    const activateEasy = () => {
+        difficultyLevel = "easy";
+        document.getElementById('easy').classList.add('success');
+        document.getElementById('medium').classList.remove('warning');
+        document.getElementById('hard').classList.remove('danger');
+    }
+
+    const activateMedium = () => {
+        difficultyLevel = "medium";
+        document.getElementById('easy').classList.remove('success');
+        document.getElementById('medium').classList.add('warning');
+        document.getElementById('hard').classList.remove('danger');
+    }
+
+    const activateHard = () => {
+        difficultyLevel = "hard";
+        document.getElementById('easy').classList.remove('success');
+        document.getElementById('medium').classList.remove('warning');
+        document.getElementById('hard').classList.add('danger');
+    }
+
+    const activateMorning = () => {
+        learningMode = "morning";
+        document.getElementById('morning').classList.add('active');
+        document.getElementById('afternoon').classList.remove('active');
+    }
+
+    const activateAfternoon = () => {
+        learningMode = "afternoon";
+        document.getElementById('morning').classList.remove('active');
+        document.getElementById('afternoon').classList.add('active');
+    }
+
     return (  
         <div className="learn1">
 
-            <div className="card position-absolute top-50 start-50 translate-middle" style={{width:"36rem", height:"36rem"}}>
+            <div className="card position-absolute top-50 start-50 translate-middle" style={{width:"34rem", height:"45rem"}}>
                 <div className="card-body">
-                <h5 className="card-title">Setup</h5>
-                <p className="card-text">Pentru a-ti genera calendarul de invatare, va trebui sa ne oferi cateva informatii.</p>
-                    <div className="card" style={{width: "10rem"}}>
+                    <h5 className="card-title">Setup</h5>
+                    <p className="card-text">Pentru a-ți genera calendarul de învățare, va trebui să ne oferi câteva informații.</p>
+                        <div className = "card" style={{width:"20rem", height:"7rem", marginTop:"1rem"}}>
+                            <div className="card-body">
+                                <h5 className="card-title">Cât timp ai la dispoziție?</h5>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" placeholder="10" aria-label="Time left for studying" id="time-input-value"/>
+                                    <button className ="list-group-item btn btn-outline-primary" type="button" id = "days" onClick = {activateDays}>Zile</button>
+                                    <button className ="list-group-item btn btn-outline-primary" type="button" id = "weeks" onClick = {activateWeeks}>Săptămâni</button>
+                                    <button className ="list-group-item btn btn-outline-primary" type="button" id = "months" onClick = {activateMonths}>Luni</button>
+                                </div>
+                            </div> 
+                            <div className="card position-absolute top-0" style={{width:"10rem", marginLeft:"21rem", marginTop:""}}>
+                                <div className="card-body">
+                                    <h5 className="card-title">Materii</h5>
+                                    <p className="card-text"></p>
+                                    <div className="list-group">
+                                        <button type="button" className="list-group-item list-group-item-action active" id="mat1">Lb. Română</button>
+                                        <button type="button" className="list-group-item list-group-item-action active" id="mat2">Matematică</button>
+                                        <button type="button" className="list-group-item list-group-item-action" id="mat3" onClick={activatemat3}>Informatică</button>
+                                        <button type="button" className="list-group-item list-group-item-action" id="mat4" onClick={activatemat4}>Fizică</button>
+                                        <button type="button" className="list-group-item list-group-item-action" id="mat5" onClick={activatemat5}>Biologie</button>
+                                        <button type="button" className="list-group-item list-group-item-action" id="mat6" onClick={activatemat6}>Chimie</button>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div> 
+                    <div className = "card" style={{width:"20rem", height:"15rem", marginTop:"1rem",}}>
                         <div className="card-body">
-                            <h5 className="card-title">Clasa</h5>
-                            <p className="card-text"></p>
-                            <div className="list-group">
-                                <button type="button" className="list-group-item list-group-item-action" onClick={activate9} id="9">9</button>
-                                <button type="button" className="list-group-item list-group-item-action" onClick={activate10} id="10">10</button>
-                                <button type="button" className="list-group-item list-group-item-action" onClick={activate11} id="11">11</button>
-                                <button type="button" className="list-group-item list-group-item-action" onClick={activate12} id="12">12</button>
+                            <h6 className="card-title">Ce nivel de dedicație dorești să ai?</h6>
+                            <div class="input-group" style={{marginLeft:"2rem",marginTop:"0.8rem"}} >
+                                <button className ="list-group-item btn btn-success" type="button" id = "easy" onClick = {activateEasy}>Ușor</button>
+                                <button className ="list-group-item btn btn-warning" type="button" id = "medium" onClick={activateMedium}>Mediu</button>
+                                <button className ="list-group-item btn btn-danger" type="button" id = "hard" onClick={activateHard}>Ridicat</button>
                             </div>
+                            <br/>
+                            <p class="easymean">Ușor -&gt; 5-7 ore / săptămână</p>
+                            <p class="mediummean">Mediu -&gt; 7-9 ore / săptămână</p>
+                            <p class="hardmean">Ridicat -&gt; 10 ore / săptămână</p>
                         </div>
                     </div>
-                    <div className="card" style={{width: "10rem", marginTop:"-238px", marginLeft:"11rem"}}>
+                    <div className = "card" style={{width:"20rem", height:"12rem", marginTop:"1rem",}}>
                         <div className="card-body">
-                            <h5 className="card-title">Semestrul</h5>
-                            <p className="card-text"></p>
-                            <div className="list-group">
-                                <button type="button" className="list-group-item list-group-item-action active" onClick={activateSemester1} id="sem1">1</button>
-                                <button type="button" className="list-group-item list-group-item-action" onClick={activateSemester2} id="sem2">2</button>
+                            <h6 className="card-title">Când ai ore la liceu?</h6>
+                            <div class="input-group" style={{marginLeft:"2rem",marginTop:"0.8rem"}} >
+                                <button className ="list-group-item btn btn-outline-secondary" type="button" id = "morning" onClick={activateMorning}>Dimineața</button>
+                                <button className ="list-group-item btn btn-outline-secondary" type="button" id = "afternoon" onClick={activateAfternoon}>După-amiaza</button>
                             </div>
+                            <br/>
+                            <p class="easymean">Dimineața : 8-&gt;14</p>
+                            <p class="mediummean">După-amiaza : 12-&gt;18</p>
                         </div>
-                    </div>
+                    </div>     
                 </div>
-                <div className="card position-absolute top-0" style={{width:"10rem", marginLeft:"22.7rem", marginTop:"113px"}}>
-                    <div className="card-body">
-                        <h5 className="card-title">Materii</h5>
-                        <p className="card-text"></p>
-                        <div className="list-group">
-                            <button type="button" className="list-group-item list-group-item-action active" id="mat1">Lb. Romana</button>
-                            <button type="button" className="list-group-item list-group-item-action active" id="mat2">Matematica</button>
-                            <button type="button" className="list-group-item list-group-item-action" id="mat3" onClick={activatemat3}>Informatica</button>
-                            <button type="button" className="list-group-item list-group-item-action" id="mat4" onClick={activatemat4}>Fizica</button>
-                            <button type="button" className="list-group-item list-group-item-action" id="mat5" onClick={activatemat5}>Biologie</button>
-                            <button type="button" className="list-group-item list-group-item-action" id="mat6" onClick={activatemat6}>Chimie</button>
-                        </div>
-                    </div>
-                </div> 
-                <button type="button" className="btn btn-danger position-relative start-50 translate-middle" style={{width:"5rem"}} onClick={resetButtons}>Reset</button>   
-                 {/*<button type="button" className="btn btn-outline-success position-relative start-50 translate-middle" style={{width:"5rem"}} onClick={saveData}>Next </button>  */}
-            </div>        
+            </div>
         </div>
     );
 }
- 
 export default LearnSetup;
