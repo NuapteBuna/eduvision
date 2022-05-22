@@ -3,6 +3,8 @@ import { render } from "@testing-library/react";
 
 import {useState} from 'react';
 
+import Learn from './Learn1';
+
 const Test = () => {
 
     var currAns;
@@ -90,6 +92,8 @@ const Test = () => {
             return length + " intrebari";
     }
 
+    //Starts from 0 : currentobjects, globalTime, learningMode, difficultyLevel, weekend
+    var content = Learn.returnvalues();
 
     //Renders the final page
         return ( 
@@ -106,6 +110,7 @@ const Test = () => {
                                             {returnWord(intrebari.filter(x => x.materie == intrebari[counter].materie).length)} 
                                         </h6>
                                         {renderQuestion(counter)}
+                                        {console.log(content[1])}
                                         <button type="button" className="btn btn-success" onClick={submit}>{currWord}</button>
                                     </div>
                                 </div>
