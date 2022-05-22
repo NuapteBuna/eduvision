@@ -3,10 +3,13 @@ import { render } from "@testing-library/react";
 
 import {useState} from 'react';
 
+import Learn from './Learn1';
+
 const Test = () => {
 
     var currAns;
 
+    //Simulate Struct
     function test(intrebare, raspuns, materie, capitol, input, raspunsuri = []){
         this.intrebare = intrebare;
         this.raspuns = raspuns;
@@ -16,13 +19,18 @@ const Test = () => {
         this.raspunsuri = raspunsuri;
     }
 
+
+    //Fill an array with 'test' objects
     var intrebari = [new test("Ce este un obiect?", "1", "Informatica", "1", "", ["a", "b", "c", "d"]), new test("Ce este un numar?", "2", "Matematica", "3", "", ["a", "b", "c", "d"]), new test("Ce sunt datele?", "4", "Informatica", "3", "", ["a", "b", "c", "d"]) ];
+    //TODO: Add more questions
+
 
     var materii = [];
     var capitole = [];
 
     var gresite = 0;
 
+    //Only allow one answer per question
     const activateButton = (id) => {
         document.getElementById(id).classList.add('active');
         currAns = id;
@@ -32,25 +40,34 @@ const Test = () => {
         }
     }
 
+    //Frequency array for wrong answers
     const frecventaMat = new Array(10).fill(0);
 
-    const [counter, setCounter] = useState(0);
 
+    //Reactive variables, used to keep track of the current question and the current word for the button
+    const [counter, setCounter] = useState(0);
+    const [currWord, setWord] = useState("Next");
+
+
+    //Tracks the wrong answers in the frequency array
     const submit = () => {
-        if(currAns == intrebari[counter].raspuns){
-            console.log("CORECT");
-        }
+
+        if(currAns == intrebari[counter].raspuns) console.log("CORECT");
         else{
             materii[gresite] = intrebari[counter].materie;
             capitole[gresite++] = intrebari[counter].capitol; 
             frecventaMat[materii[gresite-1]] = frecventaMat[materii[gresite-1]] ? frecventaMat[materii[gresite-1]] + 1 : 1;
-            console.log("Frecventa la " + materii[gresite-1] + " este " + frecventaMat[materii[gresite-1]]);
-        }
-        setCounter(count=>count+1);
+        } 
+
+        if(counter >= intrebari.length - 2) setWord("Finish");
+        
+        //TODO: result page
+
+        setCounter(count=>count+1);        
     }
     
-    var globalId = 0;
 
+    //Renders the questions and answers
     function renderQuestion(id){ 
         return (
             <p className="card-text">
@@ -67,8 +84,7 @@ const Test = () => {
         );
     }
     
-    var test2 = 0;
-
+    //Returns the appropriate content depending on the number of questions remaining
     const returnWord = (length) => {
         if(length == 1)
             return length + " intrebare";
@@ -76,29 +92,34 @@ const Test = () => {
             return length + " intrebari";
     }
 
-    return ( 
-        <div className="test">
-            <h1>Test</h1>
-            <div className="romana">
-                <div className="position-absolute top-50 start-50 translate-middle">
-                    <div className="row">
-                        <div className="col-sm-6">
-                            <div className="card" style={{width:"40rem"}}>
-                                <div className="card-body">
-                                    <h5 className="card-title">{intrebari[counter].materie}</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">
-                                        {returnWord(intrebari.filter(x => x.materie == intrebari[counter].materie).length)} 
-                                    </h6>
-                                    {renderQuestion(counter)}
-                                    <button type="button" className="btn btn-success" onClick={submit}>Next</button>
+    //Starts from 0 : currentobjects, globalTime, learningMode, difficultyLevel, weekend
+    var content = Learn.returnvalues();
+
+    //Renders the final page
+        return ( 
+            <div className="test">
+                <h1>Test</h1>
+                <div className="romana">
+                    <div className="position-absolute top-50 start-50 translate-middle">
+                        <div className="row">
+                            <div className="col-sm-6">
+                                <div className="card" style={{width:"40rem"}}>
+                                    <div className="card-body">
+                                        <h5 className="card-title">{intrebari[counter].materie}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">
+                                            {returnWord(intrebari.filter(x => x.materie == intrebari[counter].materie).length)} 
+                                        </h6>
+                                        {renderQuestion(counter)}
+                                        {console.log(content[1])}
+                                        <button type="button" className="btn btn-success" onClick={submit}>{currWord}</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-     );
+         );
 }
  
 export default Test;

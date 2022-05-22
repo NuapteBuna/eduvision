@@ -166,6 +166,21 @@ const LearnSetup = () => {
         document.getElementById('hard').classList.add('active');
     }
 
+<<<<<<< HEAD
+=======
+    const activateMorning = () => {
+        learningMode = "morning";
+        document.getElementById('morning').classList.add('active');
+        document.getElementById('afternoon').classList.remove('active');
+    }
+
+    const activateAfternoon = () => {
+        learningMode = "afternoon";
+        document.getElementById('morning').classList.remove('active');
+        document.getElementById('afternoon').classList.add('active');
+    }
+
+>>>>>>> master
     const activateDa = () => {
         weekend = 1;
         document.getElementById("da").classList.add("active");
@@ -237,6 +252,7 @@ const LearnSetup = () => {
                                 </div>
                             </div>
                         </div> 
+<<<<<<< HEAD
                         <div className = "card" style={{width:"21rem", height:"15rem", marginTop:"1rem",}}>
                             <div className="card-body">
                                 <h6 className="card-title">Ce nivel de dedicație dorești să ai?</h6>
@@ -259,7 +275,32 @@ const LearnSetup = () => {
                                     <input type="text" aria-label="Ora de început" class="form-control"/>
                                     <input type="text" aria-label="Ora de sfârșit" class="form-control"/>
                                 </div>
+=======
+                    <div className = "card" style={{width:"21rem", height:"15rem", marginTop:"1rem",}}>
+                        <div className="card-body">
+                            <h6 className="card-title">Ce nivel de dedicație dorești să ai?</h6>
+                            <div class="btn-group translate-middle-x" role="group" style={{marginLeft:"9rem",marginTop:"0.8rem"}} >
+                                <button className ="btn btn-outline-success" type="button" id = "easy" onClick = {activateEasy} >Ușor</button>
+                                <button className ="btn btn-outline-warning" type="button" id = "medium" onClick={activateMedium}>Mediu</button>
+                                <button className ="btn btn-outline-danger" type="button" id = "hard" onClick={activateHard}>Ridicat</button>
                             </div>
+                            <br/><br/>
+                            <p class="easymean">Ușor -&gt; 5-7 ore / săptămână</p>
+                            <p class="mediummean">Mediu -&gt; 7-9 ore / săptămână</p>
+                            <p class="hardmean">Ridicat -&gt; 10 ore / săptămână</p>
+                        </div>
+                    </div>
+                    <div className = "card" style={{width:"21rem", height:"12rem", marginTop:"1rem",}}>
+                        <div className="card-body">
+                            <h6 className="card-title">Când ai ore la liceu?</h6>
+                            <div class="input-group" style={{marginLeft:"2rem",marginTop:"0.8rem"}} >
+                                <button className ="list-group-item btn btn-outline-primary" type="button" id = "morning" onClick={activateMorning}>Dimineața</button>
+                                <button className ="list-group-item btn btn-outline-primary" type="button" id = "afternoon" onClick={activateAfternoon}>După-amiaza</button>
+>>>>>>> master
+                            </div>
+                            <br/>
+                            <p class="easymean">Dimineața : 8-&gt;14</p>
+                            <p class="mediummean">După-amiaza : 12-&gt;18</p>
                         </div>
                     </div>
                     <div className = "button" style={{marginTop:"0.85rem"}}>
@@ -267,6 +308,10 @@ const LearnSetup = () => {
                     </div>     
                 </div>
             </div>
+<<<<<<< HEAD
+=======
+        </div>
+>>>>>>> master
     );
 }
 
