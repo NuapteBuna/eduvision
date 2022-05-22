@@ -1,6 +1,6 @@
 const LearnSetup = () => {
 
-    var currentclass = 0, currentsemester = 0, currentobjects = 3;
+    var currentclass = 0, currentsemester = 0, currentobjects = 2;
 
     const saveData = () => {
 
@@ -27,8 +27,6 @@ const LearnSetup = () => {
     }
 
     const disableAllBut = (mat) => {
-        document.getElementById('mat1').disabled = true;
-        document.getElementById('mat2').disabled = true;
         document.getElementById('mat3').disabled = true;
         document.getElementById('mat4').disabled = true;
         document.getElementById('mat5').disabled = true;
@@ -172,20 +170,6 @@ const LearnSetup = () => {
                         <h5 className="card-title">Materii</h5>
                         <p className="card-text"></p>
                         <div className="list-group">
-                            <button type="button" className="list-group-item list-group-item-action disabled" id="mat1">Lb. Romana</button>
-                            <button type="button" className="list-group-item list-group-item-action disabled" id="mat2">Matematica</button>
-                            <button type="button" className="list-group-item list-group-item-action active" id="mat3">Informatica</button>
-                            <button type="button" className="list-group-item list-group-item-action disabled" id="mat4" onClick={activatemat4}>Fizica</button>
-                            <button type="button" className="list-group-item list-group-item-action disabled" id="mat5" onClick={activatemat5}>Biologie</button>
-                            <button type="button" className="list-group-item list-group-item-action disabled" id="mat6" onClick={activatemat6}>Chimie</button>
-                        </div>
-                    </div>
-                </div>
-                {/*<div className="card position-absolute top-0" style={{width:"10rem", marginLeft:"22.7rem", marginTop:"113px"}}>
-                    <div className="card-body">
-                        <h5 className="card-title">Materii</h5>
-                        <p className="card-text"></p>
-                        <div className="list-group">
                             <button type="button" className="list-group-item list-group-item-action active" id="mat1">Lb. Romana</button>
                             <button type="button" className="list-group-item list-group-item-action active" id="mat2">Matematica</button>
                             <button type="button" className="list-group-item list-group-item-action" id="mat3" onClick={activatemat3}>Informatica</button>
@@ -194,9 +178,9 @@ const LearnSetup = () => {
                             <button type="button" className="list-group-item list-group-item-action" id="mat6" onClick={activatemat6}>Chimie</button>
                         </div>
                     </div>
-    </div> */}
+                </div> 
                 <button type="button" className="btn btn-danger position-relative start-50 translate-middle" style={{width:"5rem"}} onClick={resetButtons}>Reset</button>   
-                    <button type="button" className="btn btn-outline-success position-relative start-50 translate-middle" style={{width:"5rem"}} onClick={saveData}>Submit </button> 
+                 {/*<button type="button" className="btn btn-outline-success position-relative start-50 translate-middle" style={{width:"5rem"}} onClick={saveData}>Next </button>  */}
             </div>        
         </div>
     );
