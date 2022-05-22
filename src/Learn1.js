@@ -166,21 +166,6 @@ const LearnSetup = () => {
         document.getElementById('hard').classList.add('active');
     }
 
-<<<<<<< HEAD
-=======
-    const activateMorning = () => {
-        learningMode = "morning";
-        document.getElementById('morning').classList.add('active');
-        document.getElementById('afternoon').classList.remove('active');
-    }
-
-    const activateAfternoon = () => {
-        learningMode = "afternoon";
-        document.getElementById('morning').classList.remove('active');
-        document.getElementById('afternoon').classList.add('active');
-    }
-
->>>>>>> master
     const activateDa = () => {
         weekend = 1;
         document.getElementById("da").classList.add("active");
@@ -204,8 +189,62 @@ const LearnSetup = () => {
             difficultyLevel = easy/medium/hard
             weekend = 1/0
         */}
-        alert("Nr de obiecte: " + currentobjects + "\n" + "Nr de zile: " + globalTime + "\n" + "Mod de invatare: " + learningMode + "\n" + "Nivel de dificultate: " + difficultyLevel + "\n" + "Weekend: " + weekend);
-        history.push("/test");
+        if(!checkTime()){
+            history.push("/test");
+        }
+    }
+
+    function checkTime()
+    {
+        if(startTime() == 0)
+        {
+            alert("Ora de început nu poate să fie 0!");
+            return true;
+        }
+        if(startTime() > 24)
+        {
+            alert("Ora de început nu poate să fie mai mare de 24!");
+            return true;
+        }
+        if(startTime() < 0)
+        {
+            alert("Ora de început nu poate să fie mai mică de 0!");
+            return true;
+        }
+        if(endTime() == 0)
+        {
+            alert("Ora de sfârșit nu poate să fie 0!");
+            return true;
+        }
+        if(endTime() > 24)
+        {
+            alert("Ora de sfârșit nu poate să fie mai mare de 24!");
+            return true;
+        }
+        if(endTime() < 0)
+        {
+            alert("Ora de sfârșit nu poate să fie mai mică de 0!");
+            return true;
+        }
+        if(startTime() > endTime())
+        {
+            alert("Ora de început nu poate să fie mai mare decât ora de sfârșit!");
+            return true;
+        }
+        return false;
+    }
+
+    const startTime = () => {
+        return document.getElementById('start').value;
+    }
+    
+    const endTime = () => {
+        return document.getElementById('end').value;
+    }
+
+
+    const timeInterval = () => {
+        return startTime() - endTime();
     }
 
 
@@ -252,7 +291,6 @@ const LearnSetup = () => {
                                 </div>
                             </div>
                         </div> 
-<<<<<<< HEAD
                         <div className = "card" style={{width:"21rem", height:"15rem", marginTop:"1rem",}}>
                             <div className="card-body">
                                 <h6 className="card-title">Ce nivel de dedicație dorești să ai?</h6>
@@ -269,38 +307,14 @@ const LearnSetup = () => {
                         </div>
                         <div className = "card" style={{width:"21rem", height:"12rem", marginTop:"1rem",}}>
                             <div className="card-body">
-                                <h6 className="card-title">Când ai ore la liceu?</h6>
-                                <div class="input-group" style={{marginLeft:"2rem",marginTop:"0.8rem"}}>
-                                    <span class="input-group-text">Orele de început și sfârșit</span>
-                                    <input type="text" aria-label="Ora de început" class="form-control"/>
-                                    <input type="text" aria-label="Ora de sfârșit" class="form-control"/>
+                                <h4 className="card-title">Când ai ore la liceu?</h4>
+                                <br/>
+                                <div class="input-group" style={{marginTop:"0.8rem"}}>
+                                    <span class="input-group-text">Ore</span>
+                                    <input type="number" aria-label="Ora de început" class="form-control" placeholder="Început" id='start'/>
+                                    <input type="number" aria-label="Ora de sfârșit" class="form-control" placeholder="Sfârșit" id='end'/>
                                 </div>
-=======
-                    <div className = "card" style={{width:"21rem", height:"15rem", marginTop:"1rem",}}>
-                        <div className="card-body">
-                            <h6 className="card-title">Ce nivel de dedicație dorești să ai?</h6>
-                            <div class="btn-group translate-middle-x" role="group" style={{marginLeft:"9rem",marginTop:"0.8rem"}} >
-                                <button className ="btn btn-outline-success" type="button" id = "easy" onClick = {activateEasy} >Ușor</button>
-                                <button className ="btn btn-outline-warning" type="button" id = "medium" onClick={activateMedium}>Mediu</button>
-                                <button className ="btn btn-outline-danger" type="button" id = "hard" onClick={activateHard}>Ridicat</button>
                             </div>
-                            <br/><br/>
-                            <p class="easymean">Ușor -&gt; 5-7 ore / săptămână</p>
-                            <p class="mediummean">Mediu -&gt; 7-9 ore / săptămână</p>
-                            <p class="hardmean">Ridicat -&gt; 10 ore / săptămână</p>
-                        </div>
-                    </div>
-                    <div className = "card" style={{width:"21rem", height:"12rem", marginTop:"1rem",}}>
-                        <div className="card-body">
-                            <h6 className="card-title">Când ai ore la liceu?</h6>
-                            <div class="input-group" style={{marginLeft:"2rem",marginTop:"0.8rem"}} >
-                                <button className ="list-group-item btn btn-outline-primary" type="button" id = "morning" onClick={activateMorning}>Dimineața</button>
-                                <button className ="list-group-item btn btn-outline-primary" type="button" id = "afternoon" onClick={activateAfternoon}>După-amiaza</button>
->>>>>>> master
-                            </div>
-                            <br/>
-                            <p class="easymean">Dimineața : 8-&gt;14</p>
-                            <p class="mediummean">După-amiaza : 12-&gt;18</p>
                         </div>
                     </div>
                     <div className = "button" style={{marginTop:"0.85rem"}}>
@@ -308,10 +322,6 @@ const LearnSetup = () => {
                     </div>     
                 </div>
             </div>
-<<<<<<< HEAD
-=======
-        </div>
->>>>>>> master
     );
 }
 
