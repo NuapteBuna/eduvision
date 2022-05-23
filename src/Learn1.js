@@ -15,6 +15,10 @@ const LearnSetup = () => {
 
     }
 
+    const resetButtons = () => {
+
+    }
+    
     const disableAllBut = (mat) => {
         document.getElementById('mat3').disabled = true;
         document.getElementById('mat4').disabled = true;
@@ -334,15 +338,14 @@ const LearnSetup = () => {
                         </div>
                     </div>
                 </div>
-                <div className = "button" style={{marginTop:"-0.45rem", marginLeft:"15rem"}}>
-                    <button type ="button" className ="btn btn-success btn-lg" id ="submit" onClick={submit}>Submit</button>
-                </div>
-                <div className = "button" style={{marginTop:"-3rem", marginLeft:"-15rem"}}>
-                    <button type ="button" className ="btn btn-danger btn-lg" id ="back" onClick={back}>Back</button>    
-                </div>     
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <button type="button" class="btn btn-warning btn-lg" id="toback" onClick={back}>Back</button>
+                    <button type="button" class="btn btn-danger btn-lg" id="resetbutton" onClick={resetButtons}>Reset</button>
+                    <button type="button" class="btn btn-success btn-lg" id="submit" onClick={submit}>Submit</button>
+                </div>   
             </div>
             <div>
-                <div className = "card position-absolute top-50 start-0 translate-middle" style={{width:"24rem", height:"14rem", marginLeft:"15rem"}}>
+            <div className = "card position-absolute top-50 start-0 translate-middle" style={{width:"24rem", height:"14rem", marginLeft:"15rem"}}>
                     <br/>
                     <h5>Ce presupun nivelele de dedicație?</h5>
                     <div class="accordion" style ={{marginTop:"1rem"}} id="accordionDifLevel">

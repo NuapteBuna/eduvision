@@ -98,7 +98,8 @@ const Test = () => {
     //Renders the final page
         return ( 
             <div className="test">
-                <h1>Test</h1>
+                <font size={24}>
+                    <h1 className="display-1 position-absolute top-0 start-50" style={{marginTop:"7.5rem"}}>Test</h1></font>
                 <div className="romana">
                     <div className="position-absolute top-50 start-50 translate-middle">
                         <div className="row">
