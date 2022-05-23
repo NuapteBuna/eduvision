@@ -5,6 +5,7 @@ import About from './About';
 import Learn from './Learn1';
 import Test from './Test';
 import Contact from './Contact';
+import Results from './Results';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
               <Route exact path="/test" component={Test} />
               <Route exact path="/contact" component={Contact} />
               <Route exact path="/about" component={About} />
+              <Route exact path="/results" component={Results} />
             </Switch>
           </div>
           <div style={style}>&copy; 2022</div>

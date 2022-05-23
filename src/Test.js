@@ -5,6 +5,8 @@ import {useState} from 'react';
 
 import Learn from './Learn1';
 
+import { useHistory } from "react-router-dom";
+
 const Test = () => {
 
     var currAns;
@@ -48,6 +50,7 @@ const Test = () => {
     const [counter, setCounter] = useState(0);
     const [currWord, setWord] = useState("Next");
 
+    const history = useHistory();
 
     //Tracks the wrong answers in the frequency array
     const submit = () => {
@@ -59,8 +62,12 @@ const Test = () => {
             frecventaMat[materii[gresite-1]] = frecventaMat[materii[gresite-1]] ? frecventaMat[materii[gresite-1]] + 1 : 1;
         } 
 
-        if(counter >= intrebari.length - 2) setWord("Finish");
-        
+        if(counter >= intrebari.length - 2) {
+            setWord("Finish");
+        }
+        if(counter == intrebari.length - 1){
+            history.push("/results");
+        }        
         //TODO: result page
 
         setCounter(count=>count+1);        
