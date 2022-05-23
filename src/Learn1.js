@@ -315,7 +315,37 @@ const LearnSetup = () => {
                                 <button className ="btn btn-outline-warning" type="button" id = "medium" onClick={activateMedium}>Mediu</button>
                                 <button className ="btn btn-outline-danger" type="button" id = "hard" onClick={activateHard}>Ridicat</button>
                             </div>
-                            <br/><p style={{marginTop:"0.5rem"}}><strong>Ce presupun nivelele de dedicație?</strong>s</p>
+                            <br/><p style={{marginTop:"0.5rem"}}><strong>Ce presupun nivelele de dedicație?</strong></p>
+                            <div style={{fontSize:"1"}}>
+                                <div class="btn-group translate-middle-x" role="group" style={{marginLeft:"9rem",marginTop:"0rem"}}>
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse1" aria-expanded="false" aria-controls="multiCollapseExample1">Ușor</button>
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse2" aria-expanded="false" aria-controls="multiCollapseExample2">Mediu</button>
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse3" aria-expanded="false" aria-controls="multiCollapseExample3">Ridicat</button>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="collapse multi-collapse" id="multiCollapse1">
+                                            <div class="card card-body">
+                                                presupune între 5 și 7 sesiuni de învățare pe săptămână.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="collapse multi-collapse" id="multiCollapse2">
+                                            <div class="card card-body">
+                                                presupune între 7 și 9 sesiuni de învățare pe săptămână.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="collapse multi-collapse" id="multiCollapse3">
+                                            <div class="card card-body">
+                                                presupune 10 sesiuni de învățare pe săptămână.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
@@ -335,20 +365,6 @@ const LearnSetup = () => {
                     <button type="button" class="btn btn-warning btn-lg" id="toback" onClick={back}>Back</button>
                     <button type="button" class="btn btn-danger btn-lg" id="resetbutton" onClick={resetButtons}>Reset</button>
                     <button type="button" class="btn btn-success btn-lg" id="submit" onClick={submit}>Submit</button>
-                </div>
-                <div className="card-body position-absolute top-50 start-50 " style={{marginLeft:"-16rem"}}>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Ușor</button>
-                    <div class="collapse collapse-horizontal" id="collapseExample">
-                        <div class="card card-body " style={{marginLeft:"-21rem"}}>
-                            Presupune între 5 și 7 ore de studiu pe săptămână.
-                        </div>
-                    </div>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Mediu</button>
-                    <div class="collapse collapse-horizontal" id="collapseExample">
-                        <div class="card card-body " style={{marginLeft:"-16rem"}}>
-                            Presupune între 7 și 9 ore de studiu pe săptămână.
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
