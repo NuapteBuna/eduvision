@@ -7,30 +7,102 @@ import Learn from './Learn1';
 
 import { useHistory } from "react-router-dom";
 
+var intrebari = [new test("Ce este un obiect?", "1", "Informatica", "1", "", ["a", "b", "c", "d"]), new test("Ce este un numar?", "2", "Matematica", "3", "", ["a", "b", "c", "d"]), new test("Ce sunt datele?", "4", "Informatica", "3", "", ["a", "b", "c", "d"]) ];
+//TODO: Add more questions
+
+
+var materii = [];
+var capitole = [];
+
+var gresite = 0;
+
+
+
+//Frequency array for wrong answers
+const frecventaMat = new Array(100).fill(0);
+var wrongIntrebari0 = [];
+var wrongIntrebari1 = [];
+var wrongIntrebari2 = [];
+var raspunsuriCorecteInformatica = [];
+var raspunsuriGresiteInformatica = [];
+var raspunsuriCorecteMatematica = [];
+var raspunsuriGresiteMatematica = [];
+var raspunsuriCorecteAlt = [];
+var raspunsuriGresiteAlt = [];
+
+
+//Simulate Struct
+function test(intrebare, raspuns, materie, capitol, input, raspunsuri = []){
+    this.intrebare = intrebare;
+    this.raspuns = raspuns;
+    this.materie = materie;
+    this.capitol = capitol;
+    this.input = input;
+    this.raspunsuri = raspunsuri;
+}
+
+
+//API Calls
+var API = {
+    getMaterii: function (){
+        return materii;
+    },
+    getCapitole: function () {
+        return capitole;
+    },
+    getFrecventa: function () {
+        return frecventaMat;
+    },
+    getGresite: function () {
+        return gresite;
+    },
+    getIntrebariInformatica: function () {
+        return wrongIntrebari0;
+    },
+    getIntrebariMatematica: function () {
+        return wrongIntrebari1;
+    },
+    getIntrebariAlt: function () {
+        return wrongIntrebari2;
+    },
+    getRaspunsuriCorecteInfo: function () {
+        return raspunsuriCorecteInformatica;
+    },
+    getRaspunsuriGresiteInfo: function () {
+        return raspunsuriGresiteInformatica;
+    },
+    getRaspunsuriCorecteMate: function () {
+        return raspunsuriCorecteMatematica;
+    },
+    getRaspunsuriGresiteMate: function () {
+        return raspunsuriGresiteMatematica;
+    },
+    getRaspunsuriCorecteAlt: function () {
+        return raspunsuriCorecteAlt;
+    },
+    getRaspunsuriGresiteAlt: function() {
+        return raspunsuriGresiteAlt;
+    }
+}
+
+var contor1 = 0;
+var contor2 = 0;
+var contor3 = 0;
+
+var raspInfCorectContor = 0;
+var raspInfGresitContor = 0;
+var raspMatCorectContor = 0;
+var raspMatGresitContor = 0;
+var raspAltCorectContor = 0;
+var raspAltGresitContor = 0;
+
+var lastmaterie = "";
+
 const Test = () => {
 
     var currAns;
 
-    //Simulate Struct
-    function test(intrebare, raspuns, materie, capitol, input, raspunsuri = []){
-        this.intrebare = intrebare;
-        this.raspuns = raspuns;
-        this.materie = materie;
-        this.capitol = capitol;
-        this.input = input;
-        this.raspunsuri = raspunsuri;
-    }
 
-
-    //Fill an array with 'test' objects
-    var intrebari = [new test("Ce este un obiect?", "1", "Informatica", "1", "", ["a", "b", "c", "d"]), new test("Ce este un numar?", "2", "Matematica", "3", "", ["a", "b", "c", "d"]), new test("Ce sunt datele?", "4", "Informatica", "3", "", ["a", "b", "c", "d"]) ];
-    //TODO: Add more questions
-
-
-    var materii = [];
-    var capitole = [];
-
-    var gresite = 0;
 
     //Only allow one answer per question
     const activateButton = (id) => {
@@ -42,8 +114,7 @@ const Test = () => {
         }
     }
 
-    //Frequency array for wrong answers
-    const frecventaMat = new Array(10).fill(0);
+
 
 
     //Reactive variables, used to keep track of the current question and the current word for the button
@@ -57,9 +128,25 @@ const Test = () => {
 
         if(currAns == intrebari[counter].raspuns) console.log("CORECT");
         else{
+            console.log(intrebari[counter].materie);
             materii[gresite] = intrebari[counter].materie;
             capitole[gresite++] = intrebari[counter].capitol; 
             frecventaMat[materii[gresite-1]] = frecventaMat[materii[gresite-1]] ? frecventaMat[materii[gresite-1]] + 1 : 1;
+            if(intrebari[counter].materie == "Informatica"){
+                wrongIntrebari0[contor1++] = intrebari[counter].intrebare;
+                raspunsuriGresiteInformatica[raspInfGresitContor++] = intrebari[counter].raspunsuri[currAns - 1];
+                raspunsuriCorecteInformatica[raspInfCorectContor++] = intrebari[counter].raspunsuri[intrebari[counter].raspuns-1];
+            }
+            else if(intrebari[counter].materie == "Matematica"){
+                wrongIntrebari1[contor2++] = (intrebari[counter].intrebare);
+                raspunsuriGresiteMatematica[raspMatGresitContor++] = intrebari[counter].raspunsuri[currAns - 1];;
+                raspunsuriCorecteMatematica[raspMatCorectContor++] = intrebari[counter].raspunsuri[intrebari[counter].raspuns-1];
+            }
+            else{
+                wrongIntrebari2[contor3++] = (intrebari[counter].intrebare);
+                raspunsuriGresiteAlt[raspAltGresitContor++] = intrebari[counter].raspunsuri[currAns - 1];;
+                raspunsuriCorecteAlt[raspAltCorectContor++] = intrebari[counter].raspunsuri[intrebari[counter].raspuns-1];
+            }
         } 
 
         if(counter >= intrebari.length - 2) {
@@ -130,4 +217,7 @@ const Test = () => {
          );
 }
  
-export default Test;
+export default {
+    Test,
+    API
+};

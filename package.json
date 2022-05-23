@@ -10,6 +10,7 @@
     "dark-mode-switch": "^1.0.0",
     "node-sass": "^7.0.1",
     "react": "^18.1.0",
+    "react-accordion": "^0.1.0",
     "react-bootstrap": "^2.4.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^5.3.3",
