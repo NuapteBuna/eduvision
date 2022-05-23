@@ -64,9 +64,10 @@ const Test = () => {
 
         if(counter >= intrebari.length - 2) {
             setWord("Finish");
-            history.push("/results");
         }
-        
+        if(counter == intrebari.length - 1){
+            history.push("/results");
+        }        
         //TODO: result page
 
         setCounter(count=>count+1);        
