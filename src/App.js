@@ -16,11 +16,13 @@ function App() {
     bottom: "0",
     height: "60px",
     width: "100%",
-    color: "#e6e6e6"
+    color: "#e6e6e6",
+    userSelect: "none",
   };
   return (
     <Router>
       <div className="App">
+        <Navbar />
           <div className="content">   
             <Switch>
               <Route exact path="/" component={Home} />

@@ -6,7 +6,7 @@ var currentobjects = 2, timeValue, globalTime = 0, difficultyLevel ="", learning
 function returnvalues() {
     return [currentobjects, globalTime, learningMode, difficultyLevel, weekend];
 }
-
+//reset values for number inputs
 const LearnSetup = () => {
 
     //var currentobjects = 2, timeValue, globalTime = 0, difficultyLevel ="", learningMode="", weekend=0;
@@ -16,7 +16,15 @@ const LearnSetup = () => {
     }
 
     const resetButtons = () => {
-
+        document.getElementById('mat3').classList.remove('active');
+        document.getElementById('mat4').classList.remove('active');
+        document.getElementById('mat5').classList.remove('active');
+        document.getElementById('mat6').classList.remove('active');
+        document.getElementById('days').classList.remove('active');
+        document.getElementById('weeks').classList.remove('active');
+        document.getElementById('months').classList.remove('active');
+        document.getElementById('da').classList.remove('active');
+        document.getElementById('nu').classList.remove('active');
     }
     
     const disableAllBut = (mat) => {
@@ -260,19 +268,6 @@ const LearnSetup = () => {
 
     return (  
         <div className="learn1">
-            <div className = "navbar">
-                <ul class="nav justify-content-end position-absolute top-0 end-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://github.com/NuapteBuna/eduvision" target={"_blank"}>GitHub</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="mailto:andrei.cristian.stan@lttvb.ro">Contact</a>
-                    </li>
-                </ul>
-            </div>
             <div className="card position-absolute top-50 start-50 translate-middle" style={{width:"34rem", height:"45rem"}}>
                 <div className="card-body">
                     <h5 className="card-title">Setup</h5>
@@ -320,12 +315,10 @@ const LearnSetup = () => {
                                 <button className ="btn btn-outline-warning" type="button" id = "medium" onClick={activateMedium}>Mediu</button>
                                 <button className ="btn btn-outline-danger" type="button" id = "hard" onClick={activateHard}>Ridicat</button>
                             </div>
-                            <br/><br/>
-                            <p class="easymean">Ușor -&gt; 5-7 ore / săptămână</p>
-                            <p class="mediummean">Mediu -&gt; 7-9 ore / săptămână</p>
-                            <p class="hardmean">Ridicat -&gt; 10 ore / săptămână</p>
+                            <br/><p style={{marginTop:"0.5rem"}}><strong>Ce presupun nivelele de dedicație?</strong>s</p>
                         </div>
                     </div>
+                    
                     <div className = "card" style={{width:"21rem", height:"12rem", marginTop:"1rem",}}>
                         <div className="card-body">
                             <h4 className="card-title">Când ai ore la liceu?</h4>
@@ -342,42 +335,18 @@ const LearnSetup = () => {
                     <button type="button" class="btn btn-warning btn-lg" id="toback" onClick={back}>Back</button>
                     <button type="button" class="btn btn-danger btn-lg" id="resetbutton" onClick={resetButtons}>Reset</button>
                     <button type="button" class="btn btn-success btn-lg" id="submit" onClick={submit}>Submit</button>
-                </div>   
-            </div>
-            <div>
-            <div className = "card position-absolute top-50 start-0 translate-middle" style={{width:"24rem", height:"14rem", marginLeft:"15rem"}}>
-                    <br/>
-                    <h5>Ce presupun nivelele de dedicație?</h5>
-                    <div class="accordion" style ={{marginTop:"1rem"}} id="accordionDifLevel">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingEasy">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Nivelul ușor de dedicație</button>
-                            </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingEasy" data-bs-parent="#accordionDifLevel">
-                                <div class="accordion-body">
-                                    <strong>Presupune între 5 și 7 ore de studiu pe săptămână.</strong>
-                                </div>
-                            </div>
+                </div>
+                <div className="card-body position-absolute top-50 start-50 " style={{marginLeft:"-16rem"}}>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Ușor</button>
+                    <div class="collapse collapse-horizontal" id="collapseExample">
+                        <div class="card card-body " style={{marginLeft:"-21rem"}}>
+                            Presupune între 5 și 7 ore de studiu pe săptămână.
                         </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingMedium">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Nivelul mediu de dedicație</button>
-                            </h2>
-                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingMedium" data-bs-parent="#accordionDifLevel">
-                                <div class="accordion-body">
-                                    <strong>Presupune între 7 și 9 ore de studiu pe săptămână.</strong>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingHard">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Nivelul ridicat de dedicație</button>
-                            </h2>
-                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingHard" data-bs-parent="#accordionDifLevel">
-                                <div class="accordion-body">
-                                    <strong>Presupune 10 ore de studiu pe săptămână.</strong>
-                                </div>
-                            </div>
+                    </div>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Mediu</button>
+                    <div class="collapse collapse-horizontal" id="collapseExample">
+                        <div class="card card-body " style={{marginLeft:"-16rem"}}>
+                            Presupune între 7 și 9 ore de studiu pe săptămână.
                         </div>
                     </div>
                 </div>
@@ -390,3 +359,7 @@ export default {
     LearnSetup,
     returnvalues
 };
+{/*
+sbn
+speedy
+*/} 
