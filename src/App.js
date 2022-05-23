@@ -30,6 +30,7 @@ function App() {
               <Route exact path="/learn-setup" component={Learn.LearnSetup} />
               <Route exact path="/test" component={Test} />
               <Route exact path="/contact" component={Contact} />
+              <Route exact path="/about" component={About} />
             </Switch>
           </div>
           <div style={style}>&copy; 2022</div>
