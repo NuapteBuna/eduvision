@@ -1,9 +1,111 @@
-$primary : #0250c4;
-$secondary : #585f63;
-$success : #146c43;
-$danger : #a51d2a;
-$warning : #967000;
 
+    body {
+    background: radial-gradient(ellipse at bottom, #022227 0%, #000000 100%);
+     position: relative;
+     height: 100vh;
+     width: 100vw;
+     margin: 0;
+   }
+   
+   @import url('https://fonts.googleapis.com/css?family=Montserrat:900');
+   
+   h1 {
+     margin: 0;
+     font-family: 'Montserrat', sans-serif;
+     font-size: 60vh;
+     letter-spacing: 0.5vh;
+     position: absolute;
+     top: 30%;
+     left: 50%;
+     transform: translateX(-50%);
+     color: white;
+     // background:url('https://i.pinimg.com/originals/9f/9c/c5/9f9cc5217bb04790e5fb852b665ca2ff.jpg');
+     background:url('https://thumbs.dreamstime.com/b/tropical-flower-pattern-seamless-flowers-blossom-flowers-nature-background-vector-illustration-61142748.jpg');
+      background-size: auto 200%;
+    background-clip: text;
+     -webkit-text-fill-color: transparent;
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     animation: shine 8s linear infinite;
+     &:nth-child(2) {
+       top: 50vh;
+     }
+     @keyframes shine {
+       from {
+         background-position: center 0;
+       }
+       to {
+         background-position: center 200%;
+       }
+     }
+   }
+   $input-focus-bg: #181a1b;
+   $list-group-action-color: #ffffff;
+   $list-group-action-active-bg: #181a1b;
+   $list-group-hover-bg: #514f4d;
+   $list-group-disabled-bg: #1f1f1f;
+   $input-group-addon-bg: #1f1f1f;
+   $input-group-addon-color: #d1cdc7;
+   $input-group-addon-border-color: #272827;
+  $display-font-sizes: (
+    1: 10rem,
+    2: 4.5rem,
+    3: 4rem,
+    4: 3.5rem,
+    5: 3rem,
+    6: 2.5rem
+  );
 //Import boostart styles
 @import '~bootstrap/scss/bootstrap.scss';
 
+.card {
+    background-color: #181a1b;
+    border-color: #272827;
+    color: #d1cdc7;
+}
+
+.input-group{
+    background-color: #181a1b;
+    border-color: #272827;
+    color: #d1cdc7;
+}
+
+.form-control{
+    background-color: #181a1b;
+    border-color: #272827;
+    color: #d1cdc7;
+}
+.form-control-color{
+    background-color: #181a1b;
+    border-color: #272827;
+    color: #d1cdc7;
+}
+
+.form-control :active{
+    background-color: #181a1b;
+    border-color: #272827;
+    color: #d1cdc7;
+}
+
+.form-control :focus{
+    background-color: #181a1b;
+    border-color: #272827;
+    color: #d1cdc7;
+}
+
+.form-control :hover{
+    background-color: #181a1b;
+    border-color: #272827;
+    color: #d1cdc7;
+}
+
+.list-group-item{
+    background-color: #181a1b;
+    border-color: #272827;
+    color: #d1cdc7;
+}
+.list-group-item :hover{
+    background-color: #181a1b;
+    border-color: #272827;
+    color: #d1cdc7;
+}

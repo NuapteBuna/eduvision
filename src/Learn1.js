@@ -1,11 +1,12 @@
 import { useHistory } from "react-router-dom";
+import { Collapse } from "bootstrap";
 
 var currentobjects = 2, timeValue, globalTime = 0, difficultyLevel ="", learningMode="", weekend=0;
 
 function returnvalues() {
     return [currentobjects, globalTime, learningMode, difficultyLevel, weekend];
 }
-
+//reset values for number inputs
 const LearnSetup = () => {
 
     //var currentobjects = 2, timeValue, globalTime = 0, difficultyLevel ="", learningMode="", weekend=0;
@@ -14,6 +15,18 @@ const LearnSetup = () => {
 
     }
 
+    const resetButtons = () => {
+        document.getElementById('mat3').classList.remove('active');
+        document.getElementById('mat4').classList.remove('active');
+        document.getElementById('mat5').classList.remove('active');
+        document.getElementById('mat6').classList.remove('active');
+        document.getElementById('days').classList.remove('active');
+        document.getElementById('weeks').classList.remove('active');
+        document.getElementById('months').classList.remove('active');
+        document.getElementById('da').classList.remove('active');
+        document.getElementById('nu').classList.remove('active');
+    }
+    
     const disableAllBut = (mat) => {
         document.getElementById('mat3').disabled = true;
         document.getElementById('mat4').disabled = true;
@@ -166,18 +179,6 @@ const LearnSetup = () => {
         document.getElementById('hard').classList.add('active');
     }
 
-    const activateMorning = () => {
-        learningMode = "morning";
-        document.getElementById('morning').classList.add('active');
-        document.getElementById('afternoon').classList.remove('active');
-    }
-
-    const activateAfternoon = () => {
-        learningMode = "afternoon";
-        document.getElementById('morning').classList.remove('active');
-        document.getElementById('afternoon').classList.add('active');
-    }
-
     const activateDa = () => {
         weekend = 1;
         document.getElementById("da").classList.add("active");
@@ -201,54 +202,111 @@ const LearnSetup = () => {
             difficultyLevel = easy/medium/hard
             weekend = 1/0
         */}
-        alert("Nr de obiecte: " + currentobjects + "\n" + "Nr de zile: " + globalTime + "\n" + "Mod de invatare: " + learningMode + "\n" + "Nivel de dificultate: " + difficultyLevel + "\n" + "Weekend: " + weekend);
-        history.push("/test");
+        if(!checkTime()){
+            history.push("/test");
+        }
+    }
+
+    const back = () => {
+        history.push("/");
+    }
+
+    function checkTime()
+    {
+        if(startTime() == 0)
+        {
+            alert("Ora de început nu poate să fie 0!");
+            return true;
+        }
+        if(startTime() > 24)
+        {
+            alert("Ora de început nu poate să fie mai mare de 24!");
+            return true;
+        }
+        if(startTime() < 0)
+        {
+            alert("Ora de început nu poate să fie mai mică de 0!");
+            return true;
+        }
+        if(endTime() == 0)
+        {
+            alert("Ora de sfârșit nu poate să fie 0!");
+            return true;
+        }
+        if(endTime() > 24)
+        {
+            alert("Ora de sfârșit nu poate să fie mai mare de 24!");
+            return true;
+        }
+        if(endTime() < 0)
+        {
+            alert("Ora de sfârșit nu poate să fie mai mică de 0!");
+            return true;
+        }
+        if(startTime() > endTime())
+        {
+            alert("Ora de început nu poate să fie mai mare decât ora de sfârșit!");
+            return true;
+        }
+        return false;
+    }
+
+    const startTime = () => {
+        return document.getElementById('start').value;
+    }
+    
+    const endTime = () => {
+        return document.getElementById('end').value;
+    }
+
+
+    const timeInterval = () => {
+        return startTime() - endTime();
     }
 
 
 
     return (  
         <div className="learn1">
-
             <div className="card position-absolute top-50 start-50 translate-middle" style={{width:"34rem", height:"45rem"}}>
                 <div className="card-body">
                     <h5 className="card-title">Setup</h5>
                     <p className="card-text">Pentru a-ți genera calendarul de învățare, va trebui să ne oferi câteva informații.</p>
-                        <div className = "card" style={{width:"21rem", height:"7rem", marginTop:"1rem"}}>
-                            <div className="card-body">
-                                <h5 className="card-title">Cât timp ai la dispoziție?</h5>
-                                <div class="input-group">
-                                    <input type="number" class="form-control" placeholder="10" aria-label="Time left for studying" id="time-input-value"/>
-                                    <button className ="list-group-item btn btn-outline-primary" type="button" id = "days" onClick = {activateDays}>Zile</button>
-                                    <button className ="list-group-item btn btn-outline-primary" type="button" id = "weeks" onClick = {activateWeeks}>Săptămâni</button>
-                                    <button className ="list-group-item btn btn-outline-primary" type="button" id = "months" onClick = {activateMonths}>Luni</button>
-                                </div>
-                            </div> 
-                            <div className="card position-absolute top-0" style={{width:"10rem", marginLeft:"22rem", marginTop:"", height:"22.93rem"}}>
-                                <div className="card-body">
-                                    <h5 className="card-title">Materii</h5>
-                                    <p className="card-text"></p>
-                                    <div className="list-group position-absolute top-50 start-50 translate-middle" style={{marginTop:"1rem"}}>
-                                        <button type="button" className="list-group-item list-group-item-action active" id="mat1">Lb. Română</button>
-                                        <button type="button" className="list-group-item list-group-item-action active" id="mat2">Matematică</button>
-                                        <button type="button" className="list-group-item list-group-item-action" id="mat3" onClick={activatemat3}>Informatică</button>
-                                        <button type="button" className="list-group-item list-group-item-action" id="mat4" onClick={activatemat4}>Fizică</button>
-                                        <button type="button" className="list-group-item list-group-item-action" id="mat5" onClick={activatemat5}>Biologie</button>
-                                        <button type="button" className="list-group-item list-group-item-action" id="mat6" onClick={activatemat6}>Chimie</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="card position-absolute top-0" style={{width:"10rem", marginLeft:"22rem", marginTop:"23.93rem", height:"11.93rem"}}>
-                                <div className="card-body">
-                                    <h6 className="card-title">Dorești să înveți în weekend?</h6>
-                                    <p className="card-text"></p>
-                                    <div className="list-group">
-                                        <button type="button" className="list-group-item list-group-item-action" id="da" onClick={activateDa}>Da</button>
-                                        <button type="button" className="list-group-item list-group-item-action" id="nu" onClick={activateNu}>Nu</button>
-                                    </div>
-                                </div>
+                    <div className = "card" style={{width:"21rem", height:"7rem", marginTop:"1rem"}}>
+                        <div className="card-body">
+                            <h5 className="card-title">Cât timp ai la dispoziție?</h5>
+                            <div class="input-group">
+                                <input type="number" class="form-control" placeholder="10" aria-label="Time left for studying" id="time-input-value"/>
+                                <button className ="list-group-item btn btn-outline-primary" type="button" id = "days" onClick = {activateDays}>Zile</button>
+                                <button className ="list-group-item btn btn-outline-primary" type="button" id = "weeks" onClick = {activateWeeks}>Săptămâni</button>
+                                <button className ="list-group-item btn btn-outline-primary" type="button" id = "months" onClick = {activateMonths}>Luni</button>
                             </div>
                         </div> 
+                        <div className="card position-absolute top-0" style={{width:"10rem", marginLeft:"22rem", marginTop:"", height:"22.93rem"}}>
+                            <div className="card-body">
+                                <h5 className="card-title">Materii</h5>
+                                <p className="card-text"></p>
+                                <div className="list-group position-absolute top-50 start-50 translate-middle" style={{marginTop:"1rem"}}>
+                                    <button type="button" className="list-group-item list-group-item-action active" id="mat1">Lb. Română</button>
+                                    <button type="button" className="list-group-item list-group-item-action active" id="mat2">Matematică</button>
+                                    <button type="button" className="list-group-item list-group-item-action" id="mat3" onClick={activatemat3}>Informatică</button>
+                                    <button type="button" className="list-group-item list-group-item-action" id="mat4" onClick={activatemat4}>Fizică</button>
+                                    <button type="button" className="list-group-item list-group-item-action" id="mat5" onClick={activatemat5}>Biologie</button>
+                                    <button type="button" className="list-group-item list-group-item-action" id="mat6" onClick={activatemat6}>Chimie</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card position-absolute top-0" style={{width:"10rem", marginLeft:"22rem", marginTop:"23.93rem", height:"11.93rem"}}>
+                            <div className="card-body">
+                                <h6 className="card-title">Dorești să înveți în weekend?</h6>
+                                <p className="card-text"></p>
+                                <div className="list-group">
+                                    <button type="button" className="list-group-item list-group-item-action" id="da" onClick={activateDa}>Da</button>
+                                    <button type="button" className="list-group-item list-group-item-action" id="nu" onClick={activateNu}>Nu</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
                     <div className = "card" style={{width:"21rem", height:"15rem", marginTop:"1rem",}}>
                         <div className="card-body">
                             <h6 className="card-title">Ce nivel de dedicație dorești să ai?</h6>
@@ -257,27 +315,40 @@ const LearnSetup = () => {
                                 <button className ="btn btn-outline-warning" type="button" id = "medium" onClick={activateMedium}>Mediu</button>
                                 <button className ="btn btn-outline-danger" type="button" id = "hard" onClick={activateHard}>Ridicat</button>
                             </div>
-                            <br/><br/>
-                            <p class="easymean">Ușor -&gt; 5-7 ore / săptămână</p>
-                            <p class="mediummean">Mediu -&gt; 7-9 ore / săptămână</p>
-                            <p class="hardmean">Ridicat -&gt; 10 ore / săptămână</p>
+                            <br/><p style={{marginTop:"0.5rem"}}><strong>Ce presupun nivelele de dedicație?</strong>s</p>
                         </div>
                     </div>
+                    
                     <div className = "card" style={{width:"21rem", height:"12rem", marginTop:"1rem",}}>
                         <div className="card-body">
-                            <h6 className="card-title">Când ai ore la liceu?</h6>
-                            <div class="input-group" style={{marginLeft:"2rem",marginTop:"0.8rem"}} >
-                                <button className ="list-group-item btn btn-outline-primary" type="button" id = "morning" onClick={activateMorning}>Dimineața</button>
-                                <button className ="list-group-item btn btn-outline-primary" type="button" id = "afternoon" onClick={activateAfternoon}>După-amiaza</button>
-                            </div>
+                            <h4 className="card-title">Când ai ore la liceu?</h4>
                             <br/>
-                            <p class="easymean">Dimineața : 8-&gt;14</p>
-                            <p class="mediummean">După-amiaza : 12-&gt;18</p>
+                            <div class="input-group" style={{marginTop:"0.8rem"}}>
+                                <span class="input-group-text">Ore</span>
+                                <input type="number" aria-label="Ora de început" class="form-control" placeholder="Început" id='start'/>
+                                <input type="number" aria-label="Ora de sfârșit" class="form-control" placeholder="Sfârșit" id='end'/>
+                            </div>
                         </div>
                     </div>
-                    <div className = "button" style={{marginTop:"0.85rem"}}>
-                        <button type ="button" className ="btn btn-success btn-lg" id ="submit" onClick={submit}>Submit</button>
-                    </div>     
+                </div>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <button type="button" class="btn btn-warning btn-lg" id="toback" onClick={back}>Back</button>
+                    <button type="button" class="btn btn-danger btn-lg" id="resetbutton" onClick={resetButtons}>Reset</button>
+                    <button type="button" class="btn btn-success btn-lg" id="submit" onClick={submit}>Submit</button>
+                </div>
+                <div className="card-body position-absolute top-50 start-50 " style={{marginLeft:"-16rem"}}>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Ușor</button>
+                    <div class="collapse collapse-horizontal" id="collapseExample">
+                        <div class="card card-body " style={{marginLeft:"-21rem"}}>
+                            Presupune între 5 și 7 ore de studiu pe săptămână.
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Mediu</button>
+                    <div class="collapse collapse-horizontal" id="collapseExample">
+                        <div class="card card-body " style={{marginLeft:"-16rem"}}>
+                            Presupune între 7 și 9 ore de studiu pe săptămână.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -288,3 +359,7 @@ export default {
     LearnSetup,
     returnvalues
 };
+{/*
+sbn
+speedy
+*/} 

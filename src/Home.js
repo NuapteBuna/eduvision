@@ -7,14 +7,13 @@ const Home = () => {
     const handleClick = () => {
         history.push('/learn-setup');
     };
-
     
     return (  
         <div className="home">
-            <div class="position-absolute top-50 start-50 translate-middle">
-                <h1>Edu Vision</h1>
-            </div>
-            
+
+                <font size={48}>
+                    <h1 class="display-1" id="titleedu" style={{userSelect:"none"}}>EDU&#10;VISION</h1>
+                </font>
             <button type="button" class="btn btn-primary position-absolute start-50 translate-middle btn-lg" style={{position:"fixed", bottom:"80px"}} onClick={handleClick}>Learn</button>
         </div>
     );
