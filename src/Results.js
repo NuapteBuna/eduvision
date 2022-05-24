@@ -34,12 +34,15 @@ const Results = () => {
     //API Calls
     var intrebariInformatica = rez.API.getIntrebariInformatica();
     var intrebariMatematica = rez.API.getIntrebariMatematica();
+    var intrebariRomana = rez.API.Matematica();
     var intrebariAlt = rez.API.getIntrebariAlt();
 
     var raspunsuriCorecteInformatica = rez.API.getRaspunsuriCorecteInfo();
     var raspunsuriGresiteInformatica = rez.API.getRaspunsuriGresiteInfo();
     var raspunsuriCorecteMatematica = rez.API.getRaspunsuriCorecteMate();
     var raspunsuriGresiteMatematica = rez.API.getRaspunsuriGresiteMate();
+    var raspunsuriCorecteRomana = rez.API.getRaspunsuriCorecteMate();
+    var raspunsuriGresiteRomana = rez.API.getRaspunsuriGresiteMate();
     var raspunsuriCorecteAlt = rez.API.getRaspunsuriCorecteAlt();
     var raspunsuriGresiteAlt = rez.API.getRaspunsuriGresiteAlt();
 
@@ -47,6 +50,8 @@ const Results = () => {
     var raspInfGresitContor = 0;
     var raspMatCorectContor = 0;
     var raspMatGresitContor = 0;
+    var raspRoCorectContor = 0;
+    var raspRoGresitContor = 0;
     var raspAltCorectContor = 0;
     var raspAltGresitContor = 0;
 
@@ -104,6 +109,24 @@ const Results = () => {
                             {listitem  + " "}
                             <div className="badge bg-success">✓{raspunsuriCorecteMatematica[raspMatCorectContor++]}</div>
                             <div className="badge bg-danger" style={{marginLeft:"0.3rem"}}>☓{raspunsuriGresiteMatematica[raspMatGresitContor++]}</div>
+                        </li>
+                        )))}
+                    </ul>
+                </div>
+            </div>
+            <div className="card position-absolute top-50 start-50 translate-middle" style={{width:"34rem", height:"45rem", marginRight:"3rem", marginTop:"4rem"}}>
+                <div className="card-body">
+                    <h5 className="card-title">{materii[1]}</h5>   
+                    <h6 className="card-subtitle mb-2 text-muted">
+                        {frecventa[materii[2]] + " " + returnWord(frecventa[materii[2]]) + " " + returnWord2(frecventa[materii[2]])}
+                    </h6>
+                    <ul className="list-group">
+                        {state2.listitems.map((listitem => (
+                        <li className="list-group-item list-group-item-primary">
+                            <b>{capitole[intrebariRomana.indexOf(listitem)] + ": "}</b>
+                            {listitem  + " "}
+                            <div className="badge bg-success">✓{raspunsuriCorecteRomana[raspRoCorectContor++]}</div>
+                            <div className="badge bg-danger" style={{marginLeft:"0.3rem"}}>☓{raspunsuriGresiteRomana[raspRoGresitContor++]}</div>
                         </li>
                         )))}
                     </ul>

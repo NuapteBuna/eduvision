@@ -264,6 +264,43 @@ const LearnSetup = () => {
         return startTime() - endTime();
     }
 
+    const activateMulti1 = () => {
+        if(document.getElementById('multiCollapse1').classList.contains('collapse')){
+            document.getElementById('multiCollapse1').classList.remove('collapse');
+            document.getElementById('multiCollapse2').classList.add('collapse');
+            document.getElementById('multiCollapse3').classList.add('collapse');
+        }
+        else
+        {
+            document.getElementById('multiCollapse1').classList.add('collapse');
+        }
+    }
+
+    const activateMulti2 = () => {
+        if(document.getElementById('multiCollapse2').classList.contains('collapse')){
+            document.getElementById('multiCollapse2').classList.remove('collapse');
+            document.getElementById('multiCollapse1').classList.add('collapse');
+            document.getElementById('multiCollapse3').classList.add('collapse');
+        }
+        else
+        {
+            document.getElementById('multiCollapse2').classList.add('collapse');
+        }
+    }
+
+    const activateMulti3 = () => {
+        if(document.getElementById('multiCollapse3').classList.contains('collapse')){
+            document.getElementById('multiCollapse3').classList.remove('collapse');
+            document.getElementById('multiCollapse1').classList.add('collapse');
+            document.getElementById('multiCollapse2').classList.add('collapse');
+        }
+        else
+        {
+            document.getElementById('multiCollapse3').classList.add('collapsed');
+        }
+    }
+
+
 
 
     return (  
@@ -318,27 +355,27 @@ const LearnSetup = () => {
                             <br/><p style={{marginTop:"0.5rem"}}><strong>Ce presupun nivelele de dedicație?</strong></p>
                             <div style={{fontSize:"1"}}>
                                 <div class="btn-group translate-middle-x" role="group" style={{marginLeft:"9rem",marginTop:"0rem"}}>
-                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse1" aria-expanded="false" aria-controls="multiCollapseExample1">Ușor</button>
-                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse2" aria-expanded="false" aria-controls="multiCollapseExample2">Mediu</button>
-                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse3" aria-expanded="false" aria-controls="multiCollapseExample3">Ridicat</button>
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse1" aria-expanded="fakse" aria-controls="multiCollapseExample1" onClick={activateMulti1}>Ușor</button>
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse2" aria-expanded="false" aria-controls="multiCollapseExample2" onClick={activateMulti2}>Mediu</button>
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse3" aria-expanded="false" aria-controls="multiCollapseExample3" onClick={activateMulti3}>Ridicat</button>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <div class="collapse multi-collapse" id="multiCollapse1">
+                                        <div className="collapse multi-collapse" id="multiCollapse1">
                                             <div class="card card-body text-nowrap">
                                                 5 și 7 sesiuni de învățare pe săptămână.
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="collapse multi-collapse" id="multiCollapse2">
+                                        <div className="collapse multi-collapse" id="multiCollapse2">
                                             <div class="card card-body text-nowrap">
                                                 7 și 9 sesiuni de învățare pe săptămână.
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="collapse multi-collapse" id="multiCollapse3">
+                                        <div className="collapse multi-collapse" id="multiCollapse3">
                                             <div class="card card-body text-nowrap">
                                                 10 sesiuni de învățare pe săptămână.
                                             </div>
