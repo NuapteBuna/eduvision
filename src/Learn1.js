@@ -325,22 +325,22 @@ const LearnSetup = () => {
                                 <div class="row">
                                     <div class="col">
                                         <div class="collapse multi-collapse" id="multiCollapse1">
-                                            <div class="card card-body">
-                                                presupune între 5 și 7 sesiuni de învățare pe săptămână.
+                                            <div class="card card-body text-nowrap">
+                                                5 și 7 sesiuni de învățare pe săptămână.
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="collapse multi-collapse" id="multiCollapse2">
-                                            <div class="card card-body">
-                                                presupune între 7 și 9 sesiuni de învățare pe săptămână.
+                                            <div class="card card-body text-nowrap">
+                                                7 și 9 sesiuni de învățare pe săptămână.
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="collapse multi-collapse" id="multiCollapse3">
-                                            <div class="card card-body">
-                                                presupune 10 sesiuni de învățare pe săptămână.
+                                            <div class="card card-body text-nowrap">
+                                                10 sesiuni de învățare pe săptămână.
                                             </div>
                                         </div>
                                     </div>
@@ -348,7 +348,7 @@ const LearnSetup = () => {
                             </div>
                         </div>
                     </div>
-                    
+                    {/* TODO: sa se deschida doar una la orice moment ^ */}
                     <div className = "card" style={{width:"21rem", height:"12rem", marginTop:"1rem",}}>
                         <div className="card-body">
                             <h4 className="card-title">Când ai ore la liceu?</h4>
