@@ -7,7 +7,7 @@ import Learn from './Learn1';
 
 import { useHistory } from "react-router-dom";
 
-var intrebari = [new test("Ce este un obiect?", "1", "Informatica", "1", "", ["a", "b", "c", "d"]), new test("Ce este un numar?", "2", "Matematica", "3", "", ["a", "b", "c", "d"]), new test("Ce sunt datele?", "4", "Informatica", "3", "", ["a", "b", "c", "d"]) ];
+var intrebari = [new test("Ce este un obiect?", "1", "Informatica", "1", "", ["a", "b", "c", "d"]), new test("Ce este un numar?", "2", "Matematica", "3", "", ["a", "b", "c", "d"]), new test("Ce sunt datele?", "4", "Informatica", "3", "", ["a", "b", "c", "d"]), new test("Cine a scris Floare Albastra?", "3", "Romana", "Literatura", "", ["Ion Creanga", "Ioan Slavici", "Mihai Eminescu", "Caragiale"]) ];
 //TODO: Add more questions
 
 
@@ -135,16 +135,17 @@ const Test = () => {
             if(intrebari[counter].materie == "Informatica"){
                 wrongIntrebari0[contor1++] = intrebari[counter].intrebare;
                 raspunsuriGresiteInformatica[raspInfGresitContor++] = intrebari[counter].raspunsuri[currAns - 1];
+                console.log(raspunsuriGresiteInformatica[raspInfGresitContor - 1]);
                 raspunsuriCorecteInformatica[raspInfCorectContor++] = intrebari[counter].raspunsuri[intrebari[counter].raspuns-1];
             }
             else if(intrebari[counter].materie == "Matematica"){
                 wrongIntrebari1[contor2++] = (intrebari[counter].intrebare);
-                raspunsuriGresiteMatematica[raspMatGresitContor++] = intrebari[counter].raspunsuri[currAns - 1];;
+                raspunsuriGresiteMatematica[raspMatGresitContor++] = intrebari[counter].raspunsuri[currAns - 1];
                 raspunsuriCorecteMatematica[raspMatCorectContor++] = intrebari[counter].raspunsuri[intrebari[counter].raspuns-1];
             }
             else{
                 wrongIntrebari2[contor3++] = (intrebari[counter].intrebare);
-                raspunsuriGresiteAlt[raspAltGresitContor++] = intrebari[counter].raspunsuri[currAns - 1];;
+                raspunsuriGresiteAlt[raspAltGresitContor++] = intrebari[counter].raspunsuri[currAns - 1];
                 raspunsuriCorecteAlt[raspAltCorectContor++] = intrebari[counter].raspunsuri[intrebari[counter].raspuns-1];
             }
         } 
@@ -155,7 +156,6 @@ const Test = () => {
         if(counter == intrebari.length - 1){
             history.push("/results");
         }        
-        //TODO: result page
 
         setCounter(count=>count+1);        
     }
