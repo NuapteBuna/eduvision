@@ -7,7 +7,7 @@ import Learn from './Learn1';
 
 import { useHistory } from "react-router-dom";
 
-var intrebari = [new test("Ce este un obiect?", "1", "Informatica", "1", "", ["a", "b", "c", "d"]), new test("Ce este un numar?", "2", "Matematica", "3", "", ["a", "b", "c", "d"]), new test("Ce sunt datele?", "4", "Informatica", "3", "", ["a", "b", "c", "d"]) ];
+var intrebari = [new test("Ce este un obiect?", "1", "Informatica", "1", "", ["a", "b", "c", "d"]), new test("Ce este un numar?", "2", "Matematica", "3", "", ["a", "b", "c", "d"]), new test("Ce sunt datele?", "4", "Informatica", "3", "", ["a", "b", "c", "d"]), new test("Cine a scris Floare Albastra?", "3", "Romana", "Literatura", "", ["a", "b", "c", "d"]) ];
 //TODO: Add more questions
 
 
@@ -98,16 +98,17 @@ var raspAltGresitContor = 0;
 
 var lastmaterie = "";
 
+var currAns = "";
+
 const Test = () => {
 
-    var currAns;
 
 
 
     //Only allow one answer per question
     const activateButton = (id) => {
         document.getElementById(id).classList.add('active');
-        currAns = id;
+        currAns = id - 1;
         for(var i = 1; i<=4; i++){
             if(i != id)
                 document.getElementById(i).classList.remove('active');
@@ -126,27 +127,27 @@ const Test = () => {
     //Tracks the wrong answers in the frequency array
     const submit = () => {
 
-        if(currAns == intrebari[counter].raspuns) console.log("CORECT");
+        if(currAns == intrebari[counter].raspuns) console.log(currAns);
         else{
-            console.log(intrebari[counter].materie);
             materii[gresite] = intrebari[counter].materie;
             capitole[gresite++] = intrebari[counter].capitol; 
             frecventaMat[materii[gresite-1]] = frecventaMat[materii[gresite-1]] ? frecventaMat[materii[gresite-1]] + 1 : 1;
             if(intrebari[counter].materie == "Informatica"){
                 wrongIntrebari0[contor1++] = intrebari[counter].intrebare;
-                raspunsuriGresiteInformatica[raspInfGresitContor++] = intrebari[counter].raspunsuri[currAns - 1];
+                raspunsuriGresiteInformatica[raspInfGresitContor++] = intrebari[counter].raspunsuri[currAns];
                 raspunsuriCorecteInformatica[raspInfCorectContor++] = intrebari[counter].raspunsuri[intrebari[counter].raspuns-1];
             }
             else if(intrebari[counter].materie == "Matematica"){
                 wrongIntrebari1[contor2++] = (intrebari[counter].intrebare);
-                raspunsuriGresiteMatematica[raspMatGresitContor++] = intrebari[counter].raspunsuri[currAns - 1];;
+                raspunsuriGresiteMatematica[raspMatGresitContor++] = intrebari[counter].raspunsuri[currAns];
                 raspunsuriCorecteMatematica[raspMatCorectContor++] = intrebari[counter].raspunsuri[intrebari[counter].raspuns-1];
             }
-            else{
+            else if(intrebari[counter].materie == "Romana"){
                 wrongIntrebari2[contor3++] = (intrebari[counter].intrebare);
-                raspunsuriGresiteAlt[raspAltGresitContor++] = intrebari[counter].raspunsuri[currAns - 1];;
+                raspunsuriGresiteAlt[raspAltGresitContor++] = intrebari[counter].raspunsuri[currAns];
                 raspunsuriCorecteAlt[raspAltCorectContor++] = intrebari[counter].raspunsuri[intrebari[counter].raspuns-1];
             }
+            console.log(currAns);
         } 
 
         if(counter >= intrebari.length - 2) {
@@ -155,7 +156,6 @@ const Test = () => {
         if(counter == intrebari.length - 1){
             history.push("/results");
         }        
-        //TODO: result page
 
         setCounter(count=>count+1);        
     }
@@ -205,7 +205,6 @@ const Test = () => {
                                             {returnWord(intrebari.filter(x => x.materie == intrebari[counter].materie).length)} 
                                         </h6>
                                         {renderQuestion(counter)}
-                                        {console.log(content[1])}
                                         <button type="button" className="btn btn-success" onClick={submit}>{currWord}</button>
                                     </div>
                                 </div>
