@@ -352,37 +352,12 @@ const LearnSetup = () => {
                                 <button className ="btn btn-outline-warning" type="button" id = "medium" onClick={activateMedium}>Mediu</button>
                                 <button className ="btn btn-outline-danger" type="button" id = "hard" onClick={activateHard}>Ridicat</button>
                             </div>
-                            <br/><p style={{marginTop:"0.5rem"}}><strong>Ce presupun nivelele de dedicație?</strong></p>
-                            <div style={{fontSize:"1"}}>
-                                <div class="btn-group translate-middle-x" role="group" style={{marginLeft:"9rem",marginTop:"0rem"}}>
-                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse1" aria-expanded="fakse" aria-controls="multiCollapseExample1" onClick={activateMulti1}>Ușor</button>
-                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse2" aria-expanded="false" aria-controls="multiCollapseExample2" onClick={activateMulti2}>Mediu</button>
-                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse3" aria-expanded="false" aria-controls="multiCollapseExample3" onClick={activateMulti3}>Ridicat</button>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div className="collapse multi-collapse" id="multiCollapse1">
-                                            <div class="card card-body text-nowrap">
-                                                5 și 7 sesiuni de învățare pe săptămână.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div className="collapse multi-collapse" id="multiCollapse2">
-                                            <div class="card card-body text-nowrap">
-                                                7 și 9 sesiuni de învățare pe săptămână.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div className="collapse multi-collapse" id="multiCollapse3">
-                                            <div class="card card-body text-nowrap">
-                                                10 sesiuni de învățare pe săptămână.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <font size ={2}>
+                                <p style={{marginTop:"0.5rem"}}><strong>Ce presupun nivelele de dedicație?</strong></p>
+                                <p><strong>Nivelul Ușor : între 5 și 7 sesiuni săptămânale.</strong></p>
+                                <p><strong>Nivelul Mediu : între 7 și 9 sesiuni săptămânale.</strong></p>
+                                <p><strong>Nivelul Ridicat :s 10 sesiuni săptămânale.</strong></p>
+                            </font>
                         </div>
                     </div>
                     {/* TODO: sa se deschida doar una la orice moment ^ */}
