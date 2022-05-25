@@ -129,7 +129,6 @@ const Results = () => {
                         </li>
                         )))}
                     </ul>
-
                 </div>
             </div>
 
