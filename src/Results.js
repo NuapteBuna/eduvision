@@ -34,12 +34,15 @@ const Results = () => {
     //API Calls
     var intrebariInformatica = rez.API.getIntrebariInformatica();
     var intrebariMatematica = rez.API.getIntrebariMatematica();
+    var intrebariRomana = rez.API.Matematica();
     var intrebariAlt = rez.API.getIntrebariAlt();
 
     var raspunsuriCorecteInformatica = rez.API.getRaspunsuriCorecteInfo();
     var raspunsuriGresiteInformatica = rez.API.getRaspunsuriGresiteInfo();
     var raspunsuriCorecteMatematica = rez.API.getRaspunsuriCorecteMate();
     var raspunsuriGresiteMatematica = rez.API.getRaspunsuriGresiteMate();
+    var raspunsuriCorecteRomana = rez.API.getRaspunsuriCorecteMate();
+    var raspunsuriGresiteRomana = rez.API.getRaspunsuriGresiteMate();
     var raspunsuriCorecteAlt = rez.API.getRaspunsuriCorecteAlt();
     var raspunsuriGresiteAlt = rez.API.getRaspunsuriGresiteAlt();
 
@@ -47,6 +50,8 @@ const Results = () => {
     var raspInfGresitContor = 0;
     var raspMatCorectContor = 0;
     var raspMatGresitContor = 0;
+    var raspRoCorectContor = 0;
+    var raspRoGresitContor = 0;
     var raspAltCorectContor = 0;
     var raspAltGresitContor = 0;
 
@@ -131,8 +136,6 @@ const Results = () => {
                     </ul>
                 </div>
             </div>
-
-
             {string}
             <br />
             {string2}

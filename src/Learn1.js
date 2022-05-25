@@ -264,6 +264,43 @@ const LearnSetup = () => {
         return startTime() - endTime();
     }
 
+    const activateMulti1 = () => {
+        if(document.getElementById('multiCollapse1').classList.contains('collapse')){
+            document.getElementById('multiCollapse1').classList.remove('collapse');
+            document.getElementById('multiCollapse2').classList.add('collapse');
+            document.getElementById('multiCollapse3').classList.add('collapse');
+        }
+        else
+        {
+            document.getElementById('multiCollapse1').classList.add('collapse');
+        }
+    }
+
+    const activateMulti2 = () => {
+        if(document.getElementById('multiCollapse2').classList.contains('collapse')){
+            document.getElementById('multiCollapse2').classList.remove('collapse');
+            document.getElementById('multiCollapse1').classList.add('collapse');
+            document.getElementById('multiCollapse3').classList.add('collapse');
+        }
+        else
+        {
+            document.getElementById('multiCollapse2').classList.add('collapse');
+        }
+    }
+
+    const activateMulti3 = () => {
+        if(document.getElementById('multiCollapse3').classList.contains('collapse')){
+            document.getElementById('multiCollapse3').classList.remove('collapse');
+            document.getElementById('multiCollapse1').classList.add('collapse');
+            document.getElementById('multiCollapse2').classList.add('collapse');
+        }
+        else
+        {
+            document.getElementById('multiCollapse3').classList.add('collapsed');
+        }
+    }
+
+
 
 
     return (  
@@ -315,10 +352,15 @@ const LearnSetup = () => {
                                 <button className ="btn btn-outline-warning" type="button" id = "medium" onClick={activateMedium}>Mediu</button>
                                 <button className ="btn btn-outline-danger" type="button" id = "hard" onClick={activateHard}>Ridicat</button>
                             </div>
-                            <br/><p style={{marginTop:"0.5rem"}}><strong>Ce presupun nivelele de dedicație?</strong>s</p>
+                            <font size ={2}>
+                                <p style={{marginTop:"0.5rem"}}><strong>Ce presupun nivelele de dedicație?</strong></p>
+                                <p><strong>Nivelul Ușor : între 5 și 7 sesiuni săptămânale.</strong></p>
+                                <p><strong>Nivelul Mediu : între 7 și 9 sesiuni săptămânale.</strong></p>
+                                <p><strong>Nivelul Ridicat :s 10 sesiuni săptămânale.</strong></p>
+                            </font>
                         </div>
                     </div>
-                    
+                    {/* TODO: sa se deschida doar una la orice moment ^ */}
                     <div className = "card" style={{width:"21rem", height:"12rem", marginTop:"1rem",}}>
                         <div className="card-body">
                             <h4 className="card-title">Când ai ore la liceu?</h4>
@@ -335,20 +377,6 @@ const LearnSetup = () => {
                     <button type="button" class="btn btn-warning btn-lg" id="toback" onClick={back}>Back</button>
                     <button type="button" class="btn btn-danger btn-lg" id="resetbutton" onClick={resetButtons}>Reset</button>
                     <button type="button" class="btn btn-success btn-lg" id="submit" onClick={submit}>Submit</button>
-                </div>
-                <div className="card-body position-absolute top-50 start-50 " style={{marginLeft:"-16rem"}}>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Ușor</button>
-                    <div class="collapse collapse-horizontal" id="collapseExample">
-                        <div class="card card-body " style={{marginLeft:"-21rem"}}>
-                            Presupune între 5 și 7 ore de studiu pe săptămână.
-                        </div>
-                    </div>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Mediu</button>
-                    <div class="collapse collapse-horizontal" id="collapseExample">
-                        <div class="card card-body " style={{marginLeft:"-16rem"}}>
-                            Presupune între 7 și 9 ore de studiu pe săptămână.
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

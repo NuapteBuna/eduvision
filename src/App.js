@@ -31,6 +31,7 @@ function App() {
               <Route exact path="/learn-setup" component={Learn.LearnSetup} />
               <Route exact path="/test" component={TestApp.Test} />
               <Route exact path="/contact" component={Contact} />
+              <Route exact path="/about" component={About} />
               <Route exact path="/results" component={Results} />
             </Switch>
           </div>
