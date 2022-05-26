@@ -8,20 +8,62 @@ import Learn from "./Learn1";
 import { useHistory } from "react-router-dom";
 
 var intrebari = [
-  new test("Ce este o matrice?", "2", "Informatica", "3", "", [
-    "Un tablou unidimensional",
-    "Un tablou bidimensional",
-    "Un tablou cu 3 dimensiuni",
-    "Un tablou cu 4 dimensiuni",
-  ]),
-  new test(
-    "Indicați expresia C/C++ cu valoarea 0",
-    "3",
-    "Informatica",
-    "Expresii",
-    "",
-    ["sqrt(16)==4", "45*5==200+5*5", "25/10==15/10", "64/4==8*2"]
-  ),
+    new test("Ce este o matrice?", "2", "Informatica", "3", "", [
+        "Un tablou unidimensional",
+        "Un tablou bidimensional",
+        "Un tablou cu 3 dimensiuni",
+        "Un tablou cu 4 dimensiuni",
+    ]),
+    new test(
+        "Indicați expresia C/C++ cu valoarea 0",
+        "3",
+        "Informatica",
+        "Expresii",
+        "",
+        ["sqrt(16)==4", "45*5==200+5*5", "25/10==15/10", "64/4==8*2"]
+    ),
+    new test("Numim pădure un graf neorientat în care fiecare componentă conexă a sa este un arbore. Orice pădure cu cel putin doi arbori este un graf care:","1","Informatica","Grafuri","",[
+        "Are cicluri şi este conex",
+        "Are cicluri şi nu este conex",
+        "Nu are cicluri şi este conex",
+        "Nu are cicluri şi nu este conex"
+    ]),
+    new test("Cine a scris Floare Albastra?", "3", "Romana", "Literatura", "", [
+        "Ion Creanga",
+        "Ioan Slavici",
+        "Mihai Eminescu",
+        "Ion Pillat"
+    ]),
+    new test("Valoarea expresiei C/C++: 42/10*29/10 este:","3","Informatica","Expresii","",[
+        "9",
+        "10",
+        "11",
+        "15"
+    ]),
+    new test("Valoarea expresiei C/C++: 25/10*15/10 este:","1","Informatica","Expresii","",[
+        "3",
+        "4",
+        "5",
+        "1"
+    ]),
+    new test("Variabilele x și y sunt întregi. Indicați expresia C/C++ echivalentă cu (x<3)&&(y>=5).","1","Informatica","Expresii","",[
+        "!(!(x<3)||!(y>=5))",
+        "!(x>=3)&&(y<5)",
+        "!((x>=3)&&(y<5))",
+        "!((x<3)||(y>=5))"
+    ]),
+    new test("Valorile care pot reprezenta gradele nodurilor unui graf neorientat, cu 6 noduri, sunt:","3","Informatica","Grafuri","",[
+         "2,2,5,5,0,1",
+         "6,5,4,3,2,1",
+         "2,2,3,4,0,3",
+         "1,0,0,2,2,2"
+    ]),
+    new test("Utilizând metoda backtracking, se generează toate băuturile obținute amestecând sucurile a cel puțin două fructe distincte din mulţimea {afine, caise, lămâi, mere, pere}. Primele cinci soluţii obţinute sunt, în această ordine: (afine, caise), (afine, caise, lămâi), (afine, caise, lămâi, mere), (afine, caise, lămâi, mere, pere) şi (afine, caise, lămâi, pere). A șasea soluţie este:","3","Informatica","Backtracking","",[
+        "(afine, mere, pere)",
+        "(afine, lămâi, mere, pere)",
+        "(afine, caise, mere)",
+        "(afine, caise, mere, pere)"
+    ]),
 ];
 //TODO: Add more questions
 
