@@ -8,7 +8,7 @@ import Learn from "./Learn1";
 import { useHistory } from "react-router-dom";
 
 var intrebari = [
-    new test("Ce este o matrice?", "2", "Informatica", "3", "", [
+    new test("Ce este o matrice?", "2", "Informatica", "Matrici", "", [
         "Un tablou unidimensional",
         "Un tablou bidimensional",
         "Un tablou cu 3 dimensiuni",
@@ -27,12 +27,6 @@ var intrebari = [
         "Are cicluri şi nu este conex",
         "Nu are cicluri şi este conex",
         "Nu are cicluri şi nu este conex"
-    ]),
-    new test("Cine a scris Floare Albastra?", "3", "Romana", "Literatura", "", [
-        "Ion Creanga",
-        "Ioan Slavici",
-        "Mihai Eminescu",
-        "Ion Pillat"
     ]),
     new test("Valoarea expresiei C/C++: 42/10*29/10 este:","3","Informatica","Expresii","",[
         "9",
@@ -64,7 +58,77 @@ var intrebari = [
         "(afine, caise, mere)",
         "(afine, caise, mere, pere)"
     ]),
-];
+    new test("Variabilele i şi j sunt de tip întreg, iar variabila m memorează un tablou bidimensional cu 5 linii şi 5 coloane, numerotate de la 0 la 4, cu elemente numere întregi. O expresie C/C++ a cărei valoare este egală cu produsul dintre primul element de pe linia i și ultimul element de pe coloana j din acest tablou este:","3","Informatica","Matrici","",[
+      "m(0,i)*m(j,4)",
+      "m(i)(0)*m(4)(j)",
+      "m[i][0]*m[4][j]",
+      "m[0,i]*m[j,4]"
+    ]),
+    new test("Utilizând metoda backtracking se generează toate modalităţile de a scrie numărul 6 ca sumă de numere naturale impare. Termenii fiecărei sume sunt în ordine crescătoare. Cele patru soluţii sunt obţinute în această ordine: 1+1+1+1+1+1; 1+1+1+3; 1+5; 3+3. Aplicând acelaşi algoritm, numărul soluţiilor obţinute pentru scrierea lui 8 este:","2","Informatica","Backtracking","",[
+      "9",
+      "6",
+      "5",
+      "8"
+    ]),
+    new test("Cine este purtătorul mesajului moralizator al nuvelei \"Moara cu Noroc\" ","3","Romana","Literatura","",[
+      "Lică Sămădăul",
+      "Soacra lui Ghiță",
+      "Ghiță",
+      "Ana"
+    ]),
+    new test("Ce tip de opera este \"Povestea lui Harap-Alb\"?","1","Romana","Literatura","",[
+      "Basm",
+      "Nuvelă",
+      "Roman",
+      "Comedie"
+    ]),
+    new test("Cine a scris Floare Albastra?", "3", "Romana", "Literatura", "", [
+      "Ion Creanga",
+      "Ioan Slavici",
+      "Mihai Eminescu",
+      "Ion Pillat"
+    ]),
+    new test("Cine a scris \"Povestea lui Harap-Alb\"?","2","Romana","Literatura","",[
+      "Ioan Slavici",
+      "Ion Creanga",
+      "Mihai Eminescu",
+      "Ion Luca Caragiale"
+    ]),
+    new test("Poemul \"Luceafărul\" apare pentru prima dată:","3","Romana","Marii Clasici","",[
+      "la București",
+      "la Timisoara, în anul 1883",
+      "la Viena, în Almanahul societății academice social-literare \"România jună\"",
+      "în revista \"Convorbiri literare\" din Iași"
+    ]),
+    new test("Ecuatia dreptei care trece prin punctele M(1,2) si N(2,5)  este:","4","Matematica","Geometrie","",[
+      "2x + y = 2",
+      "x = 0",
+      "y = 3",
+      "3x - y = 1"
+    ]),
+    new test("Sa se determine coordonatele mijlocului segmentului AB, unde A(-3,4) si B(7,-2)","1","Matematica","Geometrie","",[
+      "(2,1)",
+      "(1,2)",
+      "(7,-2)",
+      "(-3,4)"
+    ]),
+    new test("Aria cercului de diametru 2 este:","2","Matematica","Geometrie","",[
+      "3π",
+      "π;",
+      "6π;",
+      "4π;"]),
+    new test("Daca x ≤ 3 - 2x atunci:","4","Matematica","Algebra","",[
+      "x ≤ -5 ",
+      "x = 0 ",
+      "x ≤ -11",
+      "x ≤ 1 ",
+    ]),
+    new test("Solutia ecuatiei 5x-12=3x este:","2","Matematica","Algebra","",[
+      "-5",
+      "6",
+      "4",
+      "5"])
+  ];
 //TODO: Add more questions
 
 var materii = [];
