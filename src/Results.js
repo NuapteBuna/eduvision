@@ -2,6 +2,8 @@ import rez from "./Test";
 import { Accordion } from "react-bootstrap";
 import { useState } from "react";
 import Test from "./Test";
+import { generatePath } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Results = () => {
   var materii = rez.API.getMaterii();
@@ -79,6 +81,12 @@ const Results = () => {
     else return "gresite";
   };
 
+  const history = useHistory();
+
+  const generate = () => {
+    history.push("/generator");
+  };
+
   return (
     <div className="results">
       <h1
@@ -87,6 +95,15 @@ const Results = () => {
       >
         Rezultate
       </h1>
+      <button
+        className="btn btn-primary"
+        style={{ marginTop: "6rem" }}
+        onClick={() => {
+          generate();
+        }}
+      >
+        Generare orar
+      </button>
       <div
         className="card position-absolute top-50 start-0 translate-middle-y"
         style={{

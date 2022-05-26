@@ -8,30 +8,20 @@ import Learn from "./Learn1";
 import { useHistory } from "react-router-dom";
 
 var intrebari = [
-  new test("Ce este un obiect?", "1", "Informatica", "1", "", [
-    "a",
-    "b",
-    "c",
-    "d",
+  new test("Ce este o matrice?", "2", "Informatica", "3", "", [
+    "Un tablou unidimensional",
+    "Un tablou bidimensional",
+    "Un tablou cu 3 dimensiuni",
+    "Un tablou cu 4 dimensiuni",
   ]),
-  new test("Ce este un numar?", "2", "Matematica", "3", "", [
-    "a",
-    "b",
-    "c",
-    "d",
-  ]),
-  new test("Ce sunt datele?", "4", "Informatica", "3", "", [
-    "a",
-    "b",
-    "c",
-    "d",
-  ]),
-  new test("Cine a scris Floare Albastra?", "3", "Romana", "Literatura", "", [
-    "Ion Creanga",
-    "Ioan Slavici",
-    "Mihai Eminescu",
-    "Ion Pillat",
-  ]),
+  new test(
+    "Indicați expresia C/C++ cu valoarea 0",
+    "3",
+    "Informatica",
+    "Expresii",
+    "",
+    ["sqrt(16)==4", "45*5==200+5*5", "25/10==15/10", "64/4==8*2"]
+  ),
 ];
 //TODO: Add more questions
 
