@@ -1,8 +1,5 @@
-
 const Background = () => {
-    return (  
-        <div className="background"></div>
-    );
-}
- 
+  return <div className="background"></div>;
+};
+
 export default Background;
