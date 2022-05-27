@@ -11,6 +11,25 @@ var currentobjects = 2,
 function returnvalues() {
   return [currentobjects, globalTime, learningMode, difficultyLevel, weekend];
 }
+
+var LAPI = {
+  getWeekend: function () {
+    return weekend;
+  },
+  getCurrentObjects: function () {
+    return currentobjects;
+  },
+  getGlobalTime: function () {
+    return globalTime;
+  },
+  getLearningMode: function () {
+    return learningMode;
+  },
+  getDifficultyLevel: function () {
+    return difficultyLevel;
+  },
+};
+
 //reset values for number inputs
 const LearnSetup = () => {
   //var currentobjects = 2, timeValue, globalTime = 0, difficultyLevel ="", learningMode="", weekend=0;
@@ -548,10 +567,5 @@ const LearnSetup = () => {
 export default {
   LearnSetup,
   returnvalues,
+  LAPI,
 };
-{
-  /*
-sbn
-speedy
-*/
-}
