@@ -103,7 +103,7 @@ var intrebari = [
   ),
   new test(
     'Cine este purtătorul mesajului moralizator al nuvelei "Moara cu Noroc" ',
-    "3",
+    "2",
     "Romana",
     "Literatura",
     "",
