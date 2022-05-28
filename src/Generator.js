@@ -1,6 +1,14 @@
 import rez from "./Test";
 import Learn from "./Learn1";
 import { findByPlaceholderText } from "@testing-library/react";
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 const Generator = () => {
   var materii = rez.API.getMaterii();
@@ -129,12 +137,11 @@ const Generator = () => {
 
   var days = ["luni", "marti", "miercuri", "joi", "vineri"];
 
-  var currDiffInformatica =
-    (raspunsuriGresiteInformatica.length * diffLevel) / 1.5;
+  var currDiffInformatica = raspunsuriGresiteInformatica.length * diffLevel;
 
-  var currDiffMatematica = raspunsuriGresiteMatematica.length * diffLevel * 2;
+  var currDiffMatematica = raspunsuriGresiteMatematica.length * diffLevel;
 
-  var currDiffAlt = raspunsuriGresiteAlt.length * diffLevel * 2;
+  var currDiffAlt = raspunsuriGresiteAlt.length * diffLevel;
 
   var hours = daysTime * 24;
 
@@ -160,25 +167,31 @@ const Generator = () => {
 
   function ore(zi, sapt) {
     if (zi == "luni") {
-      return saptNoWeek[sapt].luni.split(" ").length;
+      return saptNoWeek[sapt].luni.split(" ").length - 1;
     } else if (zi == "marti") {
-      return saptNoWeek[sapt].marti.split(" ").length;
+      return saptNoWeek[sapt].marti.split(" ").length - 1;
     } else if (zi == "miercuri") {
-      return saptNoWeek[sapt].miercuri.split(" ").length;
+      return saptNoWeek[sapt].miercuri.split(" ").length - 1;
     } else if (zi == "joi") {
-      return saptNoWeek[sapt].joi.split(" ").length;
+      return saptNoWeek[sapt].joi.split(" ").length - 1;
     } else if (zi == "vineri") {
-      return saptNoWeek[sapt].vineri.split(" ").length;
+      return saptNoWeek[sapt].vineri.split(" ").length - 1;
     } else if (zi == "sambata") {
-      return saptNoWeek[sapt].sambata.split(" ").length;
+      return saptNoWeek[sapt].sambata.split(" ").length - 1;
     } else if (zi == "duminica") {
-      return saptNoWeek[sapt].duminica.split(" ").length;
+      return saptNoWeek[sapt].duminica.split(" ").length - 1;
     }
   }
 
   //Fill informatica fw
   const fillInformaticaFW = () => {
-    for (var i = 0; i <= daysTime; i += Math.round(pasInformatica)) {
+    for (
+      var i = 0;
+      i <= daysTime && currSapt1 * 7 < daysTime;
+      i += Math.round(pasInformatica)
+    ) {
+      console.log("\n" + "I: " + i);
+      console.log("\n" + "currSapt1: " + currSapt1);
       if (i % 5 <= lastzi1) {
         currSapt1++;
       }
@@ -203,7 +216,11 @@ const Generator = () => {
 
   //Fill matematica fw
   const fillMatematicaFW = () => {
-    for (var i = 0; i <= daysTime; i += Math.round(pasMatematica)) {
+    for (
+      var i = 0;
+      i <= daysTime && currSapt2 * 7 < daysTime;
+      i += Math.round(pasMatematica)
+    ) {
       if (i % 5 <= lastzi2) {
         currSapt2++;
       }
@@ -240,7 +257,6 @@ const Generator = () => {
         } else {
           saptNoWeek[currSapt2].luni += "Matematica ";
         }
-        //saptNoWeek[currSapt2].luni += "Matematica ";
       }
       if (days[i % 5] == "marti") {
         if (ore("marti", currSapt2) >= 1) {
@@ -388,7 +404,11 @@ const Generator = () => {
 
   //Fill romana fw
   const fillRomanaFW = () => {
-    for (var i = 0; i <= daysTime; i += Math.round(pasAlt)) {
+    for (
+      var i = 0;
+      i <= daysTime && currSapt3 * 7 < daysTime;
+      i += Math.round(pasAlt)
+    ) {
       if (i % 5 <= lastzi3) {
         currSapt3++;
       }
@@ -403,26 +423,7 @@ const Generator = () => {
           } else if (ore("vineri", currSapt3) == 0) {
             saptNoWeek[currSapt3].vineri += "Romana ";
           } else {
-            var lowest = Math.min(
-              ore("luni", currSapt3),
-              ore("miercuri", currSapt3),
-              ore("marti", currSapt3),
-              ore("joi", currSapt3),
-              ore("vineri", currSapt3)
-            );
-            if (lowest == ore("luni", currSapt3)) {
-              saptNoWeek[currSapt3].luni += "Romana ";
-            } else if (lowest == ore("miercuri", currSapt3)) {
-              saptNoWeek[currSapt3].miercuri += "Romana ";
-            } else if (lowest == ore("marti", currSapt3)) {
-              saptNoWeek[currSapt3].marti += "Romana ";
-            } else if (lowest == ore("joi", currSapt3)) {
-              saptNoWeek[currSapt3].joi += "Romana ";
-            } else if (lowest == ore("vineri", currSapt3)) {
-              saptNoWeek[currSapt3].vineri += "Romana ";
-            } else {
-              saptNoWeek[currSapt3].luni += "Romana ";
-            }
+            currSapt3++;
           }
         } else {
           saptNoWeek[currSapt3].luni += "Romana ";
@@ -439,26 +440,7 @@ const Generator = () => {
           } else if (ore("luni", currSapt3) == 0) {
             saptNoWeek[currSapt3].luni += "Romana ";
           } else {
-            var lowest = Math.min(
-              ore("marti", currSapt3),
-              ore("vineri", currSapt3),
-              ore("miercuri", currSapt3),
-              ore("joi", currSapt3),
-              ore("luni", currSapt3)
-            );
-            if (lowest == ore("marti", currSapt3)) {
-              saptNoWeek[currSapt3].marti += "Romana ";
-            } else if (lowest == ore("vineri", currSapt3)) {
-              saptNoWeek[currSapt3].vineri += "Romana ";
-            } else if (lowest == ore("miercuri", currSapt3)) {
-              saptNoWeek[currSapt3].miercuri += "Romana ";
-            } else if (lowest == ore("joi", currSapt3)) {
-              saptNoWeek[currSapt3].joi += "Romana ";
-            } else if (lowest == ore("luni", currSapt3)) {
-              saptNoWeek[currSapt3].luni += "Romana ";
-            } else {
-              saptNoWeek[currSapt3].marti += "Romana ";
-            }
+            currSapt3++;
           }
         } else {
           saptNoWeek[currSapt3].marti += "Romana ";
@@ -475,26 +457,7 @@ const Generator = () => {
           } else if (ore("marti", currSapt3) == 0) {
             saptNoWeek[currSapt3].marti += "Romana ";
           } else {
-            var lowest = Math.min(
-              ore("miercuri", currSapt3),
-              ore("luni", currSapt3),
-              ore("joi", currSapt3),
-              ore("vineri", currSapt3),
-              ore("marti", currSapt3)
-            );
-            if (lowest == ore("miercuri", currSapt3)) {
-              saptNoWeek[currSapt3].miercuri += "Romana ";
-            } else if (lowest == ore("luni", currSapt3)) {
-              saptNoWeek[currSapt3].luni += "Romana ";
-            } else if (lowest == ore("joi", currSapt3)) {
-              saptNoWeek[currSapt3].joi += "Romana ";
-            } else if (lowest == ore("vineri", currSapt3)) {
-              saptNoWeek[currSapt3].vineri += "Romana ";
-            } else if (lowest == ore("marti", currSapt3)) {
-              saptNoWeek[currSapt3].marti += "Romana ";
-            } else {
-              saptNoWeek[currSapt3].miercuri += "Romana ";
-            }
+            currSapt3++;
           }
         } else {
           saptNoWeek[currSapt3].miercuri += "Romana ";
@@ -511,29 +474,7 @@ const Generator = () => {
           } else if (ore("vineri", currSapt3) == 0) {
             saptNoWeek[currSapt3].vineri += "Romana ";
           } else {
-            var lowest = Math.min(
-              ore("joi", currSapt3),
-              ore("luni", currSapt3),
-              ore("marti", currSapt3),
-              ore("miercuri", currSapt3),
-              ore("vineri", currSapt3)
-            );
-            if (lowest == ore("joi", currSapt3)) {
-              saptNoWeek[currSapt3].joi += "Romana ";
-            } else if (lowest == ore("luni", currSapt3)) {
-              saptNoWeek[currSapt3].luni += "Romana ";
-            }
-            if (lowest == ore("marti", currSapt3)) {
-              saptNoWeek[currSapt3].marti += "Romana ";
-            } else if (lowest == ore("miercuri", currSapt3)) {
-              saptNoWeek[currSapt3].miercuri += "Romana ";
-            } else if (lowest == ore("vineri", currSapt3)) {
-              saptNoWeek[currSapt3].vineri += "Romana ";
-            } else if (lowest == ore("joi", currSapt3)) {
-              saptNoWeek[currSapt3].joi += "Romana ";
-            } else {
-              saptNoWeek[currSapt3].joi += "Romana ";
-            }
+            currSapt3++;
           }
         } else {
           saptNoWeek[currSapt3].joi += "Romana ";
@@ -550,26 +491,7 @@ const Generator = () => {
           } else if (ore("luni", currSapt3) == 0) {
             saptNoWeek[currSapt3].luni += "Romana ";
           } else {
-            var lowest = Math.min(
-              ore("vineri", currSapt3),
-              ore("marti", currSapt3),
-              ore("miercuri", currSapt3),
-              ore("joi", currSapt3),
-              ore("luni", currSapt3)
-            );
-            if (lowest == ore("vineri", currSapt3)) {
-              saptNoWeek[currSapt3].vineri += "Romana ";
-            } else if (lowest == ore("marti", currSapt3)) {
-              saptNoWeek[currSapt3].marti += "Romana ";
-            } else if (lowest == ore("miercuri", currSapt3)) {
-              saptNoWeek[currSapt3].miercuri += "Romana ";
-            } else if (lowest == ore("joi", currSapt3)) {
-              saptNoWeek[currSapt3].joi += "Romana ";
-            } else if (lowest == ore("luni", currSapt3)) {
-              saptNoWeek[currSapt3].luni += "Romana ";
-            } else {
-              saptNoWeek[currSapt3].vineri += "Romana ";
-            }
+            currSapt3++;
           }
         } else {
           saptNoWeek[currSapt3].vineri += "Romana ";
@@ -583,6 +505,7 @@ const Generator = () => {
     fillInformaticaFW();
     fillMatematicaFW();
     fillRomanaFW();
+
     for (var i = 1; i <= currSapt1; i++) {
       console.log(
         "Saptamana " +
@@ -610,12 +533,145 @@ const Generator = () => {
     "testing";
   };
 
+  function createData(
+    function1,
+    function2,
+    function3,
+    saptamana,
+    luni,
+    marti,
+    miercuri,
+    joi,
+    vineri
+  ) {
+    return {
+      function1,
+      function2,
+      function3,
+      saptamana,
+      luni,
+      marti,
+      miercuri,
+      joi,
+      vineri,
+    };
+  }
+
+  function logsapt() {
+    fillInformaticaFW();
+    fillMatematicaFW();
+    fillRomanaFW();
+    console.log(saptNoWeek[1]);
+  }
+
+  const rows = [
+    createData(
+      fillInformaticaFW(),
+      fillMatematicaFW(),
+      fillRomanaFW(),
+      1,
+      saptNoWeek[1].luni,
+      saptNoWeek[1].marti,
+      saptNoWeek[1].miercuri,
+      saptNoWeek[1].joi,
+      saptNoWeek[1].vineri
+    ),
+  ];
+
   return (
+    <table class="table">
+      {logsapt()}
+      <thead>
+        <tr>
+          <th scope="col">Saptamana</th>
+          <th scope="col">Luni</th>
+          <th scope="col">Marti</th>
+          <th scope="col">Miercuri</th>
+          <th scope="col">Joi</th>
+          <th scope="col">Vineri</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row) => (
+          <tr
+            key={row.saptamana}
+            sx={{ "&:last-child td, &:last-child th": { border: 1 } }}
+          >
+            <th scope="row" row="2">
+              {row.saptamana}
+            </th>
+            <td>{row.luni}</td>
+            <td>{row.marti}</td>
+            <td>{row.miercuri}</td>
+            <td>{row.joi}</td>
+            <td>{row.vineri}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+  {
+    /*<TableContainer component={Paper}>
+      {logsapt()}
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Saptamana</TableCell>
+            <TableCell align="right">Luni</TableCell>
+            <TableCell align="right">Marti</TableCell>
+            <TableCell align="right">Miercuri</TableCell>
+            <TableCell align="right">Joi</TableCell>
+            <TableCell align="right">Vineri</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow
+              key={row.saptamana}
+              sx={{ "&:last-child td, &:last-child th": { border: 1 } }}
+            >
+              <TableCell component="th" scope="row">
+                {row.saptamana}
+              </TableCell>
+              <TableCell align="right">{row.luni}</TableCell>
+              <TableCell align="right">{row.marti}</TableCell>
+              <TableCell align="right">{row.miercuri}</TableCell>
+              <TableCell align="right">{row.joi}</TableCell>
+              <TableCell align="right">{row.vineri}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+          </TableContainer>*/
+  }
+
+  /*return (
     <div className="generator">
       {debugGen()}
-      {console.log()}
+      {console.log(
+        " days: " +
+          daysTime +
+          "\n currDiffInformatica : " +
+          currDiffInformatica +
+          "\n currDiffMatematica : " +
+          currDiffMatematica +
+          "\n currDiffRomana : " +
+          currDiffAlt +
+          "\n pasInformatica : " +
+          pasInformatica +
+          "\n pasMatematica : " +
+          pasMatematica +
+          "\n pasRomana : " +
+          pasAlt +
+          "\n currSapt1 : " +
+          currSapt1 +
+          "\n currSapt2 : " +
+          currSapt2 +
+          "\n currSapt3 : " +
+          currSapt3
+      )}
     </div>
-  );
+  );*/
 };
 
 export default Generator;
