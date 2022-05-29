@@ -216,6 +216,14 @@ function test(intrebare, raspuns, materie, capitol, input, raspunsuri = []) {
   this.raspunsuri = raspunsuri;
 }
 
+var capitoleGresiteInformatica = [];
+var capitoleGresiteMatematica = [];
+var capitoleGresiteAlt = [];
+
+var counter1 = 0;
+var counter2 = 0;
+var counter3 = 0;
+
 //API Calls
 var API = {
   getMaterii: function () {
@@ -260,6 +268,15 @@ var API = {
   getWeekend: function () {
     return weekend;
   },
+  getCapitoleGresiteInformatica: function () {
+    return capitoleGresiteInformatica;
+  },
+  getCapitoleGresiteMatematica: function () {
+    return capitoleGresiteMatematica;
+  },
+  getCapitoleGresiteAlt: function () {
+    return capitoleGresiteAlt;
+  },
 };
 
 var contor1 = 0;
@@ -303,18 +320,24 @@ const Test = () => {
         ? frecventaMat[materii[gresite - 1]] + 1
         : 1;
       if (intrebari[counter].materie == "Informatica") {
+        console.log("GRESITE CAPITOLE INFORMATICA : " + counter1);
+        capitoleGresiteInformatica[counter1++] = intrebari[counter].capitol;
         wrongIntrebari0[contor1++] = intrebari[counter].intrebare;
         raspunsuriGresiteInformatica[raspInfGresitContor++] =
           intrebari[counter].raspunsuri[currAns];
         raspunsuriCorecteInformatica[raspInfCorectContor++] =
           intrebari[counter].raspunsuri[intrebari[counter].raspuns - 1];
       } else if (intrebari[counter].materie == "Matematica") {
+        console.log("GRESITE CAPITOLE MATEMATICA : " + counter2);
+        capitoleGresiteMatematica[counter2++] = intrebari[counter].capitol;
         wrongIntrebari1[contor2++] = intrebari[counter].intrebare;
         raspunsuriGresiteMatematica[raspMatGresitContor++] =
           intrebari[counter].raspunsuri[currAns];
         raspunsuriCorecteMatematica[raspMatCorectContor++] =
           intrebari[counter].raspunsuri[intrebari[counter].raspuns - 1];
       } else if (intrebari[counter].materie == "Romana") {
+        console.log("GRESITE CAPITOLE ALTA : " + counter3);
+        capitoleGresiteAlt[counter3++] = intrebari[counter].capitol;
         wrongIntrebari2[contor3++] = intrebari[counter].intrebare;
         raspunsuriGresiteAlt[raspAltGresitContor++] =
           intrebari[counter].raspunsuri[currAns];

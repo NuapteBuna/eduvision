@@ -9,12 +9,22 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { useState } from "react";
 
 const Generator = () => {
   var materii = rez.API.getMaterii();
   var capitole = rez.API.getCapitole();
   var frecventa = rez.API.getFrecventa();
   var gresite = rez.API.getGresite();
+
+  var capitoleGresiteInformatica = rez.API.getCapitoleGresiteInformatica();
+  var capitoleGresiteMatematica = rez.API.getCapitoleGresiteMatematica();
+  var capitoleGresiteAlt = rez.API.getCapitoleGresiteAlt();
+
+  var counterCapitoleInformatica = 0;
+  var counterCapitoleMatematica = 0;
+  var counterCapitoleAlt = 0;
+
   var string = "",
     string2 = "",
     string3 = "";
@@ -103,7 +113,7 @@ const Generator = () => {
   }
 
   var saptNoWeek = [];
-  for (var i = 0; i <= 100; i++) {
+  for (var i = 0; i <= daysTime / 7; i++) {
     saptNoWeek[i] = new saptfw();
   }
 
@@ -137,11 +147,12 @@ const Generator = () => {
 
   var days = ["luni", "marti", "miercuri", "joi", "vineri"];
 
-  var currDiffInformatica = raspunsuriGresiteInformatica.length * diffLevel;
+  var currDiffInformatica =
+    ((raspunsuriGresiteInformatica.length * 3) / diffLevel) * 2;
 
-  var currDiffMatematica = raspunsuriGresiteMatematica.length * diffLevel;
+  var currDiffMatematica = (raspunsuriGresiteMatematica.length * 3) / diffLevel;
 
-  var currDiffAlt = raspunsuriGresiteAlt.length * diffLevel;
+  var currDiffAlt = (raspunsuriGresiteAlt.length * 3) / diffLevel;
 
   var hours = daysTime * 24;
 
@@ -155,15 +166,15 @@ const Generator = () => {
 
   //Informatica
   var lastzi1 = 0;
-  var currSapt1 = 0;
+  var currSapt1 = -1;
 
   //Matematica
   var lastzi2 = 0;
-  var currSapt2 = 0;
+  var currSapt2 = -1;
 
   //Romana
   var lastzi3 = 0;
-  var currSapt3 = 0;
+  var currSapt3 = -1;
 
   function ore(zi, sapt) {
     if (zi == "luni") {
@@ -578,35 +589,97 @@ const Generator = () => {
     ),
   ];
 
+  const [index, setIndex] = useState(1);
+
+  const returnCapitol = (materie) => {
+    if (materie == "Informatica ") {
+      return capitoleGresiteInformatica[counterCapitoleInformatica++];
+    } else if (materie == "Matematica ") {
+      return capitoleGresiteMatematica[counterCapitoleMatematica++];
+    } else if (materie == "Romana ") {
+      return capitoleGresiteAlt[counterCapitoleAlt++];
+    }
+  };
+
+  const returnOutput = (materie) => {
+    if (materie == "Informatica ") {
+      if (counterCapitoleInformatica + 1 > capitoleGresiteInformatica.length) {
+        counterCapitoleInformatica = 0;
+      }
+      return " : " + capitoleGresiteInformatica[counterCapitoleInformatica++];
+    } else if (materie == "Matematica ") {
+      if (counterCapitoleMatematica + 1 > capitoleGresiteMatematica.length) {
+        counterCapitoleMatematica = 0;
+      }
+      return " : " + capitoleGresiteMatematica[counterCapitoleMatematica++];
+    } else if (materie == "Romana ") {
+      if (counterCapitoleAlt + 1 > capitoleGresiteAlt.length) {
+        counterCapitoleAlt = 0;
+      }
+      return " : " + capitoleGresiteAlt[counterCapitoleAlt++];
+    }
+  };
+
   return (
-    <table class="table">
+    <table
+      className="table table-striped position-absolute top-50 start-50 translate-middle table-responsive table-hover"
+      style={{ textAlign: "center", width: "50%", height: "80%" }}
+    >
       {logsapt()}
-      <thead>
+      {console.log(capitoleGresiteAlt)}
+      <thead class="thead-light">
         <tr>
-          <th scope="col">Saptamana</th>
-          <th scope="col">Luni</th>
-          <th scope="col">Marti</th>
-          <th scope="col">Miercuri</th>
-          <th scope="col">Joi</th>
-          <th scope="col">Vineri</th>
+          <th scope="col">
+            <center>Saptamana</center>
+          </th>
+          <th scope="col">
+            <center>Luni</center>
+          </th>
+          <th scope="col">
+            <center>Marti</center>
+          </th>
+          <th scope="col">
+            <center>Miercuri</center>
+          </th>
+          <th scope="col">
+            <center>Joi</center>
+          </th>
+          <th scope="col">
+            <center>Vineri</center>
+          </th>
         </tr>
       </thead>
       <tbody>
-        {rows.map((row) => (
-          <tr
-            key={row.saptamana}
-            sx={{ "&:last-child td, &:last-child th": { border: 1 } }}
-          >
-            <th scope="row" row="2">
-              {row.saptamana}
+        {saptNoWeek.map((element, index) => (
+          <tr>
+            <th scope="row">
+              <center>
+                <middle>{index + 1}</middle>
+              </center>
             </th>
-            <td>{row.luni}</td>
-            <td>{row.marti}</td>
-            <td>{row.miercuri}</td>
-            <td>{row.joi}</td>
-            <td>{row.vineri}</td>
+            <td>
+              <b>{element.luni}</b>
+              {returnOutput(element.luni)}
+            </td>
+            <td>
+              <b>{element.marti}</b>
+              {returnOutput(element.marti)}
+            </td>
+            <td>
+              <b>{element.miercuri}</b>
+              {returnOutput(element.miercuri)}
+            </td>
+            <td>
+              <b>{element.joi}</b>
+              {returnOutput(element.joi)}
+            </td>
+            <td>
+              <b>{element.vineri}</b>
+              {returnOutput(element.vineri)}
+            </td>
           </tr>
         ))}
+        {debugGen()}
       </tbody>
     </table>
   );
