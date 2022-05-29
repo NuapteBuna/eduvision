@@ -37,6 +37,10 @@ const Results = () => {
   }
 
   //API Calls
+  var capitoleGresiteInformatica = rez.API.getCapitoleGresiteInformatica();
+  var capitoleGresiteMatematica = rez.API.getCapitoleGresiteMatematica();
+  var capitoleGresiteAlt = rez.API.getCapitoleGresiteAlt();
+
   var intrebariInformatica = rez.API.getIntrebariInformatica();
   var intrebariMatematica = rez.API.getIntrebariMatematica();
   var intrebariAlt = rez.API.getIntrebariAlt();
@@ -127,7 +131,11 @@ const Results = () => {
           <ul className="list-group">
             {state.listitems.map((listitem) => (
               <li className="list-group-item list-group-item-primary">
-                <b>{capitole[intrebariInformatica.indexOf(listitem)] + ": "}</b>
+                <b>
+                  {capitoleGresiteInformatica[
+                    intrebariInformatica.indexOf(listitem)
+                  ] + ": "}
+                </b>
                 {listitem + " "}
                 <div className="badge bg-success">
                   ✓{raspunsuriCorecteInformatica[raspInfCorectContor++]}
@@ -166,7 +174,11 @@ const Results = () => {
           <ul className="list-group">
             {state2.listitems.map((listitem) => (
               <li className="list-group-item list-group-item-primary">
-                <b>{capitole[intrebariMatematica.indexOf(listitem)] + ": "}</b>
+                <b>
+                  {capitoleGresiteMatematica[
+                    intrebariMatematica.indexOf(listitem)
+                  ] + ": "}
+                </b>
                 {listitem + " "}
                 <div className="badge bg-success">
                   ✓{raspunsuriCorecteMatematica[raspMatCorectContor++]}
@@ -205,7 +217,9 @@ const Results = () => {
           <ul className="list-group">
             {state3.listitems.map((listitem) => (
               <li className="list-group-item list-group-item-primary">
-                <b>{capitole[intrebariAlt.indexOf(listitem)] + ": "}</b>
+                <b>
+                  {capitoleGresiteAlt[intrebariAlt.indexOf(listitem)] + ": "}
+                </b>
                 {listitem + " "}
                 <div className="badge bg-success">
                   ✓{raspunsuriCorecteAlt[raspAltCorectContor++]}
