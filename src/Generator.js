@@ -623,7 +623,7 @@ const Generator = () => {
   return (
     <table
       className="table table-striped position-absolute top-50 start-50 translate-middle table-responsive table-hover"
-      style={{ textAlign: "center", width: "50%", height: "80%" }}
+      style={{ textAlign: "center", minHeight: "20%", maxWidth: "50%" }}
     >
       {logsapt()}
       {console.log(capitoleGresiteAlt)}
