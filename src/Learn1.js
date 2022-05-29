@@ -238,7 +238,7 @@ const LearnSetup = () => {
       alert("Ora de sfârșit nu poate să fie mai mică de 0!");
       return true;
     }
-    if (startTime() > endTime()) {
+    if (startTime() < endTime()) {
       alert("Ora de început nu poate să fie mai mare decât ora de sfârșit!");
       return true;
     }
