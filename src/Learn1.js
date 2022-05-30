@@ -156,7 +156,7 @@ const LearnSetup = () => {
     var time = RememberTime();
     if (timeValue == "zile") globalTime = time;
     if (timeValue == "săptămâni") globalTime = time * 7;
-    if (timeValue == "luni") globalTime = time * 30;
+    if (timeValue == "luni") globalTime = time * 28;
   }
 
   const activateEasy = () => {
@@ -214,6 +214,9 @@ const LearnSetup = () => {
   };
 
   function checkTime() {
+    var startt = startTime();
+    var endt = endTime();
+    if (startt / 10 < 1) startt = "0" + startt;
     if (startTime() == 0) {
       alert("Ora de început nu poate să fie 0!");
       return true;
@@ -238,7 +241,7 @@ const LearnSetup = () => {
       alert("Ora de sfârșit nu poate să fie mai mică de 0!");
       return true;
     }
-    if (startTime() < endTime()) {
+    if (startt > endt) {
       alert("Ora de început nu poate să fie mai mare decât ora de sfârșit!");
       return true;
     }

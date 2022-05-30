@@ -112,6 +112,20 @@ const Generator = () => {
     }
   }
 
+  function closestNumber(n, m) {
+    let q = parseInt(n / m);
+
+    let n1 = m * q;
+
+    let n2 = n * m > 0 ? m * (q + 1) : m * (q - 1);
+
+    if (Math.abs(n - n1) < Math.abs(n - n2)) return n1;
+
+    return n2;
+  }
+
+  daysTime = closestNumber(daysTime, 7);
+
   var saptNoWeek = [];
   for (var i = 0; i <= daysTime / 7; i++) {
     saptNoWeek[i] = new saptfw();
@@ -148,7 +162,7 @@ const Generator = () => {
   var days = ["luni", "marti", "miercuri", "joi", "vineri"];
 
   var currDiffInformatica =
-    ((raspunsuriGresiteInformatica.length * 3) / diffLevel) * 2;
+    (raspunsuriGresiteInformatica.length * 3) / diffLevel;
 
   var currDiffMatematica = (raspunsuriGresiteMatematica.length * 3) / diffLevel;
 
@@ -625,8 +639,6 @@ const Generator = () => {
       className="table table-striped position-absolute top-50 start-50 translate-middle table-responsive table-hover"
       style={{ textAlign: "center", minHeight: "20%", maxWidth: "50%" }}
     >
-      {logsapt()}
-      {console.log(capitoleGresiteAlt)}
       <thead class="thead-light">
         <tr>
           <th scope="col">
