@@ -194,6 +194,20 @@ const LearnSetup = () => {
 
   const history = useHistory();
 
+  const checkObject = () => {
+    if (document.getElementById("mat4").classList.contains("active")) {
+      alert("Ai ales o materie care nu poate fi selectata! :WIP");
+      return true;
+    } else if (document.getElementById("mat5").classList.contains("active")) {
+      alert("Ai ales o materie care nu poate fi selectata! :WIP");
+      return true;
+    } else if (document.getElementById("mat6").classList.contains("active")) {
+      alert("Ai ales o materie care nu poate fi selectata! :WIP");
+      return true;
+    }
+    return false;
+  };
+
   const submit = () => {
     ChangeTimeToDays();
     {
@@ -204,7 +218,7 @@ const LearnSetup = () => {
             weekend = 1/0
         */
     }
-    if (!checkTime()) {
+    if (!checkTime() && !checkObject()) {
       history.push("/test");
     }
   };

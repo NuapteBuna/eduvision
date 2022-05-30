@@ -36,20 +36,25 @@ var intrebari = [
     ]
   ),
   new test(
-    "Valoarea expresiei C/C++: 42/10*29/10 este:",
-    "3",
+    "Structura repetitivă cu test inițial se implementează cu instrucțiunea:",
+    "2",
     "Informatica",
-    "Expresii",
+    "Structuri repetitive",
     "",
-    ["9", "10", "11", "15"]
+    ["pentru", "cât timp", "daca", "repeta"]
   ),
   new test(
-    "Valoarea expresiei C/C++: 25/10*15/10 este:",
-    "1",
+    "Alegeți declararea corectă a unei variabile structurale cu 2 componente, una de tip real și una de tip întreg.",
+    "2",
     "Informatica",
-    "Expresii",
+    "Declararea variabilelor",
     "",
-    ["3", "4", "5", "1"]
+    [
+      "int float x[10] ;",
+      "struct { float x; int y} a;",
+      "float a[20];",
+      "struct { float x; int y} int a;",
+    ]
   ),
   new test(
     "Variabilele x și y sunt întregi. Indicați expresia C/C++ echivalentă cu (x<3)&&(y>=5).",
@@ -73,16 +78,16 @@ var intrebari = [
     ["2,2,5,5,0,1", "6,5,4,3,2,1", "2,2,3,4,0,3", "1,0,0,2,2,2"]
   ),
   new test(
-    "Utilizând metoda backtracking, se generează toate băuturile obținute amestecând sucurile a cel puțin două fructe distincte din mulţimea {afine, caise, lămâi, mere, pere}. Primele cinci soluţii obţinute sunt, în această ordine: (afine, caise), (afine, caise, lămâi), (afine, caise, lămâi, mere), (afine, caise, lămâi, mere, pere) şi (afine, caise, lămâi, pere). A șasea soluţie este:",
-    "3",
+    "Ce se afisează, în urma executării următoarelor instrucțiuni: int b[5]={88,87,76,36,21},i;for( i=1;i<4;i++){cout<<b[i]<<' ';}",
+    "1",
     "Informatica",
-    "Backtracking",
+    "Structuri repetitive",
     "",
     [
-      "(afine, mere, pere)",
-      "(afine, lămâi, mere, pere)",
-      "(afine, caise, mere)",
-      "(afine, caise, mere, pere)",
+      "87 76 36",
+      "88 87 76 36 21",
+      "87 76 36 21",
+      "Secventa are erori de sintaxa.",
     ]
   ),
   new test(
