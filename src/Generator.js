@@ -167,11 +167,12 @@ const Generator = () => {
   var days = ["luni", "marti", "miercuri", "joi", "vineri"];
 
   var currDiffInformatica =
-    (raspunsuriGresiteInformatica.length * 3) / diffLevel;
+    ((raspunsuriGresiteInformatica.length * 3) / diffLevel) * 2;
 
-  var currDiffMatematica = (raspunsuriGresiteMatematica.length * 3) / diffLevel;
+  var currDiffMatematica =
+    ((raspunsuriGresiteMatematica.length * 3) / diffLevel) * 2;
 
-  var currDiffAlt = (raspunsuriGresiteAlt.length * 3) / diffLevel;
+  var currDiffAlt = ((raspunsuriGresiteAlt.length * 3) / diffLevel) * 2;
 
   var hours = daysTime * 24;
 
@@ -244,7 +245,7 @@ const Generator = () => {
   }
 
   //Fill informatica ww
-  const fillInformatica = () => {
+  /*const fillInformatica = () => {
     for (
       var i = 0;
       i <= daysTime && currSapt11 * 7 < daysTime;
@@ -767,7 +768,7 @@ const Generator = () => {
       }
       lastzi13 = i % 7;
     }
-  };
+  };*/
 
   //Fill informatica fw
   const fillInformaticaFW = () => {
@@ -1180,9 +1181,9 @@ const Generator = () => {
 
   const rowsWeekend = [
     createDataWeekend(
-      fillInformatica(),
-      fillMatematica(),
-      fillRomana(),
+      //fillInformatica(),
+      //fillMatematica(),
+      //fillRomana(),
       1,
       saptWeek[1].luni,
       saptWeek[1].marti,
@@ -1239,147 +1240,70 @@ const Generator = () => {
     }
   };
 
-  if (weekend == 0) {
-    return (
-      <table
-        className="table table-striped position-absolute top-50 start-50 translate-middle table-responsive table-hover"
-        style={{ textAlign: "center", minHeight: "20%", maxWidth: "50%" }}
-      >
-        <thead class="thead-light">
+  return (
+    <table
+      className="table table-striped position-absolute top-50 start-50 translate-middle table-responsive table-hover"
+      style={{ textAlign: "center", minHeight: "20%", maxWidth: "50%" }}
+    >
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">
+            <center>Saptamana</center>
+          </th>
+          <th scope="col">
+            <center>Luni</center>
+          </th>
+          <th scope="col">
+            <center>Marti</center>
+          </th>
+          <th scope="col">
+            <center>Miercuri</center>
+          </th>
+          <th scope="col">
+            <center>Joi</center>
+          </th>
+          <th scope="col">
+            <center>Vineri</center>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {saptNoWeek.map((element, index) => (
           <tr>
-            <th scope="col">
-              <center>Saptamana</center>
+            <th scope="row">
+              <center>
+                <middle>{index + 1}</middle>
+              </center>
             </th>
-            <th scope="col">
-              <center>Luni</center>
-            </th>
-            <th scope="col">
-              <center>Marti</center>
-            </th>
-            <th scope="col">
-              <center>Miercuri</center>
-            </th>
-            <th scope="col">
-              <center>Joi</center>
-            </th>
-            <th scope="col">
-              <center>Vineri</center>
-            </th>
+            <td>
+              <b>{element.luni}</b>
+              {returnOutput(element.luni)}
+            </td>
+            <td>
+              <b>{element.marti}</b>
+              {returnOutput(element.marti)}
+            </td>
+            <td>
+              <b>{element.miercuri}</b>
+              {returnOutput(element.miercuri)}
+            </td>
+            <td>
+              <b>{element.joi}</b>
+              {returnOutput(element.joi)}
+            </td>
+            <td>
+              <b>{element.vineri}</b>
+              {returnOutput(element.vineri)}
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {saptNoWeek.map((element, index) => (
-            <tr>
-              <th scope="row">
-                <center>
-                  <middle>{index + 1}</middle>
-                </center>
-              </th>
-              <td>
-                <b>{element.luni}</b>
-                {returnOutput(element.luni)}
-              </td>
-              <td>
-                <b>{element.marti}</b>
-                {returnOutput(element.marti)}
-              </td>
-              <td>
-                <b>{element.miercuri}</b>
-                {returnOutput(element.miercuri)}
-              </td>
-              <td>
-                <b>{element.joi}</b>
-                {returnOutput(element.joi)}
-              </td>
-              <td>
-                <b>{element.vineri}</b>
-                {returnOutput(element.vineri)}
-              </td>
-            </tr>
-          ))}
-          {debugGen()}
-        </tbody>
-      </table>
-    );
-  } else {
-    return (
-      <table
-        className="table table-striped position-absolute top-50 start-50 translate-middle table-responsive table-hover"
-        style={{ textAlign: "center", minHeight: "20%", maxWidth: "50%" }}
-      >
-        <thead class="thead-light">
-          <tr>
-            <th scope="col">
-              <center>Saptamana</center>
-            </th>
-            <th scope="col">
-              <center>Luni</center>
-            </th>
-            <th scope="col">
-              <center>Marti</center>
-            </th>
-            <th scope="col">
-              <center>Miercuri</center>
-            </th>
-            <th scope="col">
-              <center>Joi</center>
-            </th>
-            <th scope="col">
-              <center>Vineri</center>
-            </th>
-            <th scope="col">
-              <center>Sambata</center>
-            </th>
-            <th scope="col">
-              <center>Duminica</center>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {saptWeek.map((element, index) => (
-            <tr>
-              <th scope="row">
-                <center>
-                  <middle>{index + 1}</middle>
-                </center>
-              </th>
-              <td>
-                <b>{element.luni}</b>
-                {returnOutput(element.luni)}
-              </td>
-              <td>
-                <b>{element.marti}</b>
-                {returnOutput(element.marti)}
-              </td>
-              <td>
-                <b>{element.miercuri}</b>
-                {returnOutput(element.miercuri)}
-              </td>
-              <td>
-                <b>{element.joi}</b>
-                {returnOutput(element.joi)}
-              </td>
-              <td>
-                <b>{element.vineri}</b>
-                {returnOutput(element.vineri)}
-              </td>
-              <td>
-                <b>{element.sambata}</b>
-                {returnOutput(element.sambata)}
-              </td>
-              <td>
-                <b>{element.sambata}</b>
-                {returnOutput(element.duminica)}
-              </td>
-            </tr>
-          ))}
-          {debugGen()}
-        </tbody>
-      </table>
-    );
-  }
-  {
-    /*<TableContainer component={Paper}>
+        ))}
+        {debugGen()}
+      </tbody>
+    </table>
+  );
+};
+{
+  /*<TableContainer component={Paper}>
       {logsapt()}
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -1411,9 +1335,9 @@ const Generator = () => {
         </TableBody>
       </Table>
           </TableContainer>*/
-  }
+}
 
-  /*return (
+/*return (
     <div className="generator">
       {debugGen()}
       {console.log(
@@ -1440,6 +1364,5 @@ const Generator = () => {
       )}
     </div>
   );*/
-};
 
 export default Generator;
