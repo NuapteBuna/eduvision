@@ -124,29 +124,26 @@ const Generator = () => {
     return n2;
   }
 
+  var daysTime2 = daysTime;
+
   daysTime = closestNumber(daysTime, 7);
+  daysTime2 = closestNumber(daysTime, 5);
 
   var saptNoWeek = [];
   for (var i = 0; i <= daysTime / 7; i++) {
     saptNoWeek[i] = new saptfw();
   }
 
-  function saptn(
-    luni = [],
-    marti = [],
-    miercuri = [],
-    joi = [],
-    vineri = [],
-    sambata = [],
-    duminica = []
-  ) {
-    this.luni = luni;
-    this.marti = marti;
-    this.miercuri = miercuri;
-    this.joi = joi;
-    this.vineri = vineri;
-    this.sambata = sambata;
-    this.duminica = duminica;
+  class saptn {
+    constructor(luni, marti, miercuri, joi, vineri, sambata, duminica) {
+      this.luni = "";
+      this.marti = "";
+      this.miercuri = "";
+      this.joi = "";
+      this.vineri = "";
+      this.sambata = "";
+      this.duminica = "";
+    }
   }
 
   var saptWeek = [];
@@ -174,15 +171,39 @@ const Generator = () => {
 
   var currDiffAlt = ((raspunsuriGresiteAlt.length * 3) / diffLevel) * 2;
 
+  if (diffLevel == 1) {
+    currDiffInformatica = raspunsuriGresiteMatematica.length * 2;
+    currDiffMatematica = raspunsuriGresiteMatematica.length * 2;
+    currDiffAlt = raspunsuriGresiteAlt.length;
+  } else if (diffLevel == 2) {
+    currDiffInformatica *= 2;
+    currDiffMatematica *= 2;
+    currDiffAlt *= 2;
+  }
+
   var hours = daysTime * 24;
 
   var currSapt = 0;
 
-  var pasInformatica = daysTime / currDiffInformatica;
+  var pasInformatica = 3;
 
-  var pasMatematica = daysTime / currDiffMatematica;
+  var pasMatematica = 3;
 
-  var pasAlt = daysTime / currDiffAlt;
+  var pasAlt = 3;
+
+  if (diffLevel == 1) {
+    pasInformatica = 4;
+    pasMatematica = 4;
+    pasAlt = 4;
+  } else if (diffLevel == 2) {
+    pasInformatica = 3;
+    pasMatematica = 3;
+    pasAlt = 3;
+  } else if (diffLevel == 3) {
+    pasInformatica = 2;
+    pasMatematica = 2;
+    pasAlt = 2;
+  }
 
   //Informatica
   var lastzi1 = 0;
@@ -244,8 +265,7 @@ const Generator = () => {
     }
   }
 
-  //Fill informatica ww
-  /*const fillInformatica = () => {
+  const fillInformatica = () => {
     for (
       var i = 0;
       i <= daysTime && currSapt11 * 7 < daysTime;
@@ -254,6 +274,8 @@ const Generator = () => {
       if (i % 7 <= lastzi11) {
         currSapt11++;
       }
+      //console.log("i : " + i);
+      //console.log("CurrSapt11 : " + currSapt11);
       if (daysWeekend[i % 7] == "luni") {
         saptWeek[currSapt11].luni += "Informatica ";
       }
@@ -279,7 +301,6 @@ const Generator = () => {
     }
   };
 
-  //Fill matematica weekend
   const fillMatematica = () => {
     for (
       var i = 0;
@@ -290,42 +311,42 @@ const Generator = () => {
         currSapt12++;
       }
       if (daysWeekend[i % 7] == "luni") {
-        if (ore("luni", currSapt12) >= 1) {
-          if (ore("miercuri", currSapt12) == 0) {
+        if (oreWeekend("luni", currSapt12) >= 1) {
+          if (oreWeekend("miercuri", currSapt12) == 0) {
             saptWeek[currSapt12].miercuri += "Matematica ";
-          } else if (ore("joi", currSapt12) == 0) {
+          } else if (oreWeekend("joi", currSapt12) == 0) {
             saptWeek[currSapt12].joi += "Matematica ";
-          } else if (ore("vineri", currSapt12) == 0) {
+          } else if (oreWeekend("vineri", currSapt12) == 0) {
             saptWeek[currSapt12].vineri += "Matematica ";
-          } else if (ore("marti", currSapt12) == 0) {
+          } else if (oreWeekend("marti", currSapt12) == 0) {
             saptWeek[currSapt12].marti += "Matematica ";
-          } else if (ore("sambata", currSapt12) == 0) {
+          } else if (oreWeekend("sambata", currSapt12) == 0) {
             saptWeek[currSapt12].sambata += "Matematica ";
-          } else if (ore("duminica", currSapt12) == 0) {
+          } else if (oreWeekend("duminica", currSapt12) == 0) {
             saptWeek[currSapt12].duminica += "Matematica ";
           } else {
             var lowest = Math.min(
-              ore("luni", currSapt12),
-              ore("miercuri", currSapt12),
-              ore("joi", currSapt12),
-              ore("vineri", currSapt12),
-              ore("marti", currSapt12),
-              ore("sambata", currSapt12),
-              ore("duminica", currSapt12)
+              oreWeekend("luni", currSapt12),
+              oreWeekend("miercuri", currSapt12),
+              oreWeekend("joi", currSapt12),
+              oreWeekend("vineri", currSapt12),
+              oreWeekend("marti", currSapt12),
+              oreWeekend("sambata", currSapt12),
+              oreWeekend("duminica", currSapt12)
             );
-            if (lowest == ore("luni", currSapt12)) {
+            if (lowest == oreWeekend("luni", currSapt12)) {
               saptWeek[currSapt12].luni += "Matematica ";
-            } else if (lowest == ore("miercuri", currSapt12)) {
+            } else if (lowest == oreWeekend("miercuri", currSapt12)) {
               saptWeek[currSapt12].miercuri += "Matematica ";
-            } else if (lowest == ore("joi", currSapt12)) {
+            } else if (lowest == oreWeekend("joi", currSapt12)) {
               saptWeek[currSapt12].joi += "Matematica ";
-            } else if (lowest == ore("vineri", currSapt12)) {
+            } else if (lowest == oreWeekend("vineri", currSapt12)) {
               saptWeek[currSapt12].vineri += "Matematica ";
-            } else if (lowest == ore("marti", currSapt12)) {
+            } else if (lowest == oreWeekend("marti", currSapt12)) {
               saptWeek[currSapt12].marti += "Matematica ";
-            } else if (lowest == ore("sambata", currSapt12)) {
+            } else if (lowest == oreWeekend("sambata", currSapt12)) {
               saptWeek[currSapt12].sambata += "Matematica ";
-            } else if (lowest == ore("duminica", currSapt12)) {
+            } else if (lowest == oreWeekend("duminica", currSapt12)) {
               saptWeek[currSapt12].duminica += "Matematica ";
             }
           }
@@ -334,42 +355,42 @@ const Generator = () => {
         }
       }
       if (daysWeekend[i % 7] == "marti") {
-        if (ore("marti", currSapt12) >= 1) {
-          if (ore("joi", currSapt12) == 0) {
+        if (oreWeekend("marti", currSapt12) >= 1) {
+          if (oreWeekend("joi", currSapt12) == 0) {
             saptWeek[currSapt12].joi += "Matematica ";
-          } else if (ore("vineri", currSapt12) == 0) {
+          } else if (oreWeekend("vineri", currSapt12) == 0) {
             saptWeek[currSapt12].vineri += "Matematica ";
-          } else if (ore("miercuri", currSapt12) == 0) {
+          } else if (oreWeekend("miercuri", currSapt12) == 0) {
             saptWeek[currSapt12].miercuri += "Matematica ";
-          } else if (ore("luni", currSapt12) == 0) {
+          } else if (oreWeekend("luni", currSapt12) == 0) {
             saptWeek[currSapt12].luni += "Matematica ";
-          } else if (ore("sambata", currSapt12) == 0) {
+          } else if (oreWeekend("sambata", currSapt12) == 0) {
             saptWeek[currSapt12].sambata += "Matematica ";
-          } else if (ore("duminica", currSapt12) == 0) {
+          } else if (oreWeekend("duminica", currSapt12) == 0) {
             saptWeek[currSapt12].duminica += "Matematica ";
           } else {
             var lowest = Math.min(
-              ore("marti", currSapt12),
-              ore("joi", currSapt12),
-              ore("vineri", currSapt12),
-              ore("miercuri", currSapt12),
-              ore("luni", currSapt12),
-              ore("sambata", currSapt12),
-              ore("duminica", currSapt12)
+              oreWeekend("marti", currSapt12),
+              oreWeekend("joi", currSapt12),
+              oreWeekend("vineri", currSapt12),
+              oreWeekend("miercuri", currSapt12),
+              oreWeekend("luni", currSapt12),
+              oreWeekend("sambata", currSapt12),
+              oreWeekend("duminica", currSapt12)
             );
-            if (lowest == ore("marti", currSapt12)) {
+            if (lowest == oreWeekend("marti", currSapt12)) {
               saptWeek[currSapt12].marti += "Matematica ";
-            } else if (lowest == ore("joi", currSapt12)) {
+            } else if (lowest == oreWeekend("joi", currSapt12)) {
               saptWeek[currSapt12].joi += "Matematica ";
-            } else if (lowest == ore("vineri", currSapt12)) {
+            } else if (lowest == oreWeekend("vineri", currSapt12)) {
               saptWeek[currSapt12].vineri += "Matematica ";
-            } else if (lowest == ore("miercuri", currSapt12)) {
+            } else if (lowest == oreWeekend("miercuri", currSapt12)) {
               saptWeek[currSapt12].miercuri += "Matematica ";
-            } else if (lowest == ore("luni", currSapt12)) {
+            } else if (lowest == oreWeekend("luni", currSapt12)) {
               saptWeek[currSapt12].luni += "Matematica ";
-            } else if (lowest == ore("sambata", currSapt12)) {
+            } else if (lowest == oreWeekend("sambata", currSapt12)) {
               saptWeek[currSapt12].sambata += "Matematica ";
-            } else if (lowest == ore("duminica", currSapt12)) {
+            } else if (lowest == oreWeekend("duminica", currSapt12)) {
               saptWeek[currSapt12].duminica += "Matematica ";
             }
           }
@@ -378,42 +399,42 @@ const Generator = () => {
         }
       }
       if (daysWeekend[i % 7] == "miercuri") {
-        if (ore("miercuri", currSapt12) >= 1) {
-          if (ore("vineri", currSapt12) == 0) {
+        if (oreWeekend("miercuri", currSapt12) >= 1) {
+          if (oreWeekend("vineri", currSapt12) == 0) {
             saptWeek[currSapt12].vineri += "Matematica ";
-          } else if (ore("luni", currSapt12) == 0) {
+          } else if (oreWeekend("luni", currSapt12) == 0) {
             saptWeek[currSapt12].luni += "Matematica ";
-          } else if (ore("joi", currSapt12) == 0) {
+          } else if (oreWeekend("joi", currSapt12) == 0) {
             saptWeek[currSapt12].joi += "Matematica ";
-          } else if (ore("marti", currSapt12) == 0) {
+          } else if (oreWeekend("marti", currSapt12) == 0) {
             saptWeek[currSapt12].marti += "Matematica ";
-          } else if (ore("sambata", currSapt12) == 0) {
+          } else if (oreWeekend("sambata", currSapt12) == 0) {
             saptWeek[currSapt12].sambata += "Matematica ";
-          } else if (ore("duminica", currSapt12) == 0) {
+          } else if (oreWeekend("duminica", currSapt12) == 0) {
             saptWeek[currSapt12].duminica += "Matematica ";
           } else {
             var lowest = Math.min(
-              ore("miercuri", currSapt12),
-              ore("luni", currSapt12),
-              ore("joi", currSapt12),
-              ore("vineri", currSapt12),
-              ore("marti", currSapt12),
-              ore("sambata", currSapt12),
-              ore("duminica", currSapt12)
+              oreWeekend("miercuri", currSapt12),
+              oreWeekend("luni", currSapt12),
+              oreWeekend("joi", currSapt12),
+              oreWeekend("vineri", currSapt12),
+              oreWeekend("marti", currSapt12),
+              oreWeekend("sambata", currSapt12),
+              oreWeekend("duminica", currSapt12)
             );
-            if (lowest == ore("miercuri", currSapt12)) {
+            if (lowest == oreWeekend("miercuri", currSapt12)) {
               saptWeek[currSapt12].miercuri += "Matematica ";
-            } else if (lowest == ore("luni", currSapt12)) {
+            } else if (lowest == oreWeekend("luni", currSapt12)) {
               saptWeek[currSapt12].luni += "Matematica ";
-            } else if (lowest == ore("joi", currSapt12)) {
+            } else if (lowest == oreWeekend("joi", currSapt12)) {
               saptWeek[currSapt12].joi += "Matematica ";
-            } else if (lowest == ore("vineri", currSapt12)) {
+            } else if (lowest == oreWeekend("vineri", currSapt12)) {
               saptWeek[currSapt12].vineri += "Matematica ";
-            } else if (lowest == ore("marti", currSapt12)) {
+            } else if (lowest == oreWeekend("marti", currSapt12)) {
               saptWeek[currSapt12].marti += "Matematica ";
-            } else if (lowest == ore("sambata", currSapt12)) {
+            } else if (lowest == oreWeekend("sambata", currSapt12)) {
               saptWeek[currSapt12].sambata += "Matematica ";
-            } else if (lowest == ore("duminica", currSapt12)) {
+            } else if (lowest == oreWeekend("duminica", currSapt12)) {
               saptWeek[currSapt12].duminica += "Matematica ";
             }
           }
@@ -422,42 +443,42 @@ const Generator = () => {
         }
       }
       if (daysWeekend[i % 7] == "joi") {
-        if (ore("joi", currSapt12) >= 1) {
-          if (ore("duminica", currSapt12) == 0) {
+        if (oreWeekend("joi", currSapt12) >= 1) {
+          if (oreWeekend("duminica", currSapt12) == 0) {
             saptWeek[currSapt12].duminica += "Matematica ";
-          } else if (ore("sambata", currSapt12) == 0) {
+          } else if (oreWeekend("sambata", currSapt12) == 0) {
             saptWeek[currSapt12].sambata += "Matematica ";
-          } else if (ore("miercuri", currSapt12) == 0) {
+          } else if (oreWeekend("miercuri", currSapt12) == 0) {
             saptWeek[currSapt12].miercuri += "Matematica ";
-          } else if (ore("vineri", currSapt12) == 0) {
+          } else if (oreWeekend("vineri", currSapt12) == 0) {
             saptWeek[currSapt12].vineri += "Matematica ";
-          } else if (ore("luni", currSapt12) == 0) {
+          } else if (oreWeekend("luni", currSapt12) == 0) {
             saptWeek[currSapt12].luni += "Matematica ";
-          } else if (ore("marti", currSapt12) == 0) {
+          } else if (oreWeekend("marti", currSapt12) == 0) {
             saptWeek[currSapt12].marti += "Matematica ";
           } else {
             var lowest = Math.min(
-              ore("joi", currSapt12),
-              ore("luni", currSapt12),
-              ore("marti", currSapt12),
-              ore("miercuri", currSapt12),
-              ore("vineri", currSapt12),
-              ore("sambata", currSapt12),
-              ore("duminica", currSapt12)
+              oreWeekend("joi", currSapt12),
+              oreWeekend("luni", currSapt12),
+              oreWeekend("marti", currSapt12),
+              oreWeekend("miercuri", currSapt12),
+              oreWeekend("vineri", currSapt12),
+              oreWeekend("sambata", currSapt12),
+              oreWeekend("duminica", currSapt12)
             );
-            if (lowest == ore("joi", currSapt12)) {
+            if (lowest == oreWeekend("joi", currSapt12)) {
               saptWeek[currSapt12].joi += "Matematica ";
-            } else if (lowest == ore("luni", currSapt12)) {
+            } else if (lowest == oreWeekend("luni", currSapt12)) {
               saptWeek[currSapt12].luni += "Matematica ";
-            } else if (lowest == ore("marti", currSapt12)) {
+            } else if (lowest == oreWeekend("marti", currSapt12)) {
               saptWeek[currSapt12].marti += "Matematica ";
-            } else if (lowest == ore("miercuri", currSapt12)) {
+            } else if (lowest == oreWeekend("miercuri", currSapt12)) {
               saptWeek[currSapt12].miercuri += "Matematica ";
-            } else if (lowest == ore("vineri", currSapt12)) {
+            } else if (lowest == oreWeekend("vineri", currSapt12)) {
               saptWeek[currSapt12].vineri += "Matematica ";
-            } else if (lowest == ore("sambata", currSapt12)) {
+            } else if (lowest == oreWeekend("sambata", currSapt12)) {
               saptWeek[currSapt12].sambata += "Matematica ";
-            } else if (lowest == ore("duminica", currSapt12)) {
+            } else if (lowest == oreWeekend("duminica", currSapt12)) {
               saptWeek[currSapt12].duminica += "Matematica ";
             } else {
               saptWeek[currSapt12].joi += "Matematica ";
@@ -468,42 +489,42 @@ const Generator = () => {
         }
       }
       if (daysWeekend[i % 7] == "vineri") {
-        if (ore("vineri", currSapt12) >= 1) {
-          if (ore("duminica", currSapt12) == 0) {
+        if (oreWeekend("vineri", currSapt12) >= 1) {
+          if (oreWeekend("duminica", currSapt12) == 0) {
             saptWeek[currSapt12].duminica += "Matematica ";
-          } else if (ore("miercuri", currSapt12) == 0) {
+          } else if (oreWeekend("miercuri", currSapt12) == 0) {
             saptWeek[currSapt12].miercuri += "Matematica ";
-          } else if (ore("joi", currSapt12) == 0) {
+          } else if (oreWeekend("joi", currSapt12) == 0) {
             saptWeek[currSapt12].joi += "Matematica ";
-          } else if (ore("luni", currSapt12) == 0) {
+          } else if (oreWeekend("luni", currSapt12) == 0) {
             saptWeek[currSapt12].luni += "Matematica ";
-          } else if (ore("marti", currSapt12) == 0) {
+          } else if (oreWeekend("marti", currSapt12) == 0) {
             saptWeek[currSapt12].marti += "Matematica ";
-          } else if (ore("sambata", currSapt12) == 0) {
+          } else if (oreWeekend("sambata", currSapt12) == 0) {
             saptWeek[currSapt12].sambata += "Matematica ";
           } else {
             var lowest = Math.min(
-              ore("vineri", currSapt12),
-              ore("marti", currSapt12),
-              ore("miercuri", currSapt12),
-              ore("joi", currSapt12),
-              ore("luni", currSapt12),
-              ore("sambata", currSapt12),
-              ore("duminica", currSapt12)
+              oreWeekend("vineri", currSapt12),
+              oreWeekend("marti", currSapt12),
+              oreWeekend("miercuri", currSapt12),
+              oreWeekend("joi", currSapt12),
+              oreWeekend("luni", currSapt12),
+              oreWeekend("sambata", currSapt12),
+              oreWeekend("duminica", currSapt12)
             );
-            if (lowest == ore("vineri", currSapt12)) {
+            if (lowest == oreWeekend("vineri", currSapt12)) {
               saptWeek[currSapt12].vineri += "Matematica ";
-            } else if (lowest == ore("marti", currSapt12)) {
+            } else if (lowest == oreWeekend("marti", currSapt12)) {
               saptWeek[currSapt12].marti += "Matematica ";
-            } else if (lowest == ore("miercuri", currSapt12)) {
+            } else if (lowest == oreWeekend("miercuri", currSapt12)) {
               saptWeek[currSapt12].miercuri += "Matematica ";
-            } else if (lowest == ore("joi", currSapt12)) {
+            } else if (lowest == oreWeekend("joi", currSapt12)) {
               saptWeek[currSapt12].joi += "Matematica ";
-            } else if (lowest == ore("luni", currSapt12)) {
+            } else if (lowest == oreWeekend("luni", currSapt12)) {
               saptWeek[currSapt12].luni += "Matematica ";
-            } else if (lowest == ore("sambata", currSapt12)) {
+            } else if (lowest == oreWeekend("sambata", currSapt12)) {
               saptWeek[currSapt12].sambata += "Matematica ";
-            } else if (lowest == ore("duminica", currSapt12)) {
+            } else if (lowest == oreWeekend("duminica", currSapt12)) {
               saptWeek[currSapt12].duminica += "Matematica ";
             } else {
               saptWeek[currSapt12].vineri += "Matematica ";
@@ -514,42 +535,42 @@ const Generator = () => {
         }
       }
       if (daysWeekend[i % 7] == "sambata") {
-        if (ore("sambata", currSapt12) >= 1) {
-          if (ore("marti", currSapt12) == 0) {
+        if (oreWeekend("sambata", currSapt12) >= 1) {
+          if (oreWeekend("marti", currSapt12) == 0) {
             saptWeek[currSapt12].marti += "Matematica ";
-          } else if (ore("miercuri", currSapt12) == 0) {
+          } else if (oreWeekend("miercuri", currSapt12) == 0) {
             saptWeek[currSapt12].miercuri += "Matematica ";
-          } else if (ore("joi", currSapt12) == 0) {
+          } else if (oreWeekend("joi", currSapt12) == 0) {
             saptWeek[currSapt12].joi += "Matematica ";
-          } else if (ore("luni", currSapt12) == 0) {
+          } else if (oreWeekend("luni", currSapt12) == 0) {
             saptWeek[currSapt12].luni += "Matematica ";
-          } else if (ore("vineri", currSapt12) == 0) {
+          } else if (oreWeekend("vineri", currSapt12) == 0) {
             saptWeek[currSapt12].vineri += "Matematica ";
-          } else if (ore("duminica", currSapt12) == 0) {
+          } else if (oreWeekend("duminica", currSapt12) == 0) {
             saptWeek[currSapt12].duminica += "Matematica ";
           } else {
             var lowest = Math.min(
-              ore("sambata", currSapt12),
-              ore("marti", currSapt12),
-              ore("miercuri", currSapt12),
-              ore("joi", currSapt12),
-              ore("luni", currSapt12),
-              ore("vineri", currSapt12),
-              ore("duminica", currSapt12)
+              oreWeekend("sambata", currSapt12),
+              oreWeekend("marti", currSapt12),
+              oreWeekend("miercuri", currSapt12),
+              oreWeekend("joi", currSapt12),
+              oreWeekend("luni", currSapt12),
+              oreWeekend("vineri", currSapt12),
+              oreWeekend("duminica", currSapt12)
             );
-            if (lowest == ore("sambata", currSapt12)) {
+            if (lowest == oreWeekend("sambata", currSapt12)) {
               saptWeek[currSapt12].sambata += "Matematica ";
-            } else if (lowest == ore("marti", currSapt12)) {
+            } else if (lowest == oreWeekend("marti", currSapt12)) {
               saptWeek[currSapt12].marti += "Matematica ";
-            } else if (lowest == ore("miercuri", currSapt12)) {
+            } else if (lowest == oreWeekend("miercuri", currSapt12)) {
               saptWeek[currSapt12].miercuri += "Matematica ";
-            } else if (lowest == ore("joi", currSapt12)) {
+            } else if (lowest == oreWeekend("joi", currSapt12)) {
               saptWeek[currSapt12].joi += "Matematica ";
-            } else if (lowest == ore("luni", currSapt12)) {
+            } else if (lowest == oreWeekend("luni", currSapt12)) {
               saptWeek[currSapt12].luni += "Matematica ";
-            } else if (lowest == ore("vineri", currSapt12)) {
+            } else if (lowest == oreWeekend("vineri", currSapt12)) {
               saptWeek[currSapt12].vineri += "Matematica ";
-            } else if (lowest == ore("duminica", currSapt12)) {
+            } else if (lowest == oreWeekend("duminica", currSapt12)) {
               saptWeek[currSapt12].duminica += "Matematica ";
             } else {
               saptWeek[currSapt12].sambata += "Matematica ";
@@ -560,42 +581,42 @@ const Generator = () => {
         }
       }
       if (daysWeekend[i % 7] == "duminica") {
-        if (ore("duminica", currSapt12) >= 1) {
-          if (ore("marti", currSapt12) == 0) {
+        if (oreWeekend("duminica", currSapt12) >= 1) {
+          if (oreWeekend("marti", currSapt12) == 0) {
             saptWeek[currSapt12].marti += "Matematica ";
-          } else if (ore("miercuri", currSapt12) == 0) {
+          } else if (oreWeekend("miercuri", currSapt12) == 0) {
             saptWeek[currSapt12].miercuri += "Matematica ";
-          } else if (ore("joi", currSapt12) == 0) {
+          } else if (oreWeekend("joi", currSapt12) == 0) {
             saptWeek[currSapt12].joi += "Matematica ";
-          } else if (ore("luni", currSapt12) == 0) {
+          } else if (oreWeekend("luni", currSapt12) == 0) {
             saptWeek[currSapt12].luni += "Matematica ";
-          } else if (ore("vineri", currSapt12) == 0) {
+          } else if (oreWeekend("vineri", currSapt12) == 0) {
             saptWeek[currSapt12].vineri += "Matematica ";
-          } else if (ore("sambata", currSapt12) == 0) {
+          } else if (oreWeekend("sambata", currSapt12) == 0) {
             saptWeek[currSapt12].sambata += "Matematica ";
           } else {
             var lowest = Math.min(
-              ore("duminica", currSapt12),
-              ore("marti", currSapt12),
-              ore("miercuri", currSapt12),
-              ore("joi", currSapt12),
-              ore("luni", currSapt12),
-              ore("vineri", currSapt12),
-              ore("sambata", currSapt12)
+              oreWeekend("duminica", currSapt12),
+              oreWeekend("marti", currSapt12),
+              oreWeekend("miercuri", currSapt12),
+              oreWeekend("joi", currSapt12),
+              oreWeekend("luni", currSapt12),
+              oreWeekend("vineri", currSapt12),
+              oreWeekend("sambata", currSapt12)
             );
-            if (lowest == ore("duminica", currSapt12)) {
+            if (lowest == oreWeekend("duminica", currSapt12)) {
               saptWeek[currSapt12].duminica += "Matematica ";
-            } else if (lowest == ore("marti", currSapt12)) {
+            } else if (lowest == oreWeekend("marti", currSapt12)) {
               saptWeek[currSapt12].marti += "Matematica ";
-            } else if (lowest == ore("miercuri", currSapt12)) {
+            } else if (lowest == oreWeekend("miercuri", currSapt12)) {
               saptWeek[currSapt12].miercuri += "Matematica ";
-            } else if (lowest == ore("joi", currSapt12)) {
+            } else if (lowest == oreWeekend("joi", currSapt12)) {
               saptWeek[currSapt12].joi += "Matematica ";
-            } else if (lowest == ore("luni", currSapt12)) {
+            } else if (lowest == oreWeekend("luni", currSapt12)) {
               saptWeek[currSapt12].luni += "Matematica ";
-            } else if (lowest == ore("vineri", currSapt12)) {
+            } else if (lowest == oreWeekend("vineri", currSapt12)) {
               saptWeek[currSapt12].vineri += "Matematica ";
-            } else if (lowest == ore("sambata", currSapt12)) {
+            } else if (lowest == oreWeekend("sambata", currSapt12)) {
               saptWeek[currSapt12].sambata += "Matematica ";
             } else {
               saptWeek[currSapt12].duminica += "Matematica ";
@@ -609,7 +630,7 @@ const Generator = () => {
     }
   };
 
-  //Fill romana weekend
+  //Fill romana
   const fillRomana = () => {
     for (
       var i = 0;
@@ -620,18 +641,18 @@ const Generator = () => {
         currSapt13++;
       }
       if (daysWeekend[i % 7] == "luni") {
-        if (ore("luni", currSapt13) >= 1) {
-          if (ore("miercuri", currSapt13) == 0) {
+        if (oreWeekend("luni", currSapt13) >= 1) {
+          if (oreWeekend("miercuri", currSapt13) == 0) {
             saptWeek[currSapt13].miercuri += "Romana ";
-          } else if (ore("marti", currSapt13) == 0) {
+          } else if (oreWeekend("marti", currSapt13) == 0) {
             saptWeek[currSapt13].marti += "Romana ";
-          } else if (ore("joi", currSapt13) == 0) {
+          } else if (oreWeekend("joi", currSapt13) == 0) {
             saptWeek[currSapt13].joi += "Romana ";
-          } else if (ore("vineri", currSapt13) == 0) {
+          } else if (oreWeekend("vineri", currSapt13) == 0) {
             saptWeek[currSapt13].vineri += "Romana ";
-          } else if (ore("sambata", currSapt13) == 0) {
+          } else if (oreWeekend("sambata", currSapt13) == 0) {
             saptWeek[currSapt13].sambata += "Romana ";
-          } else if (ore("duminica", currSapt13) == 0) {
+          } else if (oreWeekend("duminica", currSapt13) == 0) {
             saptWeek[currSapt13].duminica += "Romana ";
           } else {
             currSapt13++;
@@ -641,18 +662,18 @@ const Generator = () => {
         }
       }
       if (daysWeekend[i % 7] == "marti") {
-        if (ore("marti", currSapt13) >= 1) {
-          if (ore("vineri", currSapt13) == 0) {
+        if (oreWeekend("marti", currSapt13) >= 1) {
+          if (oreWeekend("vineri", currSapt13) == 0) {
             saptWeek[currSapt13].vineri += "Romana ";
-          } else if (ore("miercuri", currSapt13) == 0) {
+          } else if (oreWeekend("miercuri", currSapt13) == 0) {
             saptWeek[currSapt13].luni += "Romana ";
-          } else if (ore("joi", currSapt13) == 0) {
+          } else if (oreWeekend("joi", currSapt13) == 0) {
             saptWeek[currSapt13].joi += "Romana ";
-          } else if (ore("luni", currSapt13) == 0) {
+          } else if (oreWeekend("luni", currSapt13) == 0) {
             saptWeek[currSapt13].luni += "Romana ";
-          } else if (ore("sambata", currSapt13) == 0) {
+          } else if (oreWeekend("sambata", currSapt13) == 0) {
             saptWeek[currSapt13].sambata += "Romana ";
-          } else if (ore("duminica", currSapt13) == 0) {
+          } else if (oreWeekend("duminica", currSapt13) == 0) {
             saptWeek[currSapt13].duminica += "Romana ";
           } else {
             currSapt13++;
@@ -662,18 +683,18 @@ const Generator = () => {
         }
       }
       if (daysWeekend[i % 7] == "miercuri") {
-        if (ore("miercuri", currSapt13) >= 1) {
-          if (ore("luni", currSapt13) == 0) {
+        if (oreWeekend("miercuri", currSapt13) >= 1) {
+          if (oreWeekend("luni", currSapt13) == 0) {
             saptWeek[currSapt13].luni += "Romana ";
-          } else if (ore("joi", currSapt13) == 0) {
+          } else if (oreWeekend("joi", currSapt13) == 0) {
             saptWeek[currSapt13].joi += "Romana ";
-          } else if (ore("vineri", currSapt13) == 0) {
+          } else if (oreWeekend("vineri", currSapt13) == 0) {
             saptWeek[currSapt13].vineri += "Romana ";
-          } else if (ore("marti", currSapt13) == 0) {
+          } else if (oreWeekend("marti", currSapt13) == 0) {
             saptWeek[currSapt13].marti += "Romana ";
-          } else if (ore("sambata", currSapt13) == 0) {
+          } else if (oreWeekend("sambata", currSapt13) == 0) {
             saptWeek[currSapt13].sambata += "Romana ";
-          } else if (ore("duminica", currSapt13) == 0) {
+          } else if (oreWeekend("duminica", currSapt13) == 0) {
             saptWeek[currSapt13].duminica += "Romana ";
           } else {
             currSapt13++;
@@ -683,18 +704,18 @@ const Generator = () => {
         }
       }
       if (daysWeekend[i % 7] == "joi") {
-        if (ore("joi", currSapt13) >= 1) {
-          if (ore("luni", currSapt13) == 0) {
+        if (oreWeekend("joi", currSapt13) >= 1) {
+          if (oreWeekend("luni", currSapt13) == 0) {
             saptWeek[currSapt13].luni += "Romana ";
-          } else if (ore("marti", currSapt13) == 0) {
+          } else if (oreWeekend("marti", currSapt13) == 0) {
             saptWeek[currSapt13].marti += "Romana ";
-          } else if (ore("miercuri", currSapt13) == 0) {
+          } else if (oreWeekend("miercuri", currSapt13) == 0) {
             saptWeek[currSapt13].miercuri += "Romana ";
-          } else if (ore("vineri", currSapt13) == 0) {
+          } else if (oreWeekend("vineri", currSapt13) == 0) {
             saptWeek[currSapt13].vineri += "Romana ";
-          } else if (ore("sambata", currSapt13) == 0) {
+          } else if (oreWeekend("sambata", currSapt13) == 0) {
             saptWeek[currSapt13].sambata += "Romana ";
-          } else if (ore("duminica", currSapt13) == 0) {
+          } else if (oreWeekend("duminica", currSapt13) == 0) {
             saptWeek[currSapt13].duminica += "Romana ";
           } else {
             currSapt13++;
@@ -704,18 +725,18 @@ const Generator = () => {
         }
       }
       if (daysWeekend[i % 7] == "vineri") {
-        if (ore("vineri", currSapt13) >= 1) {
-          if (ore("marti", currSapt13) == 0) {
+        if (oreWeekend("vineri", currSapt13) >= 1) {
+          if (oreWeekend("marti", currSapt13) == 0) {
             saptWeek[currSapt13].marti += "Romana ";
-          } else if (ore("miercuri", currSapt13) == 0) {
+          } else if (oreWeekend("miercuri", currSapt13) == 0) {
             saptWeek[currSapt13].miercuri += "Romana ";
-          } else if (ore("joi", currSapt13) == 0) {
+          } else if (oreWeekend("joi", currSapt13) == 0) {
             saptWeek[currSapt13].joi += "Romana ";
-          } else if (ore("luni", currSapt13) == 0) {
+          } else if (oreWeekend("luni", currSapt13) == 0) {
             saptWeek[currSapt13].luni += "Romana ";
-          } else if (ore("sambata", currSapt13) == 0) {
+          } else if (oreWeekend("sambata", currSapt13) == 0) {
             saptWeek[currSapt13].sambata += "Romana ";
-          } else if (ore("duminica", currSapt13) == 0) {
+          } else if (oreWeekend("duminica", currSapt13) == 0) {
             saptWeek[currSapt13].duminica += "Romana ";
           } else {
             currSapt13++;
@@ -724,51 +745,9 @@ const Generator = () => {
           saptWeek[currSapt13].vineri += "Romana ";
         }
       }
-      if (daysWeekend[i % 7] == "sambata") {
-        if (ore("sambata", currSapt13) >= 1) {
-          if (ore("luni", currSapt13) == 0) {
-            saptWeek[currSapt13].luni += "Romana ";
-          } else if (ore("marti", currSapt13) == 0) {
-            saptWeek[currSapt13].marti += "Romana ";
-          } else if (ore("miercuri", currSapt13) == 0) {
-            saptWeek[currSapt13].miercuri += "Romana ";
-          } else if (ore("joi", currSapt13) == 0) {
-            saptWeek[currSapt13].joi += "Romana ";
-          } else if (ore("vineri", currSapt13) == 0) {
-            saptWeek[currSapt13].vineri += "Romana ";
-          } else if (ore("duminica", currSapt13) == 0) {
-            saptWeek[currSapt13].duminica += "Romana ";
-          } else {
-            currSapt13++;
-          }
-        } else {
-          saptWeek[currSapt13].sambata += "Romana ";
-        }
-      }
-      if (daysWeekend[i % 7] == "duminica") {
-        if (ore("duminica", currSapt13) >= 1) {
-          if (ore("marti", currSapt13) == 0) {
-            saptWeek[currSapt13].marti += "Romana ";
-          } else if (ore("miercuri", currSapt13) == 0) {
-            saptWeek[currSapt13].miercuri += "Romana ";
-          } else if (ore("joi", currSapt13) == 0) {
-            saptWeek[currSapt13].joi += "Romana ";
-          } else if (ore("vineri", currSapt13) == 0) {
-            saptWeek[currSapt13].vineri += "Romana ";
-          } else if (ore("sambata", currSapt13) == 0) {
-            saptWeek[currSapt13].sambata += "Romana ";
-          } else if (ore("luni", currSapt13) == 0) {
-            saptWeek[currSapt13].luni += "Romana ";
-          } else {
-            currSapt13++;
-          }
-        } else {
-          saptWeek[currSapt13].duminica += "Romana ";
-        }
-      }
       lastzi13 = i % 7;
     }
-  };*/
+  };
 
   //Fill informatica fw
   const fillInformaticaFW = () => {
@@ -777,11 +756,11 @@ const Generator = () => {
       i <= daysTime && currSapt1 * 7 < daysTime;
       i += Math.round(pasInformatica)
     ) {
-      console.log("\n" + "I: " + i);
-      console.log("\n" + "currSapt1: " + currSapt1);
       if (i % 5 <= lastzi1) {
         currSapt1++;
       }
+      //console.log("I : " + i);
+      //console.log("currSapt1 : " + currSapt1);
       if (days[i % 5] == "luni") {
         saptNoWeek[currSapt1].luni += "Informatica ";
       }
@@ -1092,7 +1071,6 @@ const Generator = () => {
     fillInformaticaFW();
     fillMatematicaFW();
     fillRomanaFW();
-
     for (var i = 1; i <= currSapt1; i++) {
       console.log(
         "Saptamana " +
@@ -1181,9 +1159,9 @@ const Generator = () => {
 
   const rowsWeekend = [
     createDataWeekend(
-      //fillInformatica(),
-      //fillMatematica(),
-      //fillRomana(),
+      fillInformatica(),
+      fillMatematica(),
+      fillRomana(),
       1,
       saptWeek[1].luni,
       saptWeek[1].marti,
@@ -1240,68 +1218,149 @@ const Generator = () => {
     }
   };
 
-  return (
-    <table
-      className="table table-striped position-absolute top-50 start-50 translate-middle table-responsive table-hover"
-      style={{ textAlign: "center", minHeight: "20%", maxWidth: "50%" }}
-    >
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">
-            <center>Saptamana</center>
-          </th>
-          <th scope="col">
-            <center>Luni</center>
-          </th>
-          <th scope="col">
-            <center>Marti</center>
-          </th>
-          <th scope="col">
-            <center>Miercuri</center>
-          </th>
-          <th scope="col">
-            <center>Joi</center>
-          </th>
-          <th scope="col">
-            <center>Vineri</center>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {saptNoWeek.map((element, index) => (
+  if (weekend == 0) {
+    console.log("in no weekend");
+    return (
+      <table
+        className="table table-striped position-absolute top-50 start-50 translate-middle table-responsive table-hover"
+        style={{ textAlign: "center", minHeight: "20%", maxWidth: "50%" }}
+      >
+        <thead class="thead-light">
           <tr>
-            <th scope="row">
-              <center>
-                <middle>{index + 1}</middle>
-              </center>
+            <th scope="col">
+              <center>Saptamana</center>
             </th>
-            <td>
-              <b>{element.luni}</b>
-              {returnOutput(element.luni)}
-            </td>
-            <td>
-              <b>{element.marti}</b>
-              {returnOutput(element.marti)}
-            </td>
-            <td>
-              <b>{element.miercuri}</b>
-              {returnOutput(element.miercuri)}
-            </td>
-            <td>
-              <b>{element.joi}</b>
-              {returnOutput(element.joi)}
-            </td>
-            <td>
-              <b>{element.vineri}</b>
-              {returnOutput(element.vineri)}
-            </td>
+            <th scope="col">
+              <center>Luni</center>
+            </th>
+            <th scope="col">
+              <center>Marti</center>
+            </th>
+            <th scope="col">
+              <center>Miercuri</center>
+            </th>
+            <th scope="col">
+              <center>Joi</center>
+            </th>
+            <th scope="col">
+              <center>Vineri</center>
+            </th>
           </tr>
-        ))}
-        {debugGen()}
-      </tbody>
-    </table>
-  );
+        </thead>
+        <tbody>
+          {saptNoWeek.map((element, index) => (
+            <tr>
+              <th scope="row">
+                <center>
+                  <middle>{index + 1}</middle>
+                </center>
+              </th>
+              <td>
+                <b>{element.luni}</b>
+                {returnOutput(element.luni)}
+              </td>
+              <td>
+                <b>{element.marti}</b>
+                {returnOutput(element.marti)}
+              </td>
+              <td>
+                <b>{element.miercuri}</b>
+                {returnOutput(element.miercuri)}
+              </td>
+              <td>
+                <b>{element.joi}</b>
+                {returnOutput(element.joi)}
+              </td>
+              <td>
+                <b>{element.vineri}</b>
+                {returnOutput(element.vineri)}
+              </td>
+            </tr>
+          ))}
+          {}
+        </tbody>
+      </table>
+    );
+  } else {
+    console.log("in weekend");
+    return (
+      <table
+        className="table table-striped position-absolute top-50 start-50 translate-middle table-responsive table-hover"
+        style={{ textAlign: "center", minHeight: "20%", maxWidth: "50%" }}
+      >
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">
+              <center>Saptamana</center>
+            </th>
+            <th scope="col">
+              <center>Luni</center>
+            </th>
+            <th scope="col">
+              <center>Marti</center>
+            </th>
+            <th scope="col">
+              <center>Miercuri</center>
+            </th>
+            <th scope="col">
+              <center>Joi</center>
+            </th>
+            <th scope="col">
+              <center>Vineri</center>
+            </th>
+            <th scope="col">
+              <center>Sambata</center>
+            </th>
+            <th scope="col">
+              <center>Duminica</center>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {saptWeek.map((element, index) => (
+            <tr>
+              <th scope="row">
+                <center>
+                  <middle>{index + 1}</middle>
+                </center>
+              </th>
+              <td>
+                <b>{element.luni}</b>
+                {returnOutput(element.luni)}
+              </td>
+              <td>
+                <b>{element.marti}</b>
+                {returnOutput(element.marti)}
+              </td>
+              <td>
+                <b>{element.miercuri}</b>
+                {returnOutput(element.miercuri)}
+              </td>
+              <td>
+                <b>{element.joi}</b>
+                {returnOutput(element.joi)}
+              </td>
+              <td>
+                <b>{element.vineri}</b>
+                {returnOutput(element.vineri)}
+              </td>
+              <td>
+                <b>{element.sambata}</b>
+                {returnOutput(element.sambata)}
+              </td>
+              <td>
+                <b>{element.duminica}</b>
+                {returnOutput(element.duminica)}
+              </td>
+            </tr>
+          ))}
+          {}
+        </tbody>
+      </table>
+    );
+  }
 };
+
 {
   /*<TableContainer component={Paper}>
       {logsapt()}
