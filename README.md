@@ -26,7 +26,19 @@ Pentru a genera orarul, folosim un algoritm foarte complex, ce aranjează niște
 
 ## Tehnologii
 
-Aplicația noastră a fost dezvoltată în ReactJS pentru framework, Bootstrap pentru interfață și GitHub pentru sincronizare și colaborare.
+Aplicația noastră a fost dezvoltată în `ReactJS` pentru framework, `Bootstrap` pentru interfață și `GitHub` pentru sincronizare și colaborare.
+
+## Descarcare
+
+Sursa poate fi descarcata cu `Git`:
+
+```
+git clone https://github.com/NuapteBuna/eduvision.git
+```
+
+Versiunea compilata poate fi descarcata de la sectiunea [Release](https://github.com/NuapteBuna/eduvision/releases)
+
+Site-ul poate si vizitat la adresa [EduVision](https://nuaptebuna.github.io/)
 
 ### Cerințe sistem
 
