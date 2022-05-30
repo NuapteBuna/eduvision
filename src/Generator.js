@@ -288,7 +288,7 @@ const Generator = () => {
       if (i % 7 <= lastzi12) {
         currSapt12++;
       }
-      if (days[i % 7] == "luni") {
+      if (daysWeekend[i % 7] == "luni") {
         if (ore("luni", currSapt12) >= 1) {
           if (ore("miercuri", currSapt12) == 0) {
             saptWeek[currSapt12].miercuri += "Matematica ";
@@ -332,7 +332,7 @@ const Generator = () => {
           saptWeek[currSapt12].luni += "Matematica ";
         }
       }
-      if (days[i % 7] == "marti") {
+      if (daysWeekend[i % 7] == "marti") {
         if (ore("marti", currSapt12) >= 1) {
           if (ore("joi", currSapt12) == 0) {
             saptWeek[currSapt12].joi += "Matematica ";
@@ -376,7 +376,7 @@ const Generator = () => {
           saptWeek[currSapt12].marti += "Matematica ";
         }
       }
-      if (days[i % 7] == "miercuri") {
+      if (daysWeekend[i % 7] == "miercuri") {
         if (ore("miercuri", currSapt12) >= 1) {
           if (ore("vineri", currSapt12) == 0) {
             saptWeek[currSapt12].vineri += "Matematica ";
@@ -420,7 +420,7 @@ const Generator = () => {
           saptWeek[currSapt12].miercuri += "Matematica ";
         }
       }
-      if (days[i % 7] == "joi") {
+      if (daysWeekend[i % 7] == "joi") {
         if (ore("joi", currSapt12) >= 1) {
           if (ore("duminica", currSapt12) == 0) {
             saptWeek[currSapt12].duminica += "Matematica ";
@@ -466,7 +466,7 @@ const Generator = () => {
           saptWeek[currSapt12].joi += "Matematica ";
         }
       }
-      if (days[i % 7] == "vineri") {
+      if (daysWeekend[i % 7] == "vineri") {
         if (ore("vineri", currSapt12) >= 1) {
           if (ore("duminica", currSapt12) == 0) {
             saptWeek[currSapt12].duminica += "Matematica ";
@@ -512,7 +512,7 @@ const Generator = () => {
           saptWeek[currSapt12].vineri += "Matematica ";
         }
       }
-      if (days[i % 7] == "sambata") {
+      if (daysWeekend[i % 7] == "sambata") {
         if (ore("sambata", currSapt12) >= 1) {
           if (ore("marti", currSapt12) == 0) {
             saptWeek[currSapt12].marti += "Matematica ";
@@ -558,7 +558,7 @@ const Generator = () => {
           saptWeek[currSapt12].sambata += "Matematica ";
         }
       }
-      if (days[i % 7] == "duminica") {
+      if (daysWeekend[i % 7] == "duminica") {
         if (ore("duminica", currSapt12) >= 1) {
           if (ore("marti", currSapt12) == 0) {
             saptWeek[currSapt12].marti += "Matematica ";
@@ -618,7 +618,7 @@ const Generator = () => {
       if (i % 7 <= lastzi13) {
         currSapt13++;
       }
-      if (days[i % 7] == "luni") {
+      if (daysWeekend[i % 7] == "luni") {
         if (ore("luni", currSapt13) >= 1) {
           if (ore("miercuri", currSapt13) == 0) {
             saptWeek[currSapt13].miercuri += "Romana ";
@@ -639,7 +639,7 @@ const Generator = () => {
           saptWeek[currSapt13].luni += "Romana ";
         }
       }
-      if (days[i % 7] == "marti") {
+      if (daysWeekend[i % 7] == "marti") {
         if (ore("marti", currSapt13) >= 1) {
           if (ore("vineri", currSapt13) == 0) {
             saptWeek[currSapt13].vineri += "Romana ";
@@ -660,7 +660,7 @@ const Generator = () => {
           saptWeek[currSapt13].marti += "Romana ";
         }
       }
-      if (days[i % 7] == "miercuri") {
+      if (daysWeekend[i % 7] == "miercuri") {
         if (ore("miercuri", currSapt13) >= 1) {
           if (ore("luni", currSapt13) == 0) {
             saptWeek[currSapt13].luni += "Romana ";
@@ -681,7 +681,7 @@ const Generator = () => {
           saptWeek[currSapt13].miercuri += "Romana ";
         }
       }
-      if (days[i % 7] == "joi") {
+      if (daysWeekend[i % 7] == "joi") {
         if (ore("joi", currSapt13) >= 1) {
           if (ore("luni", currSapt13) == 0) {
             saptWeek[currSapt13].luni += "Romana ";
@@ -702,7 +702,7 @@ const Generator = () => {
           saptWeek[currSapt13].joi += "Romana ";
         }
       }
-      if (days[i % 7] == "vineri") {
+      if (daysWeekend[i % 7] == "vineri") {
         if (ore("vineri", currSapt13) >= 1) {
           if (ore("marti", currSapt13) == 0) {
             saptWeek[currSapt13].marti += "Romana ";
@@ -723,7 +723,7 @@ const Generator = () => {
           saptWeek[currSapt13].vineri += "Romana ";
         }
       }
-      if (days[i % 7] == "sambata") {
+      if (daysWeekend[i % 7] == "sambata") {
         if (ore("sambata", currSapt13) >= 1) {
           if (ore("luni", currSapt13) == 0) {
             saptWeek[currSapt13].luni += "Romana ";
@@ -744,7 +744,7 @@ const Generator = () => {
           saptWeek[currSapt13].sambata += "Romana ";
         }
       }
-      if (days[i % 7] == "duminica") {
+      if (daysWeekend[i % 7] == "duminica") {
         if (ore("duminica", currSapt13) >= 1) {
           if (ore("marti", currSapt13) == 0) {
             saptWeek[currSapt13].marti += "Romana ";
@@ -1119,6 +1119,34 @@ const Generator = () => {
     "testing";
   };
 
+  function createDataWeekend(
+    function11,
+    function12,
+    function13,
+    saptamana,
+    luni,
+    marti,
+    miercuri,
+    joi,
+    vineri,
+    sambata,
+    duminica
+  ) {
+    return {
+      function11,
+      function12,
+      function13,
+      saptamana,
+      luni,
+      marti,
+      miercuri,
+      joi,
+      vineri,
+      sambata,
+      duminica,
+    };
+  }
+
   function createData(
     function1,
     function2,
@@ -1149,6 +1177,22 @@ const Generator = () => {
     fillRomanaFW();
     console.log(saptNoWeek[1]);
   }
+
+  const rowsWeekend = [
+    createDataWeekend(
+      fillInformatica(),
+      fillMatematica(),
+      fillRomana(),
+      1,
+      saptWeek[1].luni,
+      saptWeek[1].marti,
+      saptWeek[1].miercuri,
+      saptWeek[1].joi,
+      saptWeek[1].vineri,
+      saptWeek[1].sambata,
+      saptWeek[1].duminica
+    ),
+  ];
 
   const rows = [
     createData(
@@ -1195,67 +1239,145 @@ const Generator = () => {
     }
   };
 
-  return (
-    <table
-      className="table table-striped position-absolute top-50 start-50 translate-middle table-responsive table-hover"
-      style={{ textAlign: "center", minHeight: "20%", maxWidth: "50%" }}
-    >
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">
-            <center>Saptamana</center>
-          </th>
-          <th scope="col">
-            <center>Luni</center>
-          </th>
-          <th scope="col">
-            <center>Marti</center>
-          </th>
-          <th scope="col">
-            <center>Miercuri</center>
-          </th>
-          <th scope="col">
-            <center>Joi</center>
-          </th>
-          <th scope="col">
-            <center>Vineri</center>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {saptNoWeek.map((element, index) => (
+  if (weekend == 0) {
+    return (
+      <table
+        className="table table-striped position-absolute top-50 start-50 translate-middle table-responsive table-hover"
+        style={{ textAlign: "center", minHeight: "20%", maxWidth: "50%" }}
+      >
+        <thead class="thead-light">
           <tr>
-            <th scope="row">
-              <center>
-                <middle>{index + 1}</middle>
-              </center>
+            <th scope="col">
+              <center>Saptamana</center>
             </th>
-            <td>
-              <b>{element.luni}</b>
-              {returnOutput(element.luni)}
-            </td>
-            <td>
-              <b>{element.marti}</b>
-              {returnOutput(element.marti)}
-            </td>
-            <td>
-              <b>{element.miercuri}</b>
-              {returnOutput(element.miercuri)}
-            </td>
-            <td>
-              <b>{element.joi}</b>
-              {returnOutput(element.joi)}
-            </td>
-            <td>
-              <b>{element.vineri}</b>
-              {returnOutput(element.vineri)}
-            </td>
+            <th scope="col">
+              <center>Luni</center>
+            </th>
+            <th scope="col">
+              <center>Marti</center>
+            </th>
+            <th scope="col">
+              <center>Miercuri</center>
+            </th>
+            <th scope="col">
+              <center>Joi</center>
+            </th>
+            <th scope="col">
+              <center>Vineri</center>
+            </th>
           </tr>
-        ))}
-        {debugGen()}
-      </tbody>
-    </table>
-  );
+        </thead>
+        <tbody>
+          {saptNoWeek.map((element, index) => (
+            <tr>
+              <th scope="row">
+                <center>
+                  <middle>{index + 1}</middle>
+                </center>
+              </th>
+              <td>
+                <b>{element.luni}</b>
+                {returnOutput(element.luni)}
+              </td>
+              <td>
+                <b>{element.marti}</b>
+                {returnOutput(element.marti)}
+              </td>
+              <td>
+                <b>{element.miercuri}</b>
+                {returnOutput(element.miercuri)}
+              </td>
+              <td>
+                <b>{element.joi}</b>
+                {returnOutput(element.joi)}
+              </td>
+              <td>
+                <b>{element.vineri}</b>
+                {returnOutput(element.vineri)}
+              </td>
+            </tr>
+          ))}
+          {debugGen()}
+        </tbody>
+      </table>
+    );
+  } else {
+    return (
+      <table
+        className="table table-striped position-absolute top-50 start-50 translate-middle table-responsive table-hover"
+        style={{ textAlign: "center", minHeight: "20%", maxWidth: "50%" }}
+      >
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">
+              <center>Saptamana</center>
+            </th>
+            <th scope="col">
+              <center>Luni</center>
+            </th>
+            <th scope="col">
+              <center>Marti</center>
+            </th>
+            <th scope="col">
+              <center>Miercuri</center>
+            </th>
+            <th scope="col">
+              <center>Joi</center>
+            </th>
+            <th scope="col">
+              <center>Vineri</center>
+            </th>
+            <th scope="col">
+              <center>Sambata</center>
+            </th>
+            <th scope="col">
+              <center>Duminica</center>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {saptWeek.map((element, index) => (
+            <tr>
+              <th scope="row">
+                <center>
+                  <middle>{index + 1}</middle>
+                </center>
+              </th>
+              <td>
+                <b>{element.luni}</b>
+                {returnOutput(element.luni)}
+              </td>
+              <td>
+                <b>{element.marti}</b>
+                {returnOutput(element.marti)}
+              </td>
+              <td>
+                <b>{element.miercuri}</b>
+                {returnOutput(element.miercuri)}
+              </td>
+              <td>
+                <b>{element.joi}</b>
+                {returnOutput(element.joi)}
+              </td>
+              <td>
+                <b>{element.vineri}</b>
+                {returnOutput(element.vineri)}
+              </td>
+              <td>
+                <b>{element.sambata}</b>
+                {returnOutput(element.sambata)}
+              </td>
+              <td>
+                <b>{element.sambata}</b>
+                {returnOutput(element.duminica)}
+              </td>
+            </tr>
+          ))}
+          {debugGen()}
+        </tbody>
+      </table>
+    );
+  }
   {
     /*<TableContainer component={Paper}>
       {logsapt()}

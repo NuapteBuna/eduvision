@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# EduVision
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Descriere
 
-## Available Scripts
+EduVision este o aplicație web destinată elevilor de clasa a 12-a care au nevoie de ajutor în a-și planifica sesiunile de învățare înainte de cel mai dificil examen din viața lor de până atunci, **Bacalaureatul.**
 
-In the project directory, you can run:
+## Pași de generare
 
-### `npm start`
+### Setup
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+În partea de setup, sunt cerute câteva informații esențiale pentru a genera calendarul de învățare, cum ar fi:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Timpul pentru care o să se genereze calendarul
+- Materiile pentru care o să se genereze calendarul
+- Nivelul de dedicație dorit
+- Programul zilnic la liceu
+- Opțiunea de a învăța în weekend
 
-### `npm test`
+### Testarea
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Pentru a determina stadiul de pregătire, noi vom testa elevii din materiile alese de aceștia. Astfel, vom afla nivelul lor actual de pregătire, pentru a determina numărul de ore necesare pentru o pregătire optimă.
 
-### `npm run build`
+### Generarea
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Pentru a genera orarul, folosim un algoritm foarte complex, ce aranjează niște sesiuni de învățare săptămânale pentru a acoperi fiecare materie, respectiv fiecare capitol la care se greșesc întrebările.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Tehnologii
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Aplicația noastră a fost dezvoltată în ReactJS pentru framework, Bootstrap pentru interfață și GitHub pentru sincronizare și colaborare.
 
-### `npm run eject`
+### Cerințe sistem
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Sistem de operare: Windows 7, Windows 8, Windows 8.1, Windows 10 sau mai recent.
+Procesor: Intel Pentium 4 sau mai recent.
+RAM: 4 GB (recomandat)
