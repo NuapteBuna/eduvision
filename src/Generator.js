@@ -149,6 +149,11 @@ const Generator = () => {
     this.duminica = duminica;
   }
 
+  var saptWeek = [];
+  for (var i = 0; i <= daysTime / 7; i++) {
+    saptWeek[i] = new saptn();
+  }
+
   var daysWeekend = [
     "luni",
     "marti",
@@ -190,6 +195,18 @@ const Generator = () => {
   var lastzi3 = 0;
   var currSapt3 = -1;
 
+  //Informatica with weekend
+  var lastzi11 = 0;
+  var currSapt11 = -1;
+
+  //Matematica with weekend
+  var currSapt12 = -1;
+  var lastzi12 = 0;
+
+  //Romana with weekend
+  var lastzi13 = 0;
+  var currSapt13 = -1;
+
   function ore(zi, sapt) {
     if (zi == "luni") {
       return saptNoWeek[sapt].luni.split(" ").length - 1;
@@ -207,6 +224,550 @@ const Generator = () => {
       return saptNoWeek[sapt].duminica.split(" ").length - 1;
     }
   }
+
+  function oreWeekend(zi, sapt) {
+    if (zi == "luni") {
+      return saptWeek[sapt].luni.split(" ").length - 1;
+    } else if (zi == "marti") {
+      return saptWeek[sapt].marti.split(" ").length - 1;
+    } else if (zi == "miercuri") {
+      return saptWeek[sapt].miercuri.split(" ").length - 1;
+    } else if (zi == "joi") {
+      return saptWeek[sapt].joi.split(" ").length - 1;
+    } else if (zi == "vineri") {
+      return saptWeek[sapt].vineri.split(" ").length - 1;
+    } else if (zi == "sambata") {
+      return saptWeek[sapt].sambata.split(" ").length - 1;
+    } else if (zi == "duminica") {
+      return saptWeek[sapt].duminica.split(" ").length - 1;
+    }
+  }
+
+  //Fill informatica ww
+  const fillInformatica = () => {
+    for (
+      var i = 0;
+      i <= daysTime && currSapt11 * 7 < daysTime;
+      i += Math.round(pasInformatica)
+    ) {
+      if (i % 7 <= lastzi11) {
+        currSapt11++;
+      }
+      if (daysWeekend[i % 7] == "luni") {
+        saptWeek[currSapt11].luni += "Informatica ";
+      }
+      if (daysWeekend[i % 7] == "marti") {
+        saptWeek[currSapt11].marti += "Informatica ";
+      }
+      if (daysWeekend[i % 7] == "miercuri") {
+        saptWeek[currSapt11].miercuri += "Informatica ";
+      }
+      if (daysWeekend[i % 7] == "joi") {
+        saptWeek[currSapt11].joi += "Informatica ";
+      }
+      if (daysWeekend[i % 7] == "vineri") {
+        saptWeek[currSapt11].vineri += "Informatica ";
+      }
+      if (daysWeekend[i % 7] == "sambata") {
+        saptWeek[currSapt11].sambata += "Informatica ";
+      }
+      if (daysWeekend[i % 7] == "duminica") {
+        saptWeek[currSapt11].duminica += "Informatica ";
+      }
+      lastzi11 = i % 7;
+    }
+  };
+
+  //Fill matematica weekend
+  const fillMatematica = () => {
+    for (
+      var i = 0;
+      i <= daysTime && currSapt12 * 7 < daysTime;
+      i += Math.round(pasMatematica)
+    ) {
+      if (i % 7 <= lastzi12) {
+        currSapt12++;
+      }
+      if (days[i % 7] == "luni") {
+        if (ore("luni", currSapt12) >= 1) {
+          if (ore("miercuri", currSapt12) == 0) {
+            saptWeek[currSapt12].miercuri += "Matematica ";
+          } else if (ore("joi", currSapt12) == 0) {
+            saptWeek[currSapt12].joi += "Matematica ";
+          } else if (ore("vineri", currSapt12) == 0) {
+            saptWeek[currSapt12].vineri += "Matematica ";
+          } else if (ore("marti", currSapt12) == 0) {
+            saptWeek[currSapt12].marti += "Matematica ";
+          } else if (ore("sambata", currSapt12) == 0) {
+            saptWeek[currSapt12].sambata += "Matematica ";
+          } else if (ore("duminica", currSapt12) == 0) {
+            saptWeek[currSapt12].duminica += "Matematica ";
+          } else {
+            var lowest = Math.min(
+              ore("luni", currSapt12),
+              ore("miercuri", currSapt12),
+              ore("joi", currSapt12),
+              ore("vineri", currSapt12),
+              ore("marti", currSapt12),
+              ore("sambata", currSapt12),
+              ore("duminica", currSapt12)
+            );
+            if (lowest == ore("luni", currSapt12)) {
+              saptWeek[currSapt12].luni += "Matematica ";
+            } else if (lowest == ore("miercuri", currSapt12)) {
+              saptWeek[currSapt12].miercuri += "Matematica ";
+            } else if (lowest == ore("joi", currSapt12)) {
+              saptWeek[currSapt12].joi += "Matematica ";
+            } else if (lowest == ore("vineri", currSapt12)) {
+              saptWeek[currSapt12].vineri += "Matematica ";
+            } else if (lowest == ore("marti", currSapt12)) {
+              saptWeek[currSapt12].marti += "Matematica ";
+            } else if (lowest == ore("sambata", currSapt12)) {
+              saptWeek[currSapt12].sambata += "Matematica ";
+            } else if (lowest == ore("duminica", currSapt12)) {
+              saptWeek[currSapt12].duminica += "Matematica ";
+            }
+          }
+        } else {
+          saptWeek[currSapt12].luni += "Matematica ";
+        }
+      }
+      if (days[i % 7] == "marti") {
+        if (ore("marti", currSapt12) >= 1) {
+          if (ore("joi", currSapt12) == 0) {
+            saptWeek[currSapt12].joi += "Matematica ";
+          } else if (ore("vineri", currSapt12) == 0) {
+            saptWeek[currSapt12].vineri += "Matematica ";
+          } else if (ore("miercuri", currSapt12) == 0) {
+            saptWeek[currSapt12].miercuri += "Matematica ";
+          } else if (ore("luni", currSapt12) == 0) {
+            saptWeek[currSapt12].luni += "Matematica ";
+          } else if (ore("sambata", currSapt12) == 0) {
+            saptWeek[currSapt12].sambata += "Matematica ";
+          } else if (ore("duminica", currSapt12) == 0) {
+            saptWeek[currSapt12].duminica += "Matematica ";
+          } else {
+            var lowest = Math.min(
+              ore("marti", currSapt12),
+              ore("joi", currSapt12),
+              ore("vineri", currSapt12),
+              ore("miercuri", currSapt12),
+              ore("luni", currSapt12),
+              ore("sambata", currSapt12),
+              ore("duminica", currSapt12)
+            );
+            if (lowest == ore("marti", currSapt12)) {
+              saptWeek[currSapt12].marti += "Matematica ";
+            } else if (lowest == ore("joi", currSapt12)) {
+              saptWeek[currSapt12].joi += "Matematica ";
+            } else if (lowest == ore("vineri", currSapt12)) {
+              saptWeek[currSapt12].vineri += "Matematica ";
+            } else if (lowest == ore("miercuri", currSapt12)) {
+              saptWeek[currSapt12].miercuri += "Matematica ";
+            } else if (lowest == ore("luni", currSapt12)) {
+              saptWeek[currSapt12].luni += "Matematica ";
+            } else if (lowest == ore("sambata", currSapt12)) {
+              saptWeek[currSapt12].sambata += "Matematica ";
+            } else if (lowest == ore("duminica", currSapt12)) {
+              saptWeek[currSapt12].duminica += "Matematica ";
+            }
+          }
+        } else {
+          saptWeek[currSapt12].marti += "Matematica ";
+        }
+      }
+      if (days[i % 7] == "miercuri") {
+        if (ore("miercuri", currSapt12) >= 1) {
+          if (ore("vineri", currSapt12) == 0) {
+            saptWeek[currSapt12].vineri += "Matematica ";
+          } else if (ore("luni", currSapt12) == 0) {
+            saptWeek[currSapt12].luni += "Matematica ";
+          } else if (ore("joi", currSapt12) == 0) {
+            saptWeek[currSapt12].joi += "Matematica ";
+          } else if (ore("marti", currSapt12) == 0) {
+            saptWeek[currSapt12].marti += "Matematica ";
+          } else if (ore("sambata", currSapt12) == 0) {
+            saptWeek[currSapt12].sambata += "Matematica ";
+          } else if (ore("duminica", currSapt12) == 0) {
+            saptWeek[currSapt12].duminica += "Matematica ";
+          } else {
+            var lowest = Math.min(
+              ore("miercuri", currSapt12),
+              ore("luni", currSapt12),
+              ore("joi", currSapt12),
+              ore("vineri", currSapt12),
+              ore("marti", currSapt12),
+              ore("sambata", currSapt12),
+              ore("duminica", currSapt12)
+            );
+            if (lowest == ore("miercuri", currSapt12)) {
+              saptWeek[currSapt12].miercuri += "Matematica ";
+            } else if (lowest == ore("luni", currSapt12)) {
+              saptWeek[currSapt12].luni += "Matematica ";
+            } else if (lowest == ore("joi", currSapt12)) {
+              saptWeek[currSapt12].joi += "Matematica ";
+            } else if (lowest == ore("vineri", currSapt12)) {
+              saptWeek[currSapt12].vineri += "Matematica ";
+            } else if (lowest == ore("marti", currSapt12)) {
+              saptWeek[currSapt12].marti += "Matematica ";
+            } else if (lowest == ore("sambata", currSapt12)) {
+              saptWeek[currSapt12].sambata += "Matematica ";
+            } else if (lowest == ore("duminica", currSapt12)) {
+              saptWeek[currSapt12].duminica += "Matematica ";
+            }
+          }
+        } else {
+          saptWeek[currSapt12].miercuri += "Matematica ";
+        }
+      }
+      if (days[i % 7] == "joi") {
+        if (ore("joi", currSapt12) >= 1) {
+          if (ore("duminica", currSapt12) == 0) {
+            saptWeek[currSapt12].duminica += "Matematica ";
+          } else if (ore("sambata", currSapt12) == 0) {
+            saptWeek[currSapt12].sambata += "Matematica ";
+          } else if (ore("miercuri", currSapt12) == 0) {
+            saptWeek[currSapt12].miercuri += "Matematica ";
+          } else if (ore("vineri", currSapt12) == 0) {
+            saptWeek[currSapt12].vineri += "Matematica ";
+          } else if (ore("luni", currSapt12) == 0) {
+            saptWeek[currSapt12].luni += "Matematica ";
+          } else if (ore("marti", currSapt12) == 0) {
+            saptWeek[currSapt12].marti += "Matematica ";
+          } else {
+            var lowest = Math.min(
+              ore("joi", currSapt12),
+              ore("luni", currSapt12),
+              ore("marti", currSapt12),
+              ore("miercuri", currSapt12),
+              ore("vineri", currSapt12),
+              ore("sambata", currSapt12),
+              ore("duminica", currSapt12)
+            );
+            if (lowest == ore("joi", currSapt12)) {
+              saptWeek[currSapt12].joi += "Matematica ";
+            } else if (lowest == ore("luni", currSapt12)) {
+              saptWeek[currSapt12].luni += "Matematica ";
+            } else if (lowest == ore("marti", currSapt12)) {
+              saptWeek[currSapt12].marti += "Matematica ";
+            } else if (lowest == ore("miercuri", currSapt12)) {
+              saptWeek[currSapt12].miercuri += "Matematica ";
+            } else if (lowest == ore("vineri", currSapt12)) {
+              saptWeek[currSapt12].vineri += "Matematica ";
+            } else if (lowest == ore("sambata", currSapt12)) {
+              saptWeek[currSapt12].sambata += "Matematica ";
+            } else if (lowest == ore("duminica", currSapt12)) {
+              saptWeek[currSapt12].duminica += "Matematica ";
+            } else {
+              saptWeek[currSapt12].joi += "Matematica ";
+            }
+          }
+        } else {
+          saptWeek[currSapt12].joi += "Matematica ";
+        }
+      }
+      if (days[i % 7] == "vineri") {
+        if (ore("vineri", currSapt12) >= 1) {
+          if (ore("duminica", currSapt12) == 0) {
+            saptWeek[currSapt12].duminica += "Matematica ";
+          } else if (ore("miercuri", currSapt12) == 0) {
+            saptWeek[currSapt12].miercuri += "Matematica ";
+          } else if (ore("joi", currSapt12) == 0) {
+            saptWeek[currSapt12].joi += "Matematica ";
+          } else if (ore("luni", currSapt12) == 0) {
+            saptWeek[currSapt12].luni += "Matematica ";
+          } else if (ore("marti", currSapt12) == 0) {
+            saptWeek[currSapt12].marti += "Matematica ";
+          } else if (ore("sambata", currSapt12) == 0) {
+            saptWeek[currSapt12].sambata += "Matematica ";
+          } else {
+            var lowest = Math.min(
+              ore("vineri", currSapt12),
+              ore("marti", currSapt12),
+              ore("miercuri", currSapt12),
+              ore("joi", currSapt12),
+              ore("luni", currSapt12),
+              ore("sambata", currSapt12),
+              ore("duminica", currSapt12)
+            );
+            if (lowest == ore("vineri", currSapt12)) {
+              saptWeek[currSapt12].vineri += "Matematica ";
+            } else if (lowest == ore("marti", currSapt12)) {
+              saptWeek[currSapt12].marti += "Matematica ";
+            } else if (lowest == ore("miercuri", currSapt12)) {
+              saptWeek[currSapt12].miercuri += "Matematica ";
+            } else if (lowest == ore("joi", currSapt12)) {
+              saptWeek[currSapt12].joi += "Matematica ";
+            } else if (lowest == ore("luni", currSapt12)) {
+              saptWeek[currSapt12].luni += "Matematica ";
+            } else if (lowest == ore("sambata", currSapt12)) {
+              saptWeek[currSapt12].sambata += "Matematica ";
+            } else if (lowest == ore("duminica", currSapt12)) {
+              saptWeek[currSapt12].duminica += "Matematica ";
+            } else {
+              saptWeek[currSapt12].vineri += "Matematica ";
+            }
+          }
+        } else {
+          saptWeek[currSapt12].vineri += "Matematica ";
+        }
+      }
+      if (days[i % 7] == "sambata") {
+        if (ore("sambata", currSapt12) >= 1) {
+          if (ore("marti", currSapt12) == 0) {
+            saptWeek[currSapt12].marti += "Matematica ";
+          } else if (ore("miercuri", currSapt12) == 0) {
+            saptWeek[currSapt12].miercuri += "Matematica ";
+          } else if (ore("joi", currSapt12) == 0) {
+            saptWeek[currSapt12].joi += "Matematica ";
+          } else if (ore("luni", currSapt12) == 0) {
+            saptWeek[currSapt12].luni += "Matematica ";
+          } else if (ore("vineri", currSapt12) == 0) {
+            saptWeek[currSapt12].vineri += "Matematica ";
+          } else if (ore("duminica", currSapt12) == 0) {
+            saptWeek[currSapt12].duminica += "Matematica ";
+          } else {
+            var lowest = Math.min(
+              ore("sambata", currSapt12),
+              ore("marti", currSapt12),
+              ore("miercuri", currSapt12),
+              ore("joi", currSapt12),
+              ore("luni", currSapt12),
+              ore("vineri", currSapt12),
+              ore("duminica", currSapt12)
+            );
+            if (lowest == ore("sambata", currSapt12)) {
+              saptWeek[currSapt12].sambata += "Matematica ";
+            } else if (lowest == ore("marti", currSapt12)) {
+              saptWeek[currSapt12].marti += "Matematica ";
+            } else if (lowest == ore("miercuri", currSapt12)) {
+              saptWeek[currSapt12].miercuri += "Matematica ";
+            } else if (lowest == ore("joi", currSapt12)) {
+              saptWeek[currSapt12].joi += "Matematica ";
+            } else if (lowest == ore("luni", currSapt12)) {
+              saptWeek[currSapt12].luni += "Matematica ";
+            } else if (lowest == ore("vineri", currSapt12)) {
+              saptWeek[currSapt12].vineri += "Matematica ";
+            } else if (lowest == ore("duminica", currSapt12)) {
+              saptWeek[currSapt12].duminica += "Matematica ";
+            } else {
+              saptWeek[currSapt12].sambata += "Matematica ";
+            }
+          }
+        } else {
+          saptWeek[currSapt12].sambata += "Matematica ";
+        }
+      }
+      if (days[i % 7] == "duminica") {
+        if (ore("duminica", currSapt12) >= 1) {
+          if (ore("marti", currSapt12) == 0) {
+            saptWeek[currSapt12].marti += "Matematica ";
+          } else if (ore("miercuri", currSapt12) == 0) {
+            saptWeek[currSapt12].miercuri += "Matematica ";
+          } else if (ore("joi", currSapt12) == 0) {
+            saptWeek[currSapt12].joi += "Matematica ";
+          } else if (ore("luni", currSapt12) == 0) {
+            saptWeek[currSapt12].luni += "Matematica ";
+          } else if (ore("vineri", currSapt12) == 0) {
+            saptWeek[currSapt12].vineri += "Matematica ";
+          } else if (ore("sambata", currSapt12) == 0) {
+            saptWeek[currSapt12].sambata += "Matematica ";
+          } else {
+            var lowest = Math.min(
+              ore("duminica", currSapt12),
+              ore("marti", currSapt12),
+              ore("miercuri", currSapt12),
+              ore("joi", currSapt12),
+              ore("luni", currSapt12),
+              ore("vineri", currSapt12),
+              ore("sambata", currSapt12)
+            );
+            if (lowest == ore("duminica", currSapt12)) {
+              saptWeek[currSapt12].duminica += "Matematica ";
+            } else if (lowest == ore("marti", currSapt12)) {
+              saptWeek[currSapt12].marti += "Matematica ";
+            } else if (lowest == ore("miercuri", currSapt12)) {
+              saptWeek[currSapt12].miercuri += "Matematica ";
+            } else if (lowest == ore("joi", currSapt12)) {
+              saptWeek[currSapt12].joi += "Matematica ";
+            } else if (lowest == ore("luni", currSapt12)) {
+              saptWeek[currSapt12].luni += "Matematica ";
+            } else if (lowest == ore("vineri", currSapt12)) {
+              saptWeek[currSapt12].vineri += "Matematica ";
+            } else if (lowest == ore("sambata", currSapt12)) {
+              saptWeek[currSapt12].sambata += "Matematica ";
+            } else {
+              saptWeek[currSapt12].duminica += "Matematica ";
+            }
+          }
+        } else {
+          saptWeek[currSapt12].duminica += "Matematica ";
+        }
+      }
+      lastzi12 = i % 7;
+    }
+  };
+
+  //Fill romana weekend
+  const fillRomana = () => {
+    for (
+      var i = 0;
+      i <= daysTime && currSapt13 * 7 < daysTime;
+      i += Math.round(pasAlt)
+    ) {
+      if (i % 7 <= lastzi13) {
+        currSapt13++;
+      }
+      if (days[i % 7] == "luni") {
+        if (ore("luni", currSapt13) >= 1) {
+          if (ore("miercuri", currSapt13) == 0) {
+            saptWeek[currSapt13].miercuri += "Romana ";
+          } else if (ore("marti", currSapt13) == 0) {
+            saptWeek[currSapt13].marti += "Romana ";
+          } else if (ore("joi", currSapt13) == 0) {
+            saptWeek[currSapt13].joi += "Romana ";
+          } else if (ore("vineri", currSapt13) == 0) {
+            saptWeek[currSapt13].vineri += "Romana ";
+          } else if (ore("sambata", currSapt13) == 0) {
+            saptWeek[currSapt13].sambata += "Romana ";
+          } else if (ore("duminica", currSapt13) == 0) {
+            saptWeek[currSapt13].duminica += "Romana ";
+          } else {
+            currSapt13++;
+          }
+        } else {
+          saptWeek[currSapt13].luni += "Romana ";
+        }
+      }
+      if (days[i % 7] == "marti") {
+        if (ore("marti", currSapt13) >= 1) {
+          if (ore("vineri", currSapt13) == 0) {
+            saptWeek[currSapt13].vineri += "Romana ";
+          } else if (ore("miercuri", currSapt13) == 0) {
+            saptWeek[currSapt13].luni += "Romana ";
+          } else if (ore("joi", currSapt13) == 0) {
+            saptWeek[currSapt13].joi += "Romana ";
+          } else if (ore("luni", currSapt13) == 0) {
+            saptWeek[currSapt13].luni += "Romana ";
+          } else if (ore("sambata", currSapt13) == 0) {
+            saptWeek[currSapt13].sambata += "Romana ";
+          } else if (ore("duminica", currSapt13) == 0) {
+            saptWeek[currSapt13].duminica += "Romana ";
+          } else {
+            currSapt13++;
+          }
+        } else {
+          saptWeek[currSapt13].marti += "Romana ";
+        }
+      }
+      if (days[i % 7] == "miercuri") {
+        if (ore("miercuri", currSapt13) >= 1) {
+          if (ore("luni", currSapt13) == 0) {
+            saptWeek[currSapt13].luni += "Romana ";
+          } else if (ore("joi", currSapt13) == 0) {
+            saptWeek[currSapt13].joi += "Romana ";
+          } else if (ore("vineri", currSapt13) == 0) {
+            saptWeek[currSapt13].vineri += "Romana ";
+          } else if (ore("marti", currSapt13) == 0) {
+            saptWeek[currSapt13].marti += "Romana ";
+          } else if (ore("sambata", currSapt13) == 0) {
+            saptWeek[currSapt13].sambata += "Romana ";
+          } else if (ore("duminica", currSapt13) == 0) {
+            saptWeek[currSapt13].duminica += "Romana ";
+          } else {
+            currSapt13++;
+          }
+        } else {
+          saptWeek[currSapt13].miercuri += "Romana ";
+        }
+      }
+      if (days[i % 7] == "joi") {
+        if (ore("joi", currSapt13) >= 1) {
+          if (ore("luni", currSapt13) == 0) {
+            saptWeek[currSapt13].luni += "Romana ";
+          } else if (ore("marti", currSapt13) == 0) {
+            saptWeek[currSapt13].marti += "Romana ";
+          } else if (ore("miercuri", currSapt13) == 0) {
+            saptWeek[currSapt13].miercuri += "Romana ";
+          } else if (ore("vineri", currSapt13) == 0) {
+            saptWeek[currSapt13].vineri += "Romana ";
+          } else if (ore("sambata", currSapt13) == 0) {
+            saptWeek[currSapt13].sambata += "Romana ";
+          } else if (ore("duminica", currSapt13) == 0) {
+            saptWeek[currSapt13].duminica += "Romana ";
+          } else {
+            currSapt13++;
+          }
+        } else {
+          saptWeek[currSapt13].joi += "Romana ";
+        }
+      }
+      if (days[i % 7] == "vineri") {
+        if (ore("vineri", currSapt13) >= 1) {
+          if (ore("marti", currSapt13) == 0) {
+            saptWeek[currSapt13].marti += "Romana ";
+          } else if (ore("miercuri", currSapt13) == 0) {
+            saptWeek[currSapt13].miercuri += "Romana ";
+          } else if (ore("joi", currSapt13) == 0) {
+            saptWeek[currSapt13].joi += "Romana ";
+          } else if (ore("luni", currSapt13) == 0) {
+            saptWeek[currSapt13].luni += "Romana ";
+          } else if (ore("sambata", currSapt13) == 0) {
+            saptWeek[currSapt13].sambata += "Romana ";
+          } else if (ore("duminica", currSapt13) == 0) {
+            saptWeek[currSapt13].duminica += "Romana ";
+          } else {
+            currSapt13++;
+          }
+        } else {
+          saptWeek[currSapt13].vineri += "Romana ";
+        }
+      }
+      if (days[i % 7] == "sambata") {
+        if (ore("sambata", currSapt13) >= 1) {
+          if (ore("luni", currSapt13) == 0) {
+            saptWeek[currSapt13].luni += "Romana ";
+          } else if (ore("marti", currSapt13) == 0) {
+            saptWeek[currSapt13].marti += "Romana ";
+          } else if (ore("miercuri", currSapt13) == 0) {
+            saptWeek[currSapt13].miercuri += "Romana ";
+          } else if (ore("joi", currSapt13) == 0) {
+            saptWeek[currSapt13].joi += "Romana ";
+          } else if (ore("vineri", currSapt13) == 0) {
+            saptWeek[currSapt13].vineri += "Romana ";
+          } else if (ore("duminica", currSapt13) == 0) {
+            saptWeek[currSapt13].duminica += "Romana ";
+          } else {
+            currSapt13++;
+          }
+        } else {
+          saptWeek[currSapt13].sambata += "Romana ";
+        }
+      }
+      if (days[i % 7] == "duminica") {
+        if (ore("duminica", currSapt13) >= 1) {
+          if (ore("marti", currSapt13) == 0) {
+            saptWeek[currSapt13].marti += "Romana ";
+          } else if (ore("miercuri", currSapt13) == 0) {
+            saptWeek[currSapt13].miercuri += "Romana ";
+          } else if (ore("joi", currSapt13) == 0) {
+            saptWeek[currSapt13].joi += "Romana ";
+          } else if (ore("vineri", currSapt13) == 0) {
+            saptWeek[currSapt13].vineri += "Romana ";
+          } else if (ore("sambata", currSapt13) == 0) {
+            saptWeek[currSapt13].sambata += "Romana ";
+          } else if (ore("luni", currSapt13) == 0) {
+            saptWeek[currSapt13].luni += "Romana ";
+          } else {
+            currSapt13++;
+          }
+        } else {
+          saptWeek[currSapt13].duminica += "Romana ";
+        }
+      }
+      lastzi13 = i % 7;
+    }
+  };
 
   //Fill informatica fw
   const fillInformaticaFW = () => {

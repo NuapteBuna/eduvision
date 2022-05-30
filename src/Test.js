@@ -188,7 +188,6 @@ var intrebari = [
     ["-5", "6", "4", "5"]
   ),
 ];
-//TODO: Add more questions
 
 var materii = [];
 var capitole = [];
